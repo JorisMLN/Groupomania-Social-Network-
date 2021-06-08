@@ -2,6 +2,20 @@
   <div class="Log">
     <div class="Log__login">
       <h1>{{ msg }}</h1>
+      <form method="post" class="formulaire">
+        <fieldset>
+          <legend>Login</legend>
+          <input type="email" name="login" id="login" value="test@gmail.com" required />
+          <br />
+        </fieldset>
+        <fieldset>
+          <legend>Password</legend>
+          <input type="text" name="passwordn" id="password" required />
+          <br />
+        </fieldset>
+        <button>Valider</button>
+      </form>
+      <a> Inscrition ? </a>
     </div>
   </div>
 </template>
@@ -26,11 +40,27 @@ export default {
   &__login {
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
     align-items: center;
     border: 1px solid green;
     border-radius: 5px;
-    width: 20%;
+    width: 290px;
     height: 90%;
+    .formulaire {
+      height: 40%;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      button {
+        margin-top: 11px;
+        height: 25%;
+        width: 98%;
+      }
+    }
+    a{
+      border: 1px solid green;
+      width: 100px;
+    }
   }
 }
 </style>

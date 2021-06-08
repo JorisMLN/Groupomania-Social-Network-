@@ -2,7 +2,7 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/icon-left-font-monochrome-black.svg">
     <HelloWorld subtitle="For your quality of Life"/>
-    <Login msg="Login here?"/>
+    <Login msg="Hi there?"/>
   </div>
 </template>
 
