@@ -22,29 +22,25 @@ export default {
 <style scoped lang="scss">
 .banner {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: column;
   align-items: center;
+  height: 250px;
   .photoBan {
     display: flex;
-    justify-content: space-around;
     align-items: center;
     border: 1px solid #2c3e50;
-    height: 200px;
-    width: 100%;
+    height: 80%;
+    width: 99%;
     overflow: hidden;
-    img {
-      width: 100%;
-    }
   }
   .avatar {
     border: 1px solid #2c3e50;
-    height: 150px;
-    width: 150px;
-    margin-bottom: -120px;
-    border-radius: 150px;
+    height: 200px;
+    width: 200px;
+    border-radius: 130px;
     overflow: hidden;
-    margin-top: -120px;
+    margin-top: -220px;
     img {
       width: 100%;
       display: flex;
