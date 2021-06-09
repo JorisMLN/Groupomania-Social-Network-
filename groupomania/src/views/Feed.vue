@@ -1,20 +1,21 @@
 <template>
   <div class="feed">
     <MiniBanner/>
-    <div class="main">
-    </div>
+    <LiveFeed/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import MiniBanner from "@/components/MiniBanner.vue";
+import LiveFeed from "@/components/LiveFeed.vue";
 
 
 export default {
   name: "Feed",
   components: {
     MiniBanner,
+    LiveFeed
   },
 };
 </script>

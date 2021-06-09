@@ -35,7 +35,7 @@ export default {
     overflow: hidden;
   }
   .avatar {
-    border: 1px solid #2c3e50;
+    border: 3px solid #2c3e50;
     height: 130px;
     width: 130px;
     border-radius: 130px;

@@ -46,7 +46,7 @@ export default {
       align-items: center;
       justify-content: space-around;
       flex-direction: column;
-      border: 1px solid #42b983;
+      border: 3px solid #42b983;
       border-radius: 10px;
       width: 70%;
     }
