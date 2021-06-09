@@ -1,12 +1,12 @@
 <template>
-  <div class="PostCreation">
+  <div class="LastestPosts">
     <h1> {{msg}} </h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "PostCreation",
+  name: "LastestPosts",
   props: {
     msg: String,
   },
@@ -15,13 +15,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.PostCreation {
+.LastestPosts {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     border: 1px solid #2c3e50;
     border-radius: 5px;
-    height: 30%;
+    height: 50%;
     width: 95%;
 }
 </style>

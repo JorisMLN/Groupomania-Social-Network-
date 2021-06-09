@@ -1,33 +1,55 @@
 <template>
   <div class="profil">
-    <Banner msg="La banner"/>
-    <Info msg="Les Infos"/>
-    <PostCreation msg="Que dire ?"/>
+    <Banner/>
+    <div class="main">
+      <Info msg="Les Infos" />
+      <div class="main__right">
+        <PostCreation msg="Que dire ?" />
+        <LastestPosts msg="Vos dernieres publications" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Banner from '@/components/Banner.vue'
-import Info from '@/components/Info.vue'
-import PostCreation from '@/components/PostCreation.vue'
+import Banner from "@/components/Banner.vue";
+import Info from "@/components/Info.vue";
+import PostCreation from "@/components/PostCreation.vue";
+import LastestPosts from "@/components/LastestPosts.vue";
 
 export default {
-  name: 'Profil',
+  name: "Profil",
   components: {
     Banner,
     Info,
     PostCreation,
-  }
-}
+    LastestPosts,
+  },
+};
 </script>
 
 <style scoped lang="scss">
 .profil {
+  display: flex;
+  flex: wrap;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 800px;
+  .main {
     display: flex;
     flex: wrap;
     justify-content: space-around;
-    flex-direction: column;
-    height: 900px;
+    flex-direction: row;
+    &__right {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+      border: 1px solid #42b983;
+      border-radius: 10px;
+      width: 70%;
+    }
+  }
 }
 </style>
