@@ -1,7 +1,8 @@
 <template>
   <div class="feed">
-    <MiniBanner/>
-    <LiveFeed/>
+    <LogOut msg="Log Out" />
+    <MiniBanner />
+    <LiveFeed />
   </div>
 </template>
 
@@ -9,13 +10,14 @@
 // @ is an alias to /src
 import MiniBanner from "@/components/MiniBanner.vue";
 import LiveFeed from "@/components/LiveFeed.vue";
-
+import LogOut from "@/components/LogOut.vue";
 
 export default {
   name: "Feed",
   components: {
+    LogOut,
     MiniBanner,
-    LiveFeed
+    LiveFeed,
   },
 };
 </script>

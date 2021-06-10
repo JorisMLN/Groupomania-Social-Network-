@@ -1,6 +1,7 @@
 <template>
   <div class="profil">
-    <Banner/>
+    <LogOut msg="Log Out"/>
+    <Banner />
     <div class="main">
       <Info msg="Les Infos" />
       <div class="main__right">
@@ -17,10 +18,12 @@ import Banner from "@/components/Banner.vue";
 import Info from "@/components/Info.vue";
 import PostCreation from "@/components/PostCreation.vue";
 import LastestPosts from "@/components/LastestPosts.vue";
+import LogOut from "@/components/LogOut.vue";
 
 export default {
   name: "Profil",
   components: {
+    LogOut,
     Banner,
     Info,
     PostCreation,
@@ -48,7 +51,7 @@ export default {
       flex-direction: column;
       border: 3px solid #42b983;
       border-radius: 10px;
-      width: 70%;
+      width: 60%;
     }
   }
 }

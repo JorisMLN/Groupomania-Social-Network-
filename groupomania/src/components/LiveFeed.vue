@@ -24,12 +24,12 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 80%;
-  width: 70%;
+  width: 50%;
   border: 3px solid #42b983;
   border-radius: 5px;
   &__post {
-    height: 21%;
-    width: 95%;
+    height: 24%;
+    width: 99%;
     border: 1px solid #2c3e50;
   }
 }

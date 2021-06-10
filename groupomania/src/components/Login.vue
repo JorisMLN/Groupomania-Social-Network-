@@ -15,7 +15,7 @@
         </fieldset>
         <button>Valider</button>
       </form>
-      <a> Inscrition ? </a>
+      <div><a id="SignUp"> Inscrition ? </a> <a id="SignOut"> Désinscription ?</a></div>
     </div>
   </div>
 </template>
@@ -57,9 +57,11 @@ export default {
         width: 98%;
       }
     }
-    a{
+    a {
       border: 1px solid green;
       width: 100px;
+      margin: 10px;
+      padding: 2px;
     }
   }
 }
