@@ -5,7 +5,7 @@
     <div class="main">
       <Info msg="Les Infos" />
       <div class="main__right">
-        <PostCreation msg="Que dire ?" />
+        <PostCreation msg="Partagez avec vos collègues !" />
         <LastestPosts msg="Vos dernieres publications" />
       </div>
     </div>

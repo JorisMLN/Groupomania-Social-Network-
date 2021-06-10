@@ -1,6 +1,6 @@
 <template>
   <div class="LogOut">
-    <a>{{ msg }}</a>
+    <a href="" >{{ msg }}</a>
   </div>
 </template>
 
@@ -18,9 +18,11 @@ export default {
 .LogOut {
   margin-top: -15px;
   a {
-    border: 2px solid #42b983;
+    border: 2px solid #2c3e50;
+    color: #42b983;
     width: 100px;
     padding: 2px;
+    text-decoration: none;
   }
 }
 </style>

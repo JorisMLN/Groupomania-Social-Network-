@@ -15,7 +15,7 @@
         </fieldset>
         <button>Valider</button>
       </form>
-      <div><a id="SignUp"> Inscrition ? </a> <a id="SignOut"> Désinscription ?</a></div>
+      <div><a href="" id="SignUp"> Inscription ? </a> <a href="" id="SignOut"> Désinscription ?</a></div>
     </div>
   </div>
 </template>
@@ -62,6 +62,8 @@ export default {
       width: 100px;
       margin: 10px;
       padding: 2px;
+      color: #42b983;
+      text-decoration: none;
     }
   }
 }
