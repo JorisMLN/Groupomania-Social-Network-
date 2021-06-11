@@ -1,6 +1,6 @@
 <template>
   <div class="profil">
-    <LogOut msg="Log Out"/>
+    <LogOut msg="Log Out" />
     <Banner />
     <div class="main">
       <Info msg="Les Infos" />
@@ -30,6 +30,32 @@ export default {
     LastestPosts,
   },
 };
+
+main();
+
+function main(){
+    fetch('http://localhost:3000/api/stuff')
+    .then((response) => {
+        return response.json()
+    })
+    .then((theResponse) => {
+        console.log(theResponse);
+    })
+    .catch((error) => {
+        console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message)
+    });
+}
+
+// let stuffSent = new XMLHttpRequest();
+// stuffSent.onreadystatechange = function () {
+//   if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+//     let response = JSON.parse(this.responseText);
+//     console.log(response);
+//   }
+// };
+// stuffSent.open("GET", "http://localhost:3000/api/stuff");
+// stuffSent.send();
+
 </script>
 
 <style scoped lang="scss">
