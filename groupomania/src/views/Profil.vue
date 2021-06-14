@@ -46,16 +46,6 @@ function main(){
     });
 }
 
-// let stuffSent = new XMLHttpRequest();
-// stuffSent.onreadystatechange = function () {
-//   if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-//     let response = JSON.parse(this.responseText);
-//     console.log(response);
-//   }
-// };
-// stuffSent.open("GET", "http://localhost:3000/api/stuff");
-// stuffSent.send();
-
 </script>
 
 <style scoped lang="scss">
