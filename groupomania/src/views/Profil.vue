@@ -31,21 +31,6 @@ export default {
   },
 };
 
-main();
-
-function main(){
-    fetch('http://localhost:3000/api/stuff')
-    .then((response) => {
-        return response.json()
-    })
-    .then((theResponse) => {
-        console.log(theResponse);
-    })
-    .catch((error) => {
-        console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message)
-    });
-}
-
 </script>
 
 <style scoped lang="scss">

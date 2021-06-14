@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 // @ is an alias to /src
 import MiniBanner from "@/components/MiniBanner.vue";
 import LiveFeed from "@/components/LiveFeed.vue";
@@ -20,6 +21,7 @@ export default {
     LiveFeed,
   },
 };
+
 </script>
 
 <style scoped lang="scss">

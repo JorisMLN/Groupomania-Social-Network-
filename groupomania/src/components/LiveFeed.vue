@@ -1,17 +1,32 @@
 <template>
   <div class="LiveFeed">
-    <div class="LiveFeed__post"><h3>Post 1</h3></div>
-    <div class="LiveFeed__post"><h3>Post 2</h3></div>
-    <div class="LiveFeed__post"><h3>Post 3</h3></div>
-    <div class="LiveFeed__post"><h3>Post 4</h3></div>
+    <div class="LiveFeed__post" v-for="item in list" :key="item">
+      {{ item }}
+    </div>
   </div>
 </template>
 
 <script>
+
+fetch("http://localhost:3000/api/posts")
+  .then((response) => {
+    return response.json();
+  })
+  .then((theResponse) => {
+    console.log(theResponse);
+  })
+  .catch((error) => {
+    console.log("Il y a eu un problème avec l'opération fetch: " + error.message);
+  });
+
 export default {
   name: "LiveFeed",
   props: {
     msg: String,
+    list: {
+      type: Array,
+      default: (theResponse) => [theResponse],
+    },
   },
 };
 </script>
