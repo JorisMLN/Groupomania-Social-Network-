@@ -1,33 +1,31 @@
 <template>
   <div class="LiveFeed">
-    <div class="LiveFeed__post" v-for="item in list" :key="item">
-      {{ item }}
-    </div>
+    <div class="LiveFeed__post" v-for="item in list" :key="item">{{ item }}</div>
   </div>
 </template>
 
 <script>
-
-fetch("http://localhost:3000/api/posts")
-  .then((response) => {
-    return response.json();
-  })
-  .then((theResponse) => {
-    console.log(theResponse);
-  })
-  .catch((error) => {
-    console.log("Il y a eu un problème avec l'opération fetch: " + error.message);
-  });
+import axios from "axios";
 
 export default {
   name: "LiveFeed",
   props: {
-    msg: String,
     list: {
       type: Array,
-      default: (theResponse) => [theResponse],
+      // default: () => [],
     },
   },
+  created() {
+    axios
+      .get("http://localhost:3000/api/posts")
+      .then((response) => {
+        this.list = response.data;
+        console.log(response.data);
+      })
+      .catch((e) => {
+        this.error.push(e);
+      });
+  }
 };
 </script>
 
@@ -35,7 +33,7 @@ export default {
 <style scoped lang="scss">
 .LiveFeed {
   display: flex;
-  justify-content: space-around;
+  // justify-content: space-around;
   flex-direction: column;
   align-items: center;
   height: 80%;
