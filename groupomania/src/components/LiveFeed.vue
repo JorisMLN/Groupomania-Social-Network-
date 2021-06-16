@@ -1,6 +1,12 @@
 <template>
   <div class="LiveFeed">
-    <div class="LiveFeed__post" v-for="item in list" :key="item">{{ item }}</div>
+    <div class="LiveFeed__post" v-for="item in list" :key="item">{{ item }}
+    sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
+   sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
+   sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
+   sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
+   sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
+    </div>
   </div>
 </template>
 
@@ -33,15 +39,15 @@ export default {
 <style scoped lang="scss">
 .LiveFeed {
   display: flex;
-  // justify-content: space-around;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column-reverse;
   height: 80%;
   width: 50%;
   border: 3px solid #42b983;
   border-radius: 5px;
+  overflow-y: scroll;
+  scrollbar-color: #2c3e50 #42b983;
+  scrollbar-width: thin;
   &__post {
-    height: 24%;
     width: 99%;
     border: 1px solid #2c3e50;
   }
