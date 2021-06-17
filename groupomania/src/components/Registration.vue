@@ -2,32 +2,55 @@
   <div class="Reg">
     <div class="Reg__login">
       <h1>{{ msg }}</h1>
-      <form method="post" class="formulaire">
-        <fieldset>
-          <legend>E-mail</legend>
-          <input type="email" name="email" id="email" value="test@gmail.com" required />
-          <br />
-        </fieldset>
-        <fieldset>
-          <legend>Password</legend>
-          <input type="text" name="password" id="password" required />
-          <br />
-        </fieldset>
-        <button>Valider</button>
-      </form>
-      <div><a href="http://localhost:8080/#/" id="SignUp"> Login </a> <a href="" id="SignOut"> Désinscription ?</a></div>
+      <div>
+        <label>E mail</label>
+        <input type="email" value="test@gmail.com" v-model="form.email" />
+
+        <label>Password</label>
+        <input type="text" v-model="form.password" />
+
+        <button v-on:click="submit()">Submit</button>
+      </div>
     </div>
+    <!-- <div>
+      <a href="http://localhost:8080/#/" id="SignUp"> Login </a>
+      <a href="" id="SignOut"> Désinscription ?</a>
+    </div> -->
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Registration",
   props: {
     msg: String,
   },
+
+  data() {
+    return {
+      form: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+
+  methods: {
+    submit() {
+      axios.post("http://localhost:3000/api/user/signup", this.form)
+      .then((response) => {
+          console.log(response.data);
+        })
+        .catch((e) => {
+        this.error.push(e);
+      });
+    },
+  },
 };
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">

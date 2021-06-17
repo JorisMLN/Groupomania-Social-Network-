@@ -52,6 +52,7 @@ export default {
   &__post {
     width: 99%;
     border: 1px solid #2c3e50;
+    margin: 4px;
   }
 }
 </style>
