@@ -2,20 +2,21 @@
   <div class="Reg">
     <div class="Reg__login">
       <h1>{{ msg }}</h1>
-      <div>
-        <label>E mail</label>
-        <input type="email" value="test@gmail.com" v-model="form.email" />
-
-        <label>Password</label>
-        <input type="text" v-model="form.password" />
-
-        <button v-on:click="submit()">Submit</button>
+      <div class="formulaire">
+        <fieldset>
+          <legend>Email</legend>
+          <input type="email" value="test@gmail.com" v-model="form.email" />
+          <br />
+        </fieldset>
+        <fieldset>
+          <legend>Password</legend>
+          <input type="text" v-model="form.password" />
+          <br />
+        </fieldset>
+        <button v-on:click="submit()">Valider</button>
+        <!-- <div><a href="http://localhost:8080/#/home" id="Login"> Login </a> <a href="" id="SignOut"> Désinscription ?</a></div> -->
       </div>
     </div>
-    <!-- <div>
-      <a href="http://localhost:8080/#/" id="SignUp"> Login </a>
-      <a href="" id="SignOut"> Désinscription ?</a>
-    </div> -->
   </div>
 </template>
 
@@ -39,18 +40,18 @@ export default {
 
   methods: {
     submit() {
-      axios.post("http://localhost:3000/api/user/signup", this.form)
-      .then((response) => {
+      axios
+        .post("http://localhost:3000/api/user/signup", this.form)
+        .then((response) => {
           console.log(response.data);
         })
         .catch((e) => {
-        this.error.push(e);
-      });
+          this.error.push(e);
+        });
     },
   },
 };
 </script>
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
@@ -68,9 +69,9 @@ export default {
     border: 1px solid green;
     border-radius: 5px;
     width: 330px;
-    height: 90%;
+    height: 70%;
     .formulaire {
-      height: 40%;
+      height: 65%;
       display: flex;
       justify-content: space-around;
       flex-direction: column;
