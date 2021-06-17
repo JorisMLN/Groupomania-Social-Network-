@@ -1,18 +1,19 @@
 <template>
   <div id="nav">
-    <router-link to="/profil">Profil</router-link> |
-    <router-link to="/feed">Feed</router-link> |
     <span v-if="isLoggedIn">
       <a @click="logout">Logout</a>
     </span>
     <span v-else>
+      <router-link to="/">Home</router-link> |
       <router-link to="/register">Register</router-link> |
-      <router-link to="/">Home</router-link>
     </span>
+    <router-link to="/profil">Profil</router-link> |
+    <router-link to="/feed">Feed</router-link>
   </div>
 </template>
 
-// <script>
+//
+<script>
 // export default {
 //   name: "NavBar",
 //   computed: {
@@ -27,4 +28,5 @@
 //     },
 //   },
 // };
-// </script>
+//
+</script>

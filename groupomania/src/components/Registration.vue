@@ -1,11 +1,11 @@
 <template>
-  <div class="Log">
-    <div class="Log__login">
+  <div class="Reg">
+    <div class="Reg__login">
       <h1>{{ msg }}</h1>
       <form method="post" class="formulaire">
         <fieldset>
-          <legend>Login</legend>
-          <input type="email" name="login" id="login" value="test@gmail.com" required />
+          <legend>E-mail</legend>
+          <input type="email" name="email" id="email" value="test@gmail.com" required />
           <br />
         </fieldset>
         <fieldset>
@@ -15,14 +15,14 @@
         </fieldset>
         <button>Valider</button>
       </form>
-      <div><a href="http://localhost:8080/#/register" id="SignUp"> Inscription ? </a> <a href="" id="SignOut"> Désinscription ?</a></div>
+      <div><a href="http://localhost:8080/#/" id="SignUp"> Login </a> <a href="" id="SignOut"> Désinscription ?</a></div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Login",
+  name: "Registration",
   props: {
     msg: String,
   },
@@ -31,7 +31,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.Log {
+.Reg {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -44,7 +44,7 @@ export default {
     align-items: center;
     border: 1px solid green;
     border-radius: 5px;
-    width: 290px;
+    width: 330px;
     height: 90%;
     .formulaire {
       height: 40%;
