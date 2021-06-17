@@ -1,11 +1,13 @@
 <template>
   <div class="LiveFeed">
-    <div class="LiveFeed__post" v-for="item in list" :key="item">{{ item }}
+    <div class="LiveFeed__post" v-for="item in list" :key="item">
+    <!-- {{ item }} -->
+    {{ item.text }}<br/>
+    Like: {{ item.likes }} Dislikes {{ item.likes }} _id:{{ item._id }}<br/>
+    <br/>
     sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
-   sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
-   sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
-   sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
-   sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
+    sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
+    sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
     </div>
   </div>
 </template>

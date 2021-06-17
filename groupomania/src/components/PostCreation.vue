@@ -11,11 +11,24 @@
 </template>
 
 <script>
+// import axios from "axios";
+
 export default {
   name: "PostCreation",
   props: {
     msg: String,
   },
+  // created() {
+  //   axios
+  //     .post("http://localhost:3000/api/posts")
+  //     .then((response) => {
+  //       this.list = response.data;
+  //       console.log(response.data);
+  //     })
+  //     .catch((e) => {
+  //       this.error.push(e);
+  //     });
+  // }
 };
 </script>
 
