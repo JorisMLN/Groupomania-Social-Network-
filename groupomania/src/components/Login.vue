@@ -2,29 +2,54 @@
   <div class="Log">
     <div class="Log__login">
       <h1>{{ msg }}</h1>
-      <form method="post" class="formulaire">
+      <div class="formulaire">
         <fieldset>
           <legend>Login</legend>
-          <input type="email" name="login" id="login" value="test@gmail.com" required />
+          <input type="email" value="test@gmail.com" v-model="form.email" required />
           <br />
         </fieldset>
         <fieldset>
           <legend>Password</legend>
-          <input type="text" name="password" id="password" required />
+          <input type="text" v-model="form.password" required />
           <br />
         </fieldset>
-        <button>Valider</button>
-      </form>
+        <button v-on:click="submit()">Valider</button>
+      </div>
       <div><a href="http://localhost:8080/#/register" id="SignUp"> Inscription ? </a> <a href="" id="SignOut"> Désinscription ?</a></div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Login",
   props: {
     msg: String,
+  },
+
+  data() {
+    return {
+      form: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+
+  methods: {
+    submit() {
+      axios
+        .post("http://localhost:3000/api/user/login", this.form)
+        .then((response) => {
+          console.log(response.data);
+          window.location = "http://localhost:8080/#/profil";
+        })
+        .catch((e) => {
+          this.error.push(e);
+        });
+    },
   },
 };
 </script>

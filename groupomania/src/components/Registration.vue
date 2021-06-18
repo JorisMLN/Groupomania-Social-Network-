@@ -4,18 +4,43 @@
       <h1>{{ msg }}</h1>
       <div class="formulaire">
         <fieldset>
-          <legend>Email</legend>
+          <legend>Email *</legend>
           <input type="email" value="test@gmail.com" v-model="form.email" />
           <br />
         </fieldset>
         <fieldset>
-          <legend>Password</legend>
+          <legend>Password *</legend>
           <input type="text" v-model="form.password" />
           <br />
         </fieldset>
+        <fieldset>
+          <legend>Nom *</legend>
+          <input type="text" v-model="form.nom" />
+          <br />
+        </fieldset>
+        <fieldset>
+          <legend>Prénom *</legend>
+          <input type="text" v-model="form.prenom" />
+          <br />
+        </fieldset>
+        <fieldset>
+          <legend>Poste *</legend>
+          <input type="text" v-model="form.poste" />
+          <br />
+        </fieldset>
+        <fieldset>
+          <legend>Site Web</legend>
+          <input type="text" v-model="form.siteweb" />
+          <br />
+        </fieldset>
+        <fieldset>
+          <legend>Hobbies</legend>
+          <input type="text" v-model="form.hobbies" />
+          <br />
+        </fieldset>
         <button v-on:click="submit()">Valider</button>
-        <!-- <div><a href="http://localhost:8080/#/home" id="Login"> Login </a> <a href="" id="SignOut"> Désinscription ?</a></div> -->
       </div>
+      <p> * Required </p>
     </div>
   </div>
 </template>
@@ -34,6 +59,11 @@ export default {
       form: {
         email: "",
         password: "",
+        nom: "",
+        prenom: "",
+        post: "",
+        siteweb: "",
+        hobbies: ""
       },
     };
   },
@@ -60,7 +90,7 @@ export default {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 60vh;
+  height: 65vh;
   &__login {
     display: flex;
     justify-content: space-around;
@@ -68,26 +98,39 @@ export default {
     align-items: center;
     border: 1px solid green;
     border-radius: 5px;
-    width: 330px;
-    height: 70%;
+    width: 400px;
+    height: 100%;
+    h1{
+      height: 10%;
+    }
     .formulaire {
-      height: 65%;
+      height: 90%;
+      width: 80%;
       display: flex;
+      align-items: center;
       justify-content: space-around;
       flex-direction: column;
+      fieldset{
+        width: 90%;
+        height: 8%;
+        color: #42b983;
+        input{
+          width: 80%;
+        }
+      }
       button {
-        margin-top: 11px;
-        height: 25%;
-        width: 98%;
+        margin-top: 7px;
+        margin-bottom: 7px;
+        height: 8%;
+        width: 50%;
       }
     }
-    a {
-      border: 1px solid green;
+    p {
+      font-size: 15px;
       width: 100px;
       margin: 10px;
       padding: 2px;
-      color: #42b983;
-      text-decoration: none;
+      color: #2c3e50;
     }
   }
 }
