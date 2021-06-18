@@ -5,32 +5,32 @@
       <div class="formulaire">
         <fieldset>
           <legend>Email *</legend>
-          <input type="email" value="test@gmail.com" v-model="form.email" />
+          <input type="email" value="test@gmail.com" v-model="form.email" required/>
           <br />
         </fieldset>
         <fieldset>
           <legend>Password *</legend>
-          <input type="text" v-model="form.password" />
+          <input type="text" v-model="form.password" required/>
           <br />
         </fieldset>
         <fieldset>
-          <legend>Nom *</legend>
-          <input type="text" v-model="form.nom" />
+          <legend>Last Name *</legend>
+          <input type="text" v-model="form.lastname" required/>
           <br />
         </fieldset>
         <fieldset>
-          <legend>Prénom *</legend>
-          <input type="text" v-model="form.prenom" />
+          <legend>First Name *</legend>
+          <input type="text" v-model="form.firstname" required/>
           <br />
         </fieldset>
         <fieldset>
-          <legend>Poste *</legend>
-          <input type="text" v-model="form.poste" />
+          <legend>Job *</legend>
+          <input type="text" v-model="form.job" required/>
           <br />
         </fieldset>
         <fieldset>
-          <legend>Site Web</legend>
-          <input type="text" v-model="form.siteweb" />
+          <legend>Web Site</legend>
+          <input type="text" v-model="form.website" />
           <br />
         </fieldset>
         <fieldset>
@@ -38,7 +38,7 @@
           <input type="text" v-model="form.hobbies" />
           <br />
         </fieldset>
-        <button v-on:click="submit()">Valider</button>
+        <button v-on:click="submit()"> Confirm </button>
       </div>
       <p> * Required </p>
     </div>
@@ -59,10 +59,10 @@ export default {
       form: {
         email: "",
         password: "",
-        nom: "",
-        prenom: "",
-        post: "",
-        siteweb: "",
+        lastname: "",
+        firstname: "",
+        job: "",
+        website: "",
         hobbies: ""
       },
     };

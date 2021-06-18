@@ -5,7 +5,6 @@ const uniqueValidator = require('mongoose-unique-validator');
 const validate = require('mongoose-validator');
 
 const userSchema = mongoose.Schema({
-    // userId: Donnée automatiquement par mongoDb,
     email: {
         type: String,
         required: true,
@@ -17,7 +16,12 @@ const userSchema = mongoose.Schema({
             })
         ]
     },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    lastname: { type: String, required: true },
+    firstname: { type: String, required: true },
+    job: { type: String, required: true },
+    website: { type: String },
+    hobbies: { type: String }
 });
 
 userSchema.plugin(uniqueValidator);
