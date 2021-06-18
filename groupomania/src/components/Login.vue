@@ -22,6 +22,7 @@
 
 <script>
 import axios from "axios";
+// import Vuex from 'vuex';
 
 export default {
   name: "Login",
@@ -43,7 +44,8 @@ export default {
       axios
         .post("http://localhost:3000/api/user/login", this.form)
         .then((response) => {
-          console.log(response.data);
+          console.log(response);
+          localStorage.setItem('user', JSON.stringify(response.data));
           window.location = "http://localhost:8080/#/profil";
         })
         .catch((e) => {

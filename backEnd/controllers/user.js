@@ -47,3 +47,23 @@ exports.login = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }));
 };
+
+exports.info = (req, res, next) => {
+    User.findOne({ userId: req.body.userId })
+        .then(user => {
+            if (!user) {
+                return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+            }
+            console.log("user:" + user._id);
+            res.status(200).json({
+                userId: user._id,
+                email: user.email,
+                lastname: user.lastname,
+                firstname: user.firstname,
+                job: user.job,
+                website: user.website,
+                hobbies: user.hobbies
+            });
+        })
+        .catch(error => res.status(500).json({ error }));
+};

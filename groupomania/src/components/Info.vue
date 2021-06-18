@@ -2,7 +2,7 @@
   <div class="info">
     <h1> {{msg}} </h1>
     <article>
-        <h2>Nom</h2>
+        <h2>Nom:</h2>
         <h2>Prenom</h2>
         <h2>Poste</h2>
         <h2>Email</h2>
@@ -13,10 +13,30 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Info",
   props: {
-    msg: String,
+    // name: response.data.name,
+  },
+
+  created() {
+
+    let user_json = localStorage.getItem('user');
+    let user = JSON.parse(user_json);
+    console.log(user.userId, user.token);
+
+    axios
+      .get("http://localhost:3000/api/user/info")
+      .then((response) => {
+        this.props = response;
+        console.log(response.data);
+        return response.data
+      })
+      .catch((e) => {
+        this.error.push(e);
+      });
   },
 };
 </script>
