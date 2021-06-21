@@ -5,7 +5,7 @@
       <div class="formulaire">
         <fieldset>
           <legend>Login</legend>
-          <input type="email" value="test@gmail.com" v-model="form.email" required />
+          <input type="email" value="joris@gmail.com" v-model="form.email" required />
           <br />
         </fieldset>
         <fieldset>
