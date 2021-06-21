@@ -16,7 +16,6 @@ export default {
     msg: String,
     list: {
       type: Array,
-      // default: () => [],
     },
   },
 
@@ -24,14 +23,14 @@ export default {
     let user_json = localStorage.getItem("user");
     let user = JSON.parse(user_json);
     console.log(user.userId, user.token);
+    this.$store.commit('addId', user.userId);
+    this.$store.commit('addToken', user.token);
 
     axios
       .get("http://localhost:3000/api/user/info")
       .then((response) => {
         console.log(response.data);
         this.list = response.data;
-
-        // let nameData = response.data.name;
       })
       .catch((e) => {
         this.error.push(e);

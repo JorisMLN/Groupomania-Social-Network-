@@ -36,6 +36,11 @@ export default {
         email: "",
         password: "",
       },
+      methods: {
+        addIdAndToken(){
+          this.$store.commit("addIdAndToken")
+        }
+      },
     };
   },
 
@@ -46,6 +51,7 @@ export default {
         .then((response) => {
           console.log(response);
           localStorage.setItem('user', JSON.stringify(response.data));
+          // addIdAndToken();
           window.location = "http://localhost:8080/#/profil";
         })
         .catch((e) => {

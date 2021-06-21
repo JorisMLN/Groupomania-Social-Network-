@@ -1,9 +1,10 @@
 <template>
   <div id="nav">
-    <span v-if="isLoggedIn">
+    <!-- <span v-if="isLoggedIn">
       <a @click="logout">Logout</a>
-    </span>
-    <span v-else>
+    </span> -->
+    <!-- <span v-else> -->
+    <span>
       <router-link to="/">Home</router-link> |
       <router-link to="/register">Register</router-link> |
     </span>

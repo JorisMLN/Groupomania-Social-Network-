@@ -6,7 +6,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userId: "",
-    token: ""
+    token: "",
+    email: "",
+    lastname: "",
+    firstname: "",
+    job: "",
+    website: "",
+    hobbies: ""
   },
   getters: {
     userIdAndToken(state){
@@ -14,9 +20,14 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    // addIdAndToken(state, response){
-    //   state.userId = response.data.userId,
-    //   state.token = reponse.data.token
+    addId(state, userId){
+      state.userId = userId
+    },
+    addToken(state, token){
+      state.token = token
+    }
+    // addInfo(state){
+
     // }
   },
   actions: {
