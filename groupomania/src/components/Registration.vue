@@ -74,6 +74,7 @@ export default {
         .post("http://localhost:3000/api/user/signup", this.form)
         .then((response) => {
           console.log(response.data);
+          window.location = "http://localhost:8080/#/";
         })
         .catch((e) => {
           this.error.push(e);

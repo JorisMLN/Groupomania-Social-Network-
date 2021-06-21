@@ -49,7 +49,8 @@ exports.login = (req, res, next) => {
 };
 
 exports.info = (req, res, next) => {
-    User.findOne({ userId: req.body.userId })
+    console.log(req.params);
+    User.findOne({ _id: req.params.id })
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé !' });

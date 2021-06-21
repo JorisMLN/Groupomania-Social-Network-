@@ -15,8 +15,11 @@ export default new Vuex.Store({
     hobbies: ""
   },
   getters: {
+    // userIdAndToken(state){
+    //   return `${state.userId} ${state.token}`
+    // }
     userIdAndToken(state){
-      return `${state.userId}/${state.token}`
+      return `${state.userId} ${state.token}`
     }
   },
   mutations: {

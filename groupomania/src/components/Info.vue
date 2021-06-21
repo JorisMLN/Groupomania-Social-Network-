@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <h1>{{ msg }}</h1>
+    <h2>{{ msg }} {{ $store.state.userId }}</h2>
     <article>
       <div class="listInfo" v-for="item in list" :key="item">{{ item }}</div>
     </article>
@@ -9,6 +9,7 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
   name: "Info",
@@ -19,15 +20,22 @@ export default {
     },
   },
 
+  computed: {
+    ...mapState({
+      userId: "userId",
+      token: "token",
+    }),
+  },
+
   created() {
     let user_json = localStorage.getItem("user");
     let user = JSON.parse(user_json);
     console.log(user.userId, user.token);
-    this.$store.commit('addId', user.userId);
-    this.$store.commit('addToken', user.token);
+    this.$store.commit("addId", user.userId);
+    this.$store.commit("addToken", user.token);
 
     axios
-      .get("http://localhost:3000/api/user/info")
+      .get("http://localhost:3000/api/user/info/"+user.userId)
       .then((response) => {
         console.log(response.data);
         this.list = response.data;
