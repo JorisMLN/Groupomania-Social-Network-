@@ -35,7 +35,7 @@ export default {
     this.$store.commit("addToken", user.token);
 
     axios
-      .get("http://localhost:3000/api/user/info/"+user.userId)
+      .get("http://localhost:3000/api/user/info/" + user.userId)
       .then((response) => {
         console.log(response.data);
         this.list = response.data;

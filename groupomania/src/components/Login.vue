@@ -15,7 +15,10 @@
         </fieldset>
         <button v-on:click="submit()">Valider</button>
       </div>
-      <div><a href="http://localhost:8080/#/register" id="SignUp"> Inscription ? </a> <a href="" id="SignOut"> Désinscription ?</a></div>
+      <div>
+        <a href="http://localhost:8080/#/register" id="SignUp"> Inscription ? </a>
+        <a href="" id="SignOut"> Désinscription ?</a>
+      </div>
     </div>
   </div>
 </template>
@@ -30,16 +33,23 @@ export default {
     msg: String,
   },
 
+  // created(){
+  //   let user_json = localStorage.getItem("user");
+  //   let user = JSON.parse(user_json);
+  //   console.log(user.userId, user.token);
+
+  //   if(
+  //     // user.token encore bon
+  //     ) {
+  //     window.location = "http://localhost:8080/#/profil";
+  //   }
+  // },
+
   data() {
     return {
       form: {
         email: "",
         password: "",
-      },
-      methods: {
-        addIdAndToken(){
-          this.$store.commit("addIdAndToken")
-        }
       },
     };
   },
@@ -59,6 +69,7 @@ export default {
     },
   },
 };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

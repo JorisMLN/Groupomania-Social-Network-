@@ -7,5 +7,6 @@ const userCrtl =  require('../controllers/user');
 router.post('/signup', userCrtl.signup);
 router.post('/login', userCrtl.login);
 router.get('/info/:id', userCrtl.info);
+// router.get('/info/:id', auth, userCrtl.info);
 
 module.exports = router;
