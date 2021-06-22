@@ -25,7 +25,7 @@
 
 <script>
 import axios from "axios";
-// import Vuex from 'vuex';
+import jwt_decode from "jwt-decode";
 
 export default {
   name: "Login",
@@ -33,17 +33,14 @@ export default {
     msg: String,
   },
 
-  // created(){
-  //   let user_json = localStorage.getItem("user");
-  //   let user = JSON.parse(user_json);
-  //   console.log(user.userId, user.token);
-
-  //   if(
-  //     // user.token encore bon
-  //     ) {
-  //     window.location = "http://localhost:8080/#/profil";
-  //   }
-  // },
+  created() {
+    let decodedToken = getDecodedToken();
+    console.log(decodedToken.exp);
+    console.log(Date.now());
+    if (decodedToken.exp < Date.now()) {
+      window.location = "http://localhost:8080/#/profil";
+    }
+  },
 
   data() {
     return {
@@ -60,7 +57,7 @@ export default {
         .post("http://localhost:3000/api/user/login", this.form)
         .then((response) => {
           console.log(response);
-          localStorage.setItem('user', JSON.stringify(response.data));
+          localStorage.setItem("user", JSON.stringify(response.data));
           window.location = "http://localhost:8080/#/profil";
         })
         .catch((e) => {
@@ -70,6 +67,21 @@ export default {
   },
 };
 
+function getDecodedToken() {
+  let token = getTokenFromLocalStorage();
+  return jwt_decode(token);
+}
+
+function getTokenFromLocalStorage() {
+  let user_json = localStorage.getItem("user");
+  let user = JSON.parse(user_json);
+  console.log(user);
+
+  let userToken = user.token;
+  console.log(userToken);
+
+  return userToken;
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
