@@ -23,20 +23,11 @@ export default {
       type: Array,
     },
   },
+  
   computed: {
     ...mapState(['token'])
   },
-  // created() {
-  //   axios
-  //     .get("http://localhost:3000/api/posts")
-  //     .then((response) => {
-  //       this.list = response.data;
-  //       console.log(response.data);
-  //     })
-  //     .catch((e) => {
-  //       this.error.push(e);
-  //     });
-  // },
+
   created() {
         axios
           .request({
@@ -50,7 +41,10 @@ export default {
             this.list = response.data;
             console.log(response.data)
           })
-      }
+          .catch((e) => {
+          this.error.push(e);
+          });
+  }
 };
 </script>
 
