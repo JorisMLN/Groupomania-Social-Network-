@@ -1,19 +1,20 @@
 <template>
   <div class="LiveFeed">
     <div class="LiveFeed__post" v-for="item in list" :key="item">
-    <!-- {{ item }} -->
-    {{ item.text }}<br/>
-    Like: {{ item.likes }} Dislikes {{ item.likes }} _id:{{ item._id }}<br/>
-    <br/>
-    sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
-    sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
-    sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br/>
+      <!-- {{ item }} -->
+      {{ item.text }}<br />
+      Like: {{ item.likes }} Dislikes {{ item.likes }} _id:{{ item._id }}<br />
+      <br />
+      sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br />
+      sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br />
+      sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br />
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
   name: "LiveFeed",
@@ -22,17 +23,34 @@ export default {
       type: Array,
     },
   },
+  computed: {
+    ...mapState(['token'])
+  },
+  // created() {
+  //   axios
+  //     .get("http://localhost:3000/api/posts")
+  //     .then((response) => {
+  //       this.list = response.data;
+  //       console.log(response.data);
+  //     })
+  //     .catch((e) => {
+  //       this.error.push(e);
+  //     });
+  // },
   created() {
-    axios
-      .get("http://localhost:3000/api/posts")
-      .then((response) => {
-        this.list = response.data;
-        console.log(response.data);
-      })
-      .catch((e) => {
-        this.error.push(e);
-      });
-  }
+        axios
+          .request({
+            method: 'get',
+            baseURL: 'http://localhost:3000/api/posts',
+            headers: {
+                'Authorization': 'Bearer: '+this.token
+            }
+          })
+          .then(response => {
+            this.list = response.data;
+            console.log(response.data)
+          })
+      }
 };
 </script>
 
