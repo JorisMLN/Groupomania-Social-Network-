@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <h2>{{ msg }} {{ $store.state.userId }}</h2>
+    <h2>{{ msg }}</h2>
     <article>
       <div class="listInfo" v-for="item in list" :key="item">{{ item }}</div>
     </article>

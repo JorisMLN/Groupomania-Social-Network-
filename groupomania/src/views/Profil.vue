@@ -3,7 +3,7 @@
     <LogOut msg="Log Out" />
     <Banner />
     <div class="main">
-      <Info msg="Les Infos" />
+      <Info msg="Mes Infos" />
       <div class="main__right">
         <PostCreation msg="Partagez avec vos collègues !" />
         <LastestPosts msg="Vos dernieres publications" />
