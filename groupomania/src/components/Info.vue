@@ -10,6 +10,7 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
+// import { checkToken } from '@/services.checkToken.js'
 
 export default {
   name: "Info",

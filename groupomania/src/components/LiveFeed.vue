@@ -15,6 +15,7 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
+// import { checkToken } from '@/services.checkToken.js'
 
 export default {
   name: "LiveFeed",
@@ -23,28 +24,28 @@ export default {
       type: Array,
     },
   },
-  
+
   computed: {
-    ...mapState(['token'])
+    ...mapState(["token"]),
   },
 
   created() {
-        axios
-          .request({
-            method: 'get',
-            baseURL: 'http://localhost:3000/api/posts',
-            headers: {
-                'Authorization': 'Bearer: '+this.token
-            }
-          })
-          .then(response => {
-            this.list = response.data;
-            console.log(response.data)
-          })
-          .catch((e) => {
-          this.error.push(e);
-          });
-  }
+    axios
+      .request({
+        method: "get",
+        baseURL: "http://localhost:3000/api/posts",
+        headers: {
+          Authorization: "Bearer: " + this.token,
+        },
+      })
+      .then((response) => {
+        this.list = response.data;
+        console.log(response.data);
+      })
+      .catch((e) => {
+        this.error.push(e);
+      });
+  },
 };
 </script>
 
