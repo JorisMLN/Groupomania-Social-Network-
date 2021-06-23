@@ -15,6 +15,7 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
+import jwt_decode from "jwt-decode";
 // import { checkToken } from '@/services.checkToken.js'
 
 export default {
@@ -30,12 +31,21 @@ export default {
   },
 
   created() {
+// checkToken
+    let decodedToken = getDecodedToken();
+    console.log(decodedToken.exp);
+    console.log(Date.now());
+    if (decodedToken.exp > Date.now()) {
+      window.location = "http://localhost:8080/#/";
+      localStorage.clear();
+    } else {
+      // request for all posts
     axios
       .request({
         method: "get",
         baseURL: "http://localhost:3000/api/posts",
         headers: {
-          Authorization: "Bearer: " + this.token,
+          Authorization: "Bearer: " + getTokenFromLocalStorage(),
         },
       })
       .then((response) => {
@@ -45,8 +55,30 @@ export default {
       .catch((e) => {
         this.error.push(e);
       });
+    }
   },
 };
+
+// functions
+// functions
+function getDecodedToken() {
+  let token = getTokenFromLocalStorage();
+  return jwt_decode(token);
+}
+
+function getTokenFromLocalStorage() {
+  let user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+
+  if (!user) {
+    window.location = "http://localhost:8080/#/";
+    localStorage.clear();
+  } else {
+    let userToken = user.token;    
+    console.log(userToken);
+    return userToken;
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

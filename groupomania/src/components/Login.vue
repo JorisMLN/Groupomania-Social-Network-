@@ -75,8 +75,6 @@ function getDecodedToken() {
 function getTokenFromLocalStorage() {
   let user_json = localStorage.getItem("user");
   let user = JSON.parse(user_json);
-  console.log(user);
-
   let userToken = user.token;
   console.log(userToken);
 
