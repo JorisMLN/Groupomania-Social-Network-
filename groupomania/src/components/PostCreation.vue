@@ -1,12 +1,10 @@
 <template>
   <div class="PostCreation">
-    <div class="PostCreation__top">
-      <h3>{{ msg }}</h3>
-      <button>Poster</button>
-    </div>
-    <form>
-      <textarea name="post"></textarea>
-    </form>
+    <fieldset>
+      <legend>Partagez avec vos super collègues !</legend>
+      <textarea type="text" v-model="form.text" />
+    </fieldset>
+    <button v-on:click="submit()">Poster</button>
   </div>
 </template>
 
@@ -15,21 +13,55 @@
 
 export default {
   name: "PostCreation",
-  props: {
-    msg: String,
+
+  data() {
+    return {
+      form: {
+        text: "",
+      },
+      token: this.$store.state.token,
+    };
   },
-  // created() {
-  //   axios
-  //     .post("http://localhost:3000/api/posts")
+
+  methods: {
+    submit(){
+      const requestOptions = {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        authorization: "Bearer: "+this.token,
+       },
+      body: JSON.stringify({ post: this.form })
+      };
+    fetch("http://localhost:3000/api/posts", requestOptions)
+    .then(response => response.json())
+    .then(data => (this.postId = data.id));
+    }
+  },
+}
+
+  // methods: {
+  //   submit(){
+  //     axios
+  //       .request({
+  //       method: "post",
+  //       baseURL: "http://localhost:3000/api/posts",
+  //       headers: {
+  //         // authorization: "Bearer: "+this.token,
+  //       },
+  //       body: {
+  //         post: JSON.stringify(this.form),
+  //       }
+  //     })
   //     .then((response) => {
-  //       this.list = response.data;
-  //       console.log(response.data);
+  //       console.log(response);
   //     })
   //     .catch((e) => {
   //       this.error.push(e);
   //     });
-  // }
-};
+  //   },
+  // },
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -44,30 +76,17 @@ export default {
   height: 42%;
   width: 99%;
   overflow: hidden;
-  &__top {
-    border: 1px solid #2c3e50;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: center;
-    width: 70%;
-    h3 {
-      height: 10%;
-    }
-    button {
-      width: 100px;
+  fieldset {
+    width: 92%;
+    height: 70%;
+    color: #42b983;
+    textarea {
+      width: 100%;
+      height: 90%;
     }
   }
-  form {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
-    // height: 20%;
-    textarea {
-      height: 100%;
-      width: 100%;
-    }
+  button {
+    width: 150px;
   }
 }
 </style>
