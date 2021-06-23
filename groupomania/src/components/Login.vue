@@ -26,6 +26,7 @@
 <script>
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+// import vuex from 'vuex';
 
 export default {
   name: "Login",
@@ -58,6 +59,8 @@ export default {
         .then((response) => {
           console.log(response);
           localStorage.setItem("user", JSON.stringify(response.data));
+          this.$store.commit("addId", response.data.userId);
+          this.$store.commit("addToken", response.data.token);
           window.location = "http://localhost:8080/#/profil";
         })
         .catch((e) => {

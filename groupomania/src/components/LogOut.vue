@@ -1,6 +1,6 @@
 <template>
   <div class="LogOut">
-    <button @click="logOut" >{{ msg }}</button>
+    <button @click="logOut">{{ msg }}</button>
   </div>
 </template>
 
@@ -11,11 +11,14 @@ export default {
     msg: String,
   },
   methods: {
-    logOut: function(){
+    logOut: function () {
       window.location = "http://localhost:8080/#/";
       localStorage.clear();
-    }
-  }
+      // this.$store.replaceState({});
+      this.$store.commit("addId", "");
+      this.$store.commit("addToken", "");
+    },
+  },
 };
 </script>
 

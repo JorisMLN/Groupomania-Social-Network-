@@ -11,7 +11,7 @@
 import axios from "axios";
 import { mapState } from "vuex";
 import jwt_decode from "jwt-decode";
-// import { checkToken } from '@/services.checkToken.js'
+// import checkToken from '@/components/checkToken.vue';
 
 export default {
   name: "Info",
@@ -30,6 +30,21 @@ export default {
   },
 
   created() {
+
+    // let token = checkToken.getUserToken();
+    // if(token){
+    //   let user = JSON.parse(localStorage.getItem("user"));
+    //   let userId = user.userId;
+    //   axios
+    //     .get("http://localhost:3000/api/user/info/" + userId)
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       this.list = response.data;
+    //     })
+    //     .catch((e) => {
+    //       this.error.push(e);
+    //     });
+    // }
     // checkToken
     let decodedToken = getDecodedToken();
     console.log(decodedToken.exp);
@@ -67,7 +82,7 @@ function getTokenFromLocalStorage() {
     window.location = "http://localhost:8080/#/";
     localStorage.clear();
   } else {
-    let userToken = user.token;    
+    let userToken = user.token;
     console.log(userToken);
     return userToken;
   }
