@@ -57,9 +57,11 @@ export default {
       axios
         .post("http://localhost:3000/api/user/login", this.form)
         .then((response) => {
-          console.log(response);
+          console.log(response.data);
           localStorage.setItem("user", JSON.stringify(response.data));
+          console.log(response.data.userId);
           this.$store.commit("addId", response.data.userId);
+          console.log(response.data.token);
           this.$store.commit("addToken", response.data.token);
           window.location = "http://localhost:8080/#/profil";
         })

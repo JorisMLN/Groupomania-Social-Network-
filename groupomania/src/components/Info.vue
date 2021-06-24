@@ -60,6 +60,10 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.list = response.data;
+          console.log(response.data.firstname);
+          this.$store.commit("addFirstname", response.data.firstname);
+          console.log(response.data.lastname);
+          this.$store.commit("addLastname", response.data.lastname);
         })
         .catch((e) => {
           this.error.push(e);

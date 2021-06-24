@@ -2,7 +2,7 @@
   <div class="LiveFeed">
     <div class="LiveFeed__post" v-for="item in list" :key="item">
       <!-- {{ item }} -->
-      {{ item.userId }}<br />
+      {{ item.firstname }} {{ item.lastname }}<br />
       {{ item.text }}<br />
       Like: {{ item.likes }} Dislikes {{ item.likes }} _id:{{ item._id }}<br />
       <br />

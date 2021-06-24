@@ -22,6 +22,12 @@ export default new Vuex.Store({
     },
     addToken(state, token){
       state.token = token
+    },
+    addFirstname(state, firstname){
+      state.firstname = firstname
+    },
+    addLastname(state, lastname){
+      state.lastname = lastname
     }
     // addInfo(state){
 
