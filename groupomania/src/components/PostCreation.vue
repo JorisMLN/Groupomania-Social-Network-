@@ -21,6 +21,7 @@ export default {
     return {
       form: {
         text: "",
+        userId: this.$store.state.userId
       },
       token: this.$store.state.token,
     };
@@ -43,24 +44,6 @@ export default {
           this.error.push(e);
         });
     },
-
-    // submit() {
-    //   let config = {
-    //     headers: {
-    //       authorization: "Bearer: " + this.token,
-    //   }
-    // }
-    // let data = {
-    //   body: JSON.stringify({ post: this.form })
-    // }
-    // axios.post("http://localhost:3000/api/posts", data, config)
-    // .then((response) => {
-    //   console.log(response);
-    // })
-    // .catch((e) => {
-    //   this.error.push(e);
-    // });
-    // }
   }
 };
 
