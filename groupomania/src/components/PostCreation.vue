@@ -38,32 +38,32 @@ export default {
       };
       fetch("http://localhost:3000/api/posts", requestOptions)
         .then((response) => response.json())
-        .then((data) => (this.postId = data.id));
+        .then((data) => (this.postId = data.id))
+        .catch((e) => {
+          this.error.push(e);
+        });
     },
-  },
+
+    // submit() {
+    //   let config = {
+    //     headers: {
+    //       authorization: "Bearer: " + this.token,
+    //   }
+    // }
+    // let data = {
+    //   body: JSON.stringify({ post: this.form })
+    // }
+    // axios.post("http://localhost:3000/api/posts", data, config)
+    // .then((response) => {
+    //   console.log(response);
+    // })
+    // .catch((e) => {
+    //   this.error.push(e);
+    // });
+    // }
+  }
 };
 
-// methods: {
-//   submit(){
-//     axios
-//       .request({
-//       method: "post",
-//       baseURL: "http://localhost:3000/api/posts",
-//       headers: {
-//         // authorization: "Bearer: "+this.token,
-//       },
-//       body: {
-//         post: JSON.stringify(this.form),
-//       }
-//     })
-//     .then((response) => {
-//       console.log(response);
-//     })
-//     .catch((e) => {
-//       this.error.push(e);
-//     });
-//   },
-// },
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

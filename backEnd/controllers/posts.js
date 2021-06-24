@@ -11,21 +11,13 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
-
-    console.log("oula ici bien?"+req.params);
-    console.log(req.params);
-    console.log("oula ici bien 2?");
-    console.log(req.body.headers);
-    console.log("oula ici bien 3?");
-
-    const postObject = JSON.parse(req.body.post);
-    console.log(postObject);
+    const postObject = req.body.post;
     // delete postObject._id;
     const post = new Post({
-        ...postObject,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        ...postObject
+        // ,
+        // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
-    console.log(post);
     post.save()
         .then(() => res.status(201).json({ message: 'Post enregistrée !' }))
         .catch(error => res.status(400).json({ error }));
