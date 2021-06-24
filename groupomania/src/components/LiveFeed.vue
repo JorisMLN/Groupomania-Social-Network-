@@ -2,13 +2,9 @@
   <div class="LiveFeed">
     <div class="LiveFeed__post" v-for="item in list" :key="item">
       <!-- {{ item }} -->
-      {{ item.firstname }} {{ item.lastname }}<br />
-      {{ item.text }}<br />
-      Like: {{ item.likes }} Dislikes {{ item.likes }} _id:{{ item._id }}<br />
-      <br />
-      sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br />
-      sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br />
-      sdkjfhdsfkjfhdskfjdshsdkfjhsdfkjsdhfksdfj<br />
+      <h2>{{ item.firstname }} {{ item.lastname }}</h2>
+      <p>{{ item.text }}</p>
+      <button>Like</button> : {{ item.likes }}
     </div>
   </div>
 </template>
@@ -86,7 +82,8 @@ function getTokenFromLocalStorage() {
 <style scoped lang="scss">
 .LiveFeed {
   display: flex;
-  flex-direction: column-reverse;
+  // flex-direction: column-reverse;
+  flex-direction: column;
   height: 80%;
   width: 50%;
   border: 3px solid #42b983;
@@ -98,6 +95,9 @@ function getTokenFromLocalStorage() {
     width: 99%;
     border: 1px solid #2c3e50;
     margin: 4px;
+    h2{
+      font-size: 20px;
+    }
   }
 }
 </style>
