@@ -24,9 +24,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 98vh;
+  margin: 0px;
 }
 #nav {
-  padding: 30px;
+  padding: 15px;
   a {
     font-weight: bold;
     color: #2c3e50;

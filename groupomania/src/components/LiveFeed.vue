@@ -84,7 +84,7 @@ function getTokenFromLocalStorage() {
   display: flex;
   // flex-direction: column-reverse;
   flex-direction: column;
-  height: 80%;
+  height: 75%;
   width: 50%;
   border: 3px solid #42b983;
   border-radius: 5px;

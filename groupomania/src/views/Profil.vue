@@ -9,6 +9,7 @@
         <LastestPosts msg="Vos dernieres publications" />
       </div>
     </div>
+    <Footer beforeMsg="© 2020-2021, " msg="Groupomania.git, Inc." beforeSigned="Created by " signed="'Vingilot Studio ©'"/>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import Info from "@/components/Info.vue";
 import PostCreation from "@/components/PostCreation.vue";
 import LastestPosts from "@/components/LastestPosts.vue";
 import LogOut from "@/components/LogOut.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Profil",
@@ -28,6 +30,7 @@ export default {
     Info,
     PostCreation,
     LastestPosts,
+    Footer
   },
 };
 
@@ -39,12 +42,14 @@ export default {
   flex: wrap;
   justify-content: space-around;
   flex-direction: column;
-  height: 800px;
+  height:92%;
+  margin: 0px;
   .main {
     display: flex;
     flex: wrap;
     justify-content: space-around;
     flex-direction: row;
+    height: 45vh;
     &__right {
       display: flex;
       align-items: center;
@@ -53,6 +58,7 @@ export default {
       border: 3px solid #42b983;
       border-radius: 10px;
       width: 60%;
+      height: 95%;
     }
   }
 }

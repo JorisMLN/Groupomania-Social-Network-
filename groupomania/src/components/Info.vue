@@ -99,7 +99,7 @@ function getTokenFromLocalStorage() {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  height: 500px;
+  height: 95%;
   width: 300px;
   border: 1px solid #2c3e50;
   h1 {

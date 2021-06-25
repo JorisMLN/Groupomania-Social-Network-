@@ -3,6 +3,7 @@
     <LogOut msg="Log Out" />
     <MiniBanner />
     <LiveFeed />
+    <Footer beforeMsg="© 2020-2021, " msg="Groupomania.git, Inc." beforeSigned="Created by " signed="'Vingilot Studio ©'"/>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import MiniBanner from "@/components/MiniBanner.vue";
 import LiveFeed from "@/components/LiveFeed.vue";
 import LogOut from "@/components/LogOut.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Feed",
@@ -19,6 +21,7 @@ export default {
     LogOut,
     MiniBanner,
     LiveFeed,
+    Footer
   },
 };
 
@@ -31,6 +34,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  height: 800px;
+  height: 88vh;
 }
 </style>

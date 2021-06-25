@@ -24,8 +24,9 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 120px;
+  height: 110px;
   width: 80%;
+  // margin-top: -70px;
   .photoBan {
     display: flex;
     align-items: center;
