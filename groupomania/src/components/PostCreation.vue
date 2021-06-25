@@ -3,11 +3,15 @@
     <fieldset>
       <legend>Partagez avec vos super collègues !</legend>
       <textarea type="text" v-model="form.text" />
+      <div class="gif-poster">
+        <button class="gif">.GIF</button>
+        <button class="poster" v-on:click="submit()">Poster</button>
+      </div>
     </fieldset>
-    <div class="postCreation__bot">
+    <!-- <div class="postCreation__bot">
       <button class="gif">.GIF</button>
       <button class="poster" v-on:click="submit()">Poster</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -23,7 +27,7 @@ export default {
         text: "",
         userId: this.$store.state.userId,
         firstname: this.$store.state.firstname,
-        lastname: this.$store.state.lastname
+        lastname: this.$store.state.lastname,
       },
       token: this.$store.state.token,
     };
@@ -46,9 +50,8 @@ export default {
           this.error.push(e);
         });
     },
-  }
+  },
 };
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -60,32 +63,40 @@ export default {
   align-items: center;
   border: 1px solid #2c3e50;
   border-radius: 5px;
-  height: 40%;
+  height: 48%;
   width: 99%;
   overflow: hidden;
   fieldset {
-    width: 94%;
-    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    height: 85%;
     color: #42b983;
     textarea {
+      max-width: 99%;
       width: 99%;
-      height: 90%;
+      height: 85%;
+      overflow-y: scroll;
+      scrollbar-color: #2c3e50 #42b983;
+      scrollbar-width: thin;
     }
-  }
-  &__bot {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 10%;
-    width: 250px;
-    .poster {
-      width: 150px;
-    }
-    .gif {
+    .gif-poster {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      width: 50px;
+      height: 10%;
+      width: 250px;
+      // z-index: 5;
+      .poster {
+        width: 150px;
+      }
+      .gif {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 50px;
+      }
     }
   }
 }

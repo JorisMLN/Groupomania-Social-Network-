@@ -6,7 +6,7 @@
       <Info msg="Mes Infos" />
       <div class="main__right">
         <PostCreation msg="Partagez avec vos collègues !" />
-        <LastestPosts msg="Vos dernieres publications" />
+        <LastestPosts msg="Votre derniere publication" container="le fameux post" />
       </div>
     </div>
     <Footer beforeMsg="© 2020-2021, " msg="Groupomania.git, Inc." beforeSigned="Created by " signed="'Vingilot Studio ©'"/>
