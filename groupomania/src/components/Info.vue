@@ -50,6 +50,11 @@ export default {
     console.log(decodedToken.exp);
     console.log(Date.now());
     if (decodedToken.exp > Date.now()) {
+      localStorage.clear();
+      this.$store.commit("addId", "");
+      this.$store.commit("addToken", "");
+      this.$store.commit("addFirstname", "");
+      this.$store.commit("addLastname", "");
       window.location = "http://localhost:8080/#/";
       localStorage.clear();
     } else {
@@ -60,9 +65,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.list = response.data;
-          console.log(response.data.firstname);
           this.$store.commit("addFirstname", response.data.firstname);
-          console.log(response.data.lastname);
           this.$store.commit("addLastname", response.data.lastname);
         })
         .catch((e) => {
@@ -113,10 +116,12 @@ function getTokenFromLocalStorage() {
     .listInfo {
       height: 10%;
       display: flex;
-      justify-content: space-around;
+      // justify-content: space-around;
       flex-direction: column;
       font-size: 20px;
       color: #2c3e50;
+      align-items: flex-start;
+      padding-left: 10%; 
     }
   }
 }

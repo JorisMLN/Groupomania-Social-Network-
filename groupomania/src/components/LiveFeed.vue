@@ -33,6 +33,11 @@ export default {
     console.log(decodedToken.exp);
     console.log(Date.now());
     if (decodedToken.exp > Date.now()) {
+      localStorage.clear();
+      this.$store.commit("addId", "");
+      this.$store.commit("addToken", "");
+      this.$store.commit("addFirstname", "");
+      this.$store.commit("addLastname", "");
       window.location = "http://localhost:8080/#/";
       localStorage.clear();
     } else {

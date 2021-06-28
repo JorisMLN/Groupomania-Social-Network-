@@ -19,7 +19,7 @@ exports.createPost = (req, res, next) => {
         // ,
         // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
-    console.log(post);
+    console.log("machin"+post);
     post.save()
         .then(() => res.status(201).json({ message: 'Post enregistrée !' }))
         .catch(error => res.status(400).json({ error }));
