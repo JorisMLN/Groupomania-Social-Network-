@@ -6,7 +6,7 @@
       <Info msg="Mes Infos" />
       <div class="main__right">
         <PostCreation msg="Partagez avec vos collègues !" />
-        <LastestPosts msg="Votre derniere publication" container="le fameux post" />
+        <!-- <LastestPosts msg="Votre derniere publication" container="le fameux post" /> -->
       </div>
     </div>
     <Footer beforeMsg="© 2020-2021, " msg="Groupomania.git, Inc." beforeSigned="Created by " signed="'Vingilot Studio ©'"/>
@@ -18,7 +18,7 @@
 import Banner from "@/components/Banner.vue";
 import Info from "@/components/Info.vue";
 import PostCreation from "@/components/PostCreation.vue";
-import LastestPosts from "@/components/LastestPosts.vue";
+// import LastestPosts from "@/components/LastestPosts.vue";
 import LogOut from "@/components/LogOut.vue";
 import Footer from "@/components/Footer.vue";
 
@@ -29,7 +29,7 @@ export default {
     Banner,
     Info,
     PostCreation,
-    LastestPosts,
+    // LastestPosts,
     Footer
   },
 };

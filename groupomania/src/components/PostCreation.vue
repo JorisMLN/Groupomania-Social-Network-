@@ -61,9 +61,10 @@ export default {
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #2c3e50;
+  // border: 1px solid #2c3e50;
   border-radius: 5px;
-  height: 48%;
+  // height: 48%;
+  height: 98%;
   width: 99%;
   overflow: hidden;
   fieldset {
