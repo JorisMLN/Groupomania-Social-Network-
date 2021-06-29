@@ -5,8 +5,12 @@ export default {
     let user = JSON.parse(localStorage.get('user'));
     let decodedToken = user ? jwt_decode(user.token) : null;
     if(!deceodedToken || decodedToken.exp < Date.now()){
-      window.location = "http://localhost:8080/#/";
+      this.$store.commit("addId", "");
+      this.$store.commit("addToken", "");
+      this.$store.commit("addFirstname", "");
+      this.$store.commit("addLastname", "");
       localStorage.clear();
+      window.location = "http://localhost:8080/#/";
       return null;
     } else {
       return decodedToken;
