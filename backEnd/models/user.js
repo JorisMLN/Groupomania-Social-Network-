@@ -5,7 +5,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const validate = require('mongoose-validator');
 
 const userSchema = mongoose.Schema({
-    email: {
+    email: { //varchar(50) primary key
         type: String,
         required: true,
         unique: true,
@@ -16,12 +16,12 @@ const userSchema = mongoose.Schema({
             })
         ]
     },
-    password: { type: String, required: true },
-    lastname: { type: String, required: true },
-    firstname: { type: String, required: true },
-    job: { type: String, required: true },
-    website: { type: String },
-    hobbies: { type: String }
+    password: { type: String, required: true }, //varchar(100)
+    lastname: { type: String, required: true }, //varchar(30)
+    firstname: { type: String, required: true }, //varchar(30)
+    job: { type: String, required: true }, //varchar(30)
+    website: { type: String }, //varchar(50)
+    hobbies: { type: String } //varchar(50)
 });
 
 userSchema.plugin(uniqueValidator);
