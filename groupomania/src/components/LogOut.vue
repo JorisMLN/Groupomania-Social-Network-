@@ -12,13 +12,15 @@ export default {
   },
   methods: {
     logOut: function () {
-      
       localStorage.clear();
-      // this.$store.replaceState({});
       this.$store.commit("addId", "");
       this.$store.commit("addToken", "");
       this.$store.commit("addFirstname", "");
       this.$store.commit("addLastname", "");
+      this.$store.commit("addEmail", "");
+      this.$store.commit("addHobbies", "");
+      this.$store.commit("addJob", "");
+      this.$store.commit("addWebsite", "");
       window.location = "http://localhost:8080/#/";
     },
   },

@@ -2,7 +2,12 @@
   <div class="info">
     <h2>{{ msg }}</h2>
     <article>
-      <div class="listInfo" v-for="item in list" :key="item">{{ item }}</div>
+      <div class="listInfo"> {{ $store.state.firstname }} </div>
+      <div class="listInfo"> {{ $store.state.lastname }} </div>
+      <div class="listInfo"> {{ $store.state.job }} </div>
+      <div class="listInfo"> {{ $store.state.hobbies }} </div>
+      <div class="listInfo"> {{ $store.state.website }} </div>
+      <div class="listInfo"> {{ $store.state.email }} </div>
     </article>
   </div>
 </template>
@@ -55,6 +60,10 @@ export default {
       this.$store.commit("addToken", "");
       this.$store.commit("addFirstname", "");
       this.$store.commit("addLastname", "");
+      this.$store.commit("addEmail", "");
+      this.$store.commit("addHobbies", "");
+      this.$store.commit("addJob", "");
+      this.$store.commit("addWebsite", "");
       window.location = "http://localhost:8080/#/";
       localStorage.clear();
     } else {
@@ -64,9 +73,12 @@ export default {
         .get("http://localhost:3000/api/user/info/" + userId)
         .then((response) => {
           console.log(response.data);
-          this.list = response.data;
           this.$store.commit("addFirstname", response.data.firstname);
           this.$store.commit("addLastname", response.data.lastname);
+          this.$store.commit("addEmail", response.data.email);
+          this.$store.commit("addHobbies", response.data.hobbies);
+          this.$store.commit("addJob", response.data.job);
+          this.$store.commit("addWebsite", response.data.website);
         })
         .catch((e) => {
           this.error.push(e);

@@ -28,10 +28,19 @@ export default new Vuex.Store({
     },
     addLastname(state, lastname){
       state.lastname = lastname
+    },
+    addEmail(state, email){
+      state.email = email
+    },
+    addJob(state, job){
+      state.job = job
+    },
+    addHobbies(state, hobbies){
+      state.hobbies = hobbies
+    },
+    addWebsite(state, website){
+      state.website = website
     }
-    // addInfo(state){
-
-    // }
   },
   actions: {
   },

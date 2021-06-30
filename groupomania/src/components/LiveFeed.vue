@@ -38,6 +38,10 @@ export default {
       this.$store.commit("addToken", "");
       this.$store.commit("addFirstname", "");
       this.$store.commit("addLastname", "");
+      this.$store.commit("addEmail", "");
+      this.$store.commit("addHobbies", "");
+      this.$store.commit("addJob", "");
+      this.$store.commit("addWebsite", "");
       window.location = "http://localhost:8080/#/";
       localStorage.clear();
     } else {
