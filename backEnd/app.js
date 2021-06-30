@@ -3,23 +3,13 @@
 
 /* - varaibles - */
 const express = require('express');
-// const mongoose = require('mongoose');
 const path = require('path');
 const Sequelize = require('sequelize');
-
 const postsRoutes = require('./routes/posts');
 const userRoutes =  require('./routes/user');
 
 
-/* - MongoDataBase - */
-// mongoose.connect('mongodb+srv://JorisM:Jolisaris789@cluster0.9eqyb.mongodb.net/DataP7?retryWrites=true&w=majority',
-//   { useNewUrlParser: true,
-//     useUnifiedTopology: true })
-//   .then(() => console.log('Connexion à MongoDB réussie !'))
-//   .catch(() => console.log('Connexion à MongoDB échouée !'));
-
-
-/* - Sequelize/mySQL - */
+/* ---------- S E Q U E L I Z E - & - M Y S Q L ---------- */
 const sequelize = new Sequelize('groupomania', 'student', 'Jolisaris789', {
   host: 'localhost',
   dialect: 'mysql'
@@ -51,4 +41,16 @@ app.use('/api/posts', postsRoutes);
 app.use('/api/user', userRoutes);
 
 module.exports = app;
-// ins.exports = sequelize;
+
+
+
+
+/* ---------- M O N G O O S E - & - M O N G O D B ---------- */
+
+// const mongoose = require('mongoose');
+
+// mongoose.connect('mongodb+srv://JorisM:Jolisaris789@cluster0.9eqyb.mongodb.net/DataP7?retryWrites=true&w=majority',
+//   { useNewUrlParser: true,
+//     useUnifiedTopology: true })
+//   .then(() => console.log('Connexion à MongoDB réussie !'))
+//   .catch(() => console.log('Connexion à MongoDB échouée !'));

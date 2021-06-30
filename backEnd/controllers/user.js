@@ -1,3 +1,5 @@
+/* - - - - - USER CONTROLLERS - - - - - */
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -73,6 +75,7 @@ exports.login = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
+// Find one user: INFO
 exports.info = (req, res, next) => {
     console.log(req.params);
     User.findOne({ _id: req.params.id })

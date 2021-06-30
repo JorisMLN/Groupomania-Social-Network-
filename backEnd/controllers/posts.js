@@ -1,6 +1,6 @@
 /* - - - - - POSTS CONTROLLERS - - - - - */
-const fs = require('fs');
 
+const fs = require('fs');
 
 
 /* ---------- S E Q U E L I Z E - & - M Y S Q L ---------- */
@@ -43,6 +43,11 @@ exports.createPost = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
     };
     
+
+
+
+
+
 
 /* ---------- M O N G O O S E - & - M O N G O D B ---------- */
 // const Post = require('../models/post')
