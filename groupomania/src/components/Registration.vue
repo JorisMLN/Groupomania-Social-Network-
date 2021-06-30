@@ -38,6 +38,11 @@
           <input type="text" v-model="form.hobbies" />
           <br />
         </fieldset>
+        <fieldset>
+          <legend>Photo de Profil</legend>
+          <input type="file" @change="photoFile($event)"/>
+          <br />
+        </fieldset>
         <button v-on:click="submit()"> Confirm </button>
       </div>
       <p> * Required </p>
@@ -63,7 +68,8 @@ export default {
         firstname: "",
         job: "",
         website: "",
-        hobbies: ""
+        hobbies: "",
+        photo: ""
       },
     };
   },
@@ -113,10 +119,10 @@ export default {
       flex-direction: column;
       fieldset{
         width: 90%;
-        height: 8%;
+        height: 7%;
         color: #42b983;
         input{
-          width: 80%;
+          width: 70%;
         }
       }
       button {

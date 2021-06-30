@@ -12,7 +12,8 @@ export default new Vuex.Store({
     firstname: "",
     job: "",
     website: "",
-    hobbies: ""
+    hobbies: "",
+    // urlPhoto: ""
   },
   getters: {
   },
@@ -40,7 +41,10 @@ export default new Vuex.Store({
     },
     addWebsite(state, website){
       state.website = website
-    }
+    },
+    // addUrlPhoto(state, urlPhoto){
+    //   state.urlPhoto = urlPhoto
+    // }
   },
   actions: {
   },
