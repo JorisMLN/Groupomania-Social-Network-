@@ -1,26 +1,81 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
 
+
+/* ---------- S E Q U E L I Z E - & - M Y S Q L ---------- */
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('groupomania', 'student', 'Jolisaris789', {
+    host: 'localhost',
+    dialect: 'mysql'
+  });
+
+// Model Sequelize
+const Model = Sequelize.Model;
+class User extends Model {}
+User.init({
+  // attributes
+  firstname: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastname: {
+    type: Sequelize.STRING
+    // allowNull defaults to true
+  }
+}, {
+  sequelize,
+  modelname: 'user'
+  // options
+});
+
+// Create a new user: SIGNUP
 exports.signup = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10)
-        .then(hash => {
-            const user = new User({
-                email: req.body.email,
-                password: hash,
-                lastname: req.body.lastname,
-                firstname: req.body.firstname,
-                job: req.body.job,
-                website: req.body.website,
-                hobbies: req.body.hobbies
-            });
-            console.log(user);
-            user.save()
-                .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-                .catch(error => res.status(400).json({ error }));
-        })
-        .catch(error => res.status(500).json({ error }));
+    console.log(req.body);
+    User.create({ 
+        email: req.body.email, 
+        password: req.body.password, 
+        lastname: req.body.lastname,
+        firstname: req.body.firstname,
+        // job: req.body.job,
+        // website: req.body.website,
+        // hobbies: req.body.hobbies
+    })
+    .then(() => {console.log('Utilisateur créé !')})
+    .catch(error => res.status(400).json({ error }));
 };
+
+// Find one user: LOGIN
+exports.login = (req, res, next) => {};
+
+
+
+
+
+
+
+
+/* ---------- M O N G O O S E - & - M O N G O D B ---------- */
+// const User = require('../models/user');
+
+// exports.signup = (req, res, next) => {
+//     bcrypt.hash(req.body.password, 10)
+//         .then(hash => {
+//             const user = new User({
+//                 email: req.body.email,
+//                 password: hash,
+//                 lastname: req.body.lastname,
+//                 firstname: req.body.firstname,
+//                 job: req.body.job,
+//                 website: req.body.website,
+//                 hobbies: req.body.hobbies
+//             });
+//             console.log(user);
+//             user.save()
+//                 .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
+//                 .catch(error => res.status(400).json({ error }));
+//         })
+//         .catch(error => res.status(500).json({ error }));
+// };
 
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
