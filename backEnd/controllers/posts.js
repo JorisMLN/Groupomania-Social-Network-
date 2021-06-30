@@ -15,8 +15,8 @@ const Model = Sequelize.Model;
 class Post extends Model {}
 Post.init({
   // attributes
-  text: { type: Sequelize.STRING, allowNull: false },
-  userId: { type: Sequelize.STRING},
+  text: { type: Sequelize.TEXT},
+  userId: { type: Sequelize.NUMBER},
   firstname: { type: Sequelize.STRING},
   lastname: { type: Sequelize.STRING},
 }, {
@@ -31,7 +31,18 @@ exports.getAllPosts = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
-
+exports.createPost = (req, res, next) => {
+        console.log(req.body.post);
+        Post.create({
+            text: req.body.post.text,
+            userId: req.body.post.userId,
+            firstname: req.body.post.firstname,
+            lastname: req.body.post.lastname,
+        })
+        .then(() => res.status(201).json({ message: 'Post enregistrée !' }))
+        .catch(error => res.status(400).json({ error }));
+    };
+    
 
 /* ---------- M O N G O O S E - & - M O N G O D B ---------- */
 // const Post = require('../models/post')
