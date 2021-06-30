@@ -1,29 +1,61 @@
 /* - - - - - POSTS CONTROLLERS - - - - - */
-
-const Post = require('../models/post')
 const fs = require('fs');
 
 
+
+/* ---------- S E Q U E L I Z E - & - M Y S Q L ---------- */
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('groupomania', 'student', 'Jolisaris789', {
+    host: 'localhost',
+    dialect: 'mysql'
+  });
+
+// Model Sequelize
+const Model = Sequelize.Model;
+class Post extends Model {}
+Post.init({
+  // attributes
+  text: { type: Sequelize.STRING, allowNull: false },
+  userId: { type: Sequelize.STRING},
+  firstname: { type: Sequelize.STRING},
+  lastname: { type: Sequelize.STRING},
+}, {
+  sequelize,
+  modelname: 'post'
+  // options
+});
+
 exports.getAllPosts = (req, res, next) => {
-    Post.find()
+    Post.findAll()
         .then(posts => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
 };
 
-exports.createPost = (req, res, next) => {
-    const postObject = req.body.post;
-    console.log(req.body.post);
-    // delete postObject._id;
-    const post = new Post({
-        ...postObject
-        // ,
-        // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    });
-    console.log("machin"+post);
-    post.save()
-        .then(() => res.status(201).json({ message: 'Post enregistrée !' }))
-        .catch(error => res.status(400).json({ error }));
-};
+
+
+/* ---------- M O N G O O S E - & - M O N G O D B ---------- */
+// const Post = require('../models/post')
+
+// exports.getAllPosts = (req, res, next) => {
+//     Post.find()
+//         .then(posts => res.status(200).json(posts))
+//         .catch(error => res.status(400).json({ error }));
+// };
+
+// exports.createPost = (req, res, next) => {
+//     const postObject = req.body.post;
+//     console.log(req.body.post);
+//     // delete postObject._id;
+//     const post = new Post({
+//         ...postObject
+//         // ,
+//         // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+//     });
+//     console.log("machin"+post);
+//     post.save()
+//         .then(() => res.status(201).json({ message: 'Post enregistrée !' }))
+//         .catch(error => res.status(400).json({ error }));
+// };
 
 // exports.getOnePost = (req, res, next) => {
 //     Post.findOne({ _id: req.params.id })
