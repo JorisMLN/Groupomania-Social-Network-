@@ -51,7 +51,8 @@ export default {
           this.$store.commit("addWebsite", response.data.website);
         })
         .catch((e) => {
-          this.error.push(e);
+          // this.error.push(e);
+          console.log(e);
         });
     }
   },

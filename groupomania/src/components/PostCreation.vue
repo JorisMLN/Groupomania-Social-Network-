@@ -47,7 +47,8 @@ export default {
         .then((response) => response.json())
         .then((data) => (this.postId = data.id))
         .catch((e) => {
-          this.error.push(e);
+          // this.error.push(e);
+          console.log(e);
         });
     },
   },

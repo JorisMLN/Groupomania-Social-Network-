@@ -45,7 +45,8 @@ export default {
           console.log(response.data);
         })
         .catch((e) => {
-          this.error.push(e);
+          // this.error.push(e);
+          console.log(e);
         });
     } else {
       localStorage.clear();
