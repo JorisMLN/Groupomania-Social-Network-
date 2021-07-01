@@ -45,8 +45,14 @@ export default new Vuex.Store({
     // addUrlPhoto(state, urlPhoto){
     //   state.urlPhoto = urlPhoto
     // }
+    cleanStore(state){
+      Object.keys(state).forEach(keys => {
+        state[keys] = "";
+      });
+    }
   },
   actions: {
+
   },
   modules: {
   }
