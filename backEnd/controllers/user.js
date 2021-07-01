@@ -25,31 +25,42 @@ User.init({
   hobbies: { type: Sequelize.STRING}
 }, {
   sequelize,
-  modelname: 'user'
-  // options
+  modelname: 'user',
+//   instanceMethods: {
+//     generateHash(password) {
+//         // return bcrypt.hash(password, bcrypt.genSaltSync(8));
+//         return bcrypt.hash(password, 10);
+//     },
+//     validPassword(password) {
+//         return bcrypt.compare(password, this.password);
+//     }
+// }
+// options
 });
 
 // Create a new user: SIGNUP
 exports.signup = (req, res, next) => {
     console.log(req.body);
     bcrypt.hash(req.body.password, 10)
-    User.create({ 
-        email: req.body.email, 
-        password: hash, 
-        lastname: req.body.lastname,
-        firstname: req.body.firstname,
-        job: req.body.job,
-        website: req.body.website,
-        hobbies: req.body.hobbies
+    .then(hash => {
+        User.create({ 
+            email: req.body.email, 
+            password: hash, 
+            lastname: req.body.lastname,
+            firstname: req.body.firstname,
+            job: req.body.job,
+            website: req.body.website,
+            hobbies: req.body.hobbies
+        })
+        .then(() => {console.log('Utilisateur créé !')})
+        .catch(error => res.status(400).json({ error }));
     })
-    .then(() => {console.log('Utilisateur créé !')})
-    .catch(error => res.status(400).json({ error }));
 };
 
 // Find one user: LOGIN
 exports.login = (req, res, next) => {
     console.log(req.body.email);
-    User.findOne({email: req.body.email}) 
+    User.findOne({where : {email: req.body.email}}) 
     .then(user => {
         console.log(user);
         if (!user) {
@@ -78,7 +89,7 @@ exports.login = (req, res, next) => {
 // Find one user: INFO
 exports.info = (req, res, next) => {
     console.log(req.params);
-    User.findOne({ _id: req.params.id })
+    User.findOne({ where : { id: req.params.id }})
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé !' });
