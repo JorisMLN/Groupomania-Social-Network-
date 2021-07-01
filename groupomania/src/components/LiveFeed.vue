@@ -1,9 +1,10 @@
 <template>
   <div class="LiveFeed">
     <div class="LiveFeed__post" v-for="item in list" :key="item">
-      <!-- {{ item }} -->
       <h2>{{ item.firstname }} {{ item.lastname }}</h2>
+      <h3>Post N°: {{ item.id }}</h3>
       <p>{{ item.text }}</p>
+      <button class="delete" @click="deletePost">Supprimer</button>
       <button>Like</button> : {{ item.likes }}
     </div>
   </div>
@@ -25,6 +26,20 @@ export default {
 
   computed: {
     ...mapState(["token"]),
+  },
+
+  methods: {
+    deletePost(){
+      console.log(event.target.id);
+      }
+    // deletePost(){
+    // let btnPostRemove = document.getElementsByClassName("delete");
+    // Array.from(btnPostRemove).forEach((btnPost) => {
+    //   btnPost.addEventListener('click', function (event) {
+    //     console.log(event.target.id);
+    //     });
+    //   });
+    // }
   },
 
   created() {
@@ -55,7 +70,6 @@ export default {
     }
   },
 };
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -77,6 +91,10 @@ export default {
     margin: 4px;
     h2 {
       font-size: 20px;
+    }
+    h3 {
+      font-size: 16px;
+      margin-top: -18px;
     }
   }
 }

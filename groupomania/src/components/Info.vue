@@ -2,12 +2,12 @@
   <div class="info">
     <h2>{{ msg }}</h2>
     <article>
-      <div class="listInfo"> {{ $store.state.firstname }} </div>
-      <div class="listInfo"> {{ $store.state.lastname }} </div>
-      <div class="listInfo"> {{ $store.state.job }} </div>
-      <div class="listInfo"> {{ $store.state.hobbies }} </div>
-      <div class="listInfo"> {{ $store.state.website }} </div>
-      <div class="listInfo"> {{ $store.state.email }} </div>
+      <div class="listInfo">Prénom: {{ $store.state.firstname }} </div>
+      <div class="listInfo">Nom de Famille: {{ $store.state.lastname }} </div>
+      <div class="listInfo">Poste: {{ $store.state.job }} </div>
+      <div class="listInfo">Loisirs: {{ $store.state.hobbies }} </div>
+      <div class="listInfo">Site web: {{ $store.state.website }} </div>
+      <div class="listInfo">E-mail: {{ $store.state.email }} </div>
     </article>
   </div>
 </template>
