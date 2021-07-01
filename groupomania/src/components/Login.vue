@@ -25,8 +25,8 @@
 
 <script>
 import axios from "axios";
-import jwt_decode from "jwt-decode";
-// import vuex from 'vuex';
+import checkToken from '@/services/checkToken.js';
+
 
 export default {
   name: "Login",
@@ -35,10 +35,8 @@ export default {
   },
 
   created() {
-    let decodedToken = getDecodedToken();
-    console.log(decodedToken.exp);
-    console.log(Date.now());
-    if (decodedToken.exp < Date.now()) {
+    let token = checkToken.getUserToken(this.$store);
+    if(token){
       window.location = "http://localhost:8080/#/profil";
     }
   },
@@ -64,26 +62,11 @@ export default {
           window.location = "http://localhost:8080/#/profil";
         })
         .catch((e) => {
-          // this.error.push(e);
           console.log(e);
         });
     },
   },
 };
-
-function getDecodedToken() {
-  let token = getTokenFromLocalStorage();
-  return jwt_decode(token);
-}
-
-function getTokenFromLocalStorage() {
-  let user_json = localStorage.getItem("user");
-  let user = JSON.parse(user_json);
-  let userToken = user.token;
-  console.log(userToken);
-
-  return userToken;
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

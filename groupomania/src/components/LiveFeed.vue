@@ -12,8 +12,8 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
-import jwt_decode from "jwt-decode";
-// import { checkToken } from '@/services.checkToken.js'
+// import jwt_decode from "jwt-decode";
+import checkToken from '@/services/checkToken.js';
 
 export default {
   name: "LiveFeed",
@@ -28,63 +28,33 @@ export default {
   },
 
   created() {
-// checkToken
-    let decodedToken = getDecodedToken();
-    console.log(decodedToken.exp);
-    console.log(Date.now());
-    if (decodedToken.exp > Date.now()) {
-      localStorage.clear();
-      this.$store.commit("addId", "");
-      this.$store.commit("addToken", "");
-      this.$store.commit("addFirstname", "");
-      this.$store.commit("addLastname", "");
-      this.$store.commit("addEmail", "");
-      this.$store.commit("addHobbies", "");
-      this.$store.commit("addJob", "");
-      this.$store.commit("addWebsite", "");
-      window.location = "http://localhost:8080/#/";
-      localStorage.clear();
-    } else {
+    // checkToken
+    let token = checkToken.getUserToken(this.$store);
+    if (token) {
       // request for all posts
-    axios
-      .request({
-        method: "get",
-        baseURL: "http://localhost:3000/api/posts",
-        headers: {
-          Authorization: "Bearer: " + getTokenFromLocalStorage(),
-        },
-      })
-      .then((response) => {
-        this.list = response.data;
-        console.log(response.data);
-      })
-      .catch((e) => {
-        this.error.push(e);
-      });
+      axios
+        .request({
+          method: "get",
+          baseURL: "http://localhost:3000/api/posts",
+          headers: {
+            Authorization: "Bearer: " + this.$store.state.token,
+          },
+        })
+        .then((response) => {
+          this.list = response.data;
+          console.log(response.data);
+        })
+        .catch((e) => {
+          this.error.push(e);
+        });
+    } else {
+      localStorage.clear();
+      this.$store.commit("cleanStore");
+      window.location = "http://localhost:8080/#/";
     }
   },
 };
 
-// functions
-// functions
-function getDecodedToken() {
-  let token = getTokenFromLocalStorage();
-  return jwt_decode(token);
-}
-
-function getTokenFromLocalStorage() {
-  let user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
-
-  if (!user) {
-    window.location = "http://localhost:8080/#/";
-    localStorage.clear();
-  } else {
-    let userToken = user.token;    
-    console.log(userToken);
-    return userToken;
-  }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -104,7 +74,7 @@ function getTokenFromLocalStorage() {
     width: 99%;
     border: 1px solid #2c3e50;
     margin: 4px;
-    h2{
+    h2 {
       font-size: 20px;
     }
   }

@@ -1,14 +1,14 @@
 import jwt_decode from "jwt-decode";
 
 export default {
-  getUserToken(){
-    let user = JSON.parse(localStorage.get('user'));
+  getUserToken(store){
+    let user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
     let decodedToken = user ? jwt_decode(user.token) : null;
-    if(!deceodedToken || decodedToken.exp < Date.now()){
-      this.$store.commit("addId", "");
-      this.$store.commit("addToken", "");
-      this.$store.commit("addFirstname", "");
-      this.$store.commit("addLastname", "");
+    console.log(decodedToken);
+
+    if(!decodedToken || decodedToken.exp < (Date.now()/1000)){
+      store.commit("cleanStore");
       localStorage.clear();
       window.location = "http://localhost:8080/#/";
       return null;
@@ -17,31 +17,4 @@ export default {
     }
   }
 }
-
-
-
-// class checkToken {
-//   created(){
-//     let decodedToken = getDecodedToken();
-//     console.log(decodedToken.exp);
-//     console.log(Date.now());
-//     if (decodedToken.exp > Date.now()) {
-//       window.location = "http://localhost:8080/#/";
-//     }
-//   }
-// };
-
-// function getDecodedToken() {
-//   let token = getTokenFromLocalStorage();
-//   return jwt_decode(token);
-// }
-
-// function getTokenFromLocalStorage() {
-//   let user_json = localStorage.getItem("user");
-//   let user = JSON.parse(user_json);
-//   let userToken = user.token;
-//   console.log(userToken);
-
-//   return userToken;
-// }
 
