@@ -41,16 +41,3 @@ app.use('/api/posts', postsRoutes);
 app.use('/api/user', userRoutes);
 
 module.exports = app;
-
-
-
-
-/* ---------- M O N G O O S E - & - M O N G O D B ---------- */
-
-// const mongoose = require('mongoose');
-
-// mongoose.connect('mongodb+srv://JorisM:Jolisaris789@cluster0.9eqyb.mongodb.net/DataP7?retryWrites=true&w=majority',
-//   { useNewUrlParser: true,
-//     useUnifiedTopology: true })
-//   .then(() => console.log('Connexion à MongoDB réussie !'))
-//   .catch(() => console.log('Connexion à MongoDB échouée !'));

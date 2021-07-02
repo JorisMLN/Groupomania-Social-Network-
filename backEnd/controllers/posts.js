@@ -52,47 +52,6 @@ exports.createPost = (req, res, next) => {
 /* ---------- M O N G O O S E - & - M O N G O D B ---------- */
 // const Post = require('../models/post')
 
-// exports.getAllPosts = (req, res, next) => {
-//     Post.find()
-//         .then(posts => res.status(200).json(posts))
-//         .catch(error => res.status(400).json({ error }));
-// };
-
-// exports.createPost = (req, res, next) => {
-//     const postObject = req.body.post;
-//     console.log(req.body.post);
-//     // delete postObject._id;
-//     const post = new Post({
-//         ...postObject
-//         // ,
-//         // imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-//     });
-//     console.log("machin"+post);
-//     post.save()
-//         .then(() => res.status(201).json({ message: 'Post enregistrée !' }))
-//         .catch(error => res.status(400).json({ error }));
-// };
-
-// exports.getOnePost = (req, res, next) => {
-//     Post.findOne({ _id: req.params.id })
-//         .then(post => res.status(200).json(post))
-//         .catch(error => res.status(404).json({ error }));
-// };
-
-
-
-// exports.modifyPost = (req, res, next) => {
-//     const sauceObject = req.file ?
-//         {
-//             ...JSON.parse(req.body.sauce),
-//             imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-//         } : { ...req.body };
-//         console.log(sauceObject);
-//     Sauce.updateOne({ _id: req.params.id }, sauceObject )
-//         .then(() => res.status(200).json({ message: 'objet modifié !' }))
-//         .catch(error => res.status(400).json({ error }));
-// };
-
 // exports.deletePost = (req, res, next) => {
 //     Sauce.findOne({ _id: req.params.id })
 //         .then(sauce => {
