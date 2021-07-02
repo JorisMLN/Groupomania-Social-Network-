@@ -52,7 +52,7 @@ exports.signup = (req, res, next) => {
             website: req.body.website,
             hobbies: req.body.hobbies
         })
-        .then(() => {console.log('Utilisateur créé !')})
+        .then(() => {res.status(200).json('Utilisateur créé !')})
         .catch(error => res.status(400).json({ error }));
     })
 };
