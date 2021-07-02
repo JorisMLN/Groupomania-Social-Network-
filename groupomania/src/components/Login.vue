@@ -17,7 +17,6 @@
       </div>
       <div>
         <a href="http://localhost:8080/#/register" id="SignUp"> Inscription ? </a>
-        <a href="" id="SignOut"> Désinscription ?</a>
       </div>
     </div>
   </div>

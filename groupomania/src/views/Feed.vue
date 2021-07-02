@@ -1,6 +1,6 @@
 <template>
   <div class="feed">
-    <LogOut msg="Log Out" />
+    <LogOut msgLog="Log Out" msgUnsub="Unsubscribe" />
     <MiniBanner />
     <LiveFeed />
     <Footer beforeMsg="© 2020-2021, " msg="Groupomania.git, Inc." beforeSigned="Created by " signed="'Vingilot Studio ©'"/>

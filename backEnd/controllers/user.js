@@ -94,7 +94,7 @@ exports.info = (req, res, next) => {
             if (!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé !' });
             }
-            console.log("user:" + user._id);
+            console.log("user:" + user.id);
             res.status(200).json({
                 userId: user._id,
                 email: user.email,
@@ -108,7 +108,13 @@ exports.info = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
-
+// delete one user
+exports.unsub = (req, res, next) => {
+    console.log(req.params);
+    User.destroy({ where : { id: req.params.id }})
+        .then(() => { console.log("utilisateur supprimé !")})
+        .catch(error => res.status(500).json({ error }));
+};
 
 
 

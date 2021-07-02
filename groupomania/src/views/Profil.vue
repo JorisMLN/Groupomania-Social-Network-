@@ -1,6 +1,6 @@
 <template>
   <div class="profil">
-    <LogOut msg="Log Out" />
+    <LogOut msgLog="Log Out" msgUnsub="Unsubscribe" />
     <Banner />
     <div class="main">
       <Info msg="Mes Infos" />
