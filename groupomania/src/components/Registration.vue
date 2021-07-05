@@ -87,7 +87,6 @@ export default {
           window.location = "http://localhost:8080/#/";
         })
         .catch((e) => {
-          // this.error.push(e);
           console.log(e);
         });
     },

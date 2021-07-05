@@ -16,7 +16,6 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
-// import jwt_decode from "jwt-decode";
 import checkToken from "@/services/checkToken.js";
 
 export default {
@@ -90,7 +89,6 @@ export default {
           this.$store.commit("addWebsite", response.data.website);
         })
         .catch((e) => {
-          // this.error.push(e);
           console.log(e);
         });
     }
@@ -125,7 +123,6 @@ export default {
     .listInfo {
       height: 5%;
       display: flex;
-      // justify-content: space-around;
       flex-direction: column;
       font-size: 20px;
       color: #2c3e50;
@@ -141,8 +138,8 @@ export default {
       text-decoration: none;
       margin-left: 10%;
       &:hover {
-      background-color: #42b983;
-      color: #2c3e50;
+      background-color: #B53737;
+      color: white;
       border: 1px solid #2c3e50;
     }
     &:active {

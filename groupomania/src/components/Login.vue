@@ -96,7 +96,6 @@ export default {
         &:hover {
           background-color: #42b983;
           color: #2c3e50;
-          // font-size: 25px;
           border: 1px solid #2c3e50;
         }
         &:active {

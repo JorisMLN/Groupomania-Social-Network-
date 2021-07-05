@@ -13,7 +13,6 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
-// import jwt_decode from "jwt-decode";
 import checkToken from "@/services/checkToken.js";
 
 export default {
@@ -97,7 +96,6 @@ export default {
           console.log(response.data);
         })
         .catch((e) => {
-          // this.error.push(e);
           console.log(e);
         });
     } else {
@@ -118,8 +116,7 @@ function clearStoreAndStorage(){
 <style scoped lang="scss">
 .LiveFeed {
   display: flex;
-  // flex-direction: column-reverse;
-  flex-direction: column;
+  flex-direction: column-reverse;
   height: 75%;
   width: 50%;
   border: 3px solid #42b983;

@@ -7,18 +7,11 @@
         <button class="gif">.GIF</button>
         <button class="poster" v-on:click="submit()">Poster</button>
       </div>
-      
     </fieldset>
-    <!-- <div class="postCreation__bot">
-      <button class="gif">.GIF</button>
-      <button class="poster" v-on:click="submit()">Poster</button>
-    </div> -->
   </div>
 </template>
 
 <script>
-// import axios from "axios";
-// import vueditor from 'vueditor';
 
 export default {
   name: "PostCreation",
@@ -59,7 +52,9 @@ export default {
       };
       fetch("http://localhost:3000/api/posts", requestOptions)
         .then((response) => response.json())
-        .then((data) => (this.postId = data.id))
+        .then(
+          (data) => (this.postId = data.id) //, clearText(this.form.text)
+          )
         .catch((e) => {
           // this.error.push(e);
           console.log(e);
@@ -67,6 +62,10 @@ export default {
     },
   },
 };
+
+// function clearText(text){
+//   text.value = '';
+// }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -76,9 +75,7 @@ export default {
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  // border: 1px solid #2c3e50;
   border-radius: 5px;
-  // height: 48%;
   height: 98%;
   width: 99%;
   overflow: hidden;
@@ -103,7 +100,6 @@ export default {
       align-items: center;
       height: 10%;
       width: 250px;
-      // z-index: 5;
       .poster {
         width: 150px;
       }

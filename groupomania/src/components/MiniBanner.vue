@@ -26,7 +26,6 @@ export default {
   align-items: center;
   height: 110px;
   width: 80%;
-  // margin-top: -70px;
   .photoBan {
     display: flex;
     align-items: center;
