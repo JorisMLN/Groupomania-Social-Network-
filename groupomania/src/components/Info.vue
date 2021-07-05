@@ -38,7 +38,17 @@ export default {
 
     let token = checkToken.getUserToken(this.$store);
     if(token){
+      
+      // (en cas de réouverture de la page sans logOut) gestion de l'id vers le Vuex.
       let userId = token.userId;
+      console.log(userId);
+      this.$store.commit("addId", userId);
+
+      // (en cas de réouverture de la page sans logOut) gestion du token vers le Vuex.
+      let user = JSON.parse(localStorage.getItem('user'));
+      console.log(user.token);
+      this.$store.commit("addToken", user.token);
+
       axios
         .get("http://localhost:3000/api/user/info/" + userId)
         .then((response) => {
