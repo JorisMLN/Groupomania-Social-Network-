@@ -40,7 +40,7 @@
         </fieldset>
         <fieldset>
           <legend>Photo de Profil</legend>
-          <input type="file" @change="photoFile($event)"/>
+          <input type="file" @change="onFileSelected"/>
           <br />
         </fieldset>
         <button v-on:click="submit()"> Confirm </button>
@@ -69,12 +69,16 @@ export default {
         job: "",
         website: "",
         hobbies: "",
-        photo: ""
+        image: null
       },
     };
   },
 
   methods: {
+    onFileSelected(event){
+      console.log(event)
+      this.photo = event.target.files[0]
+    },
     submit() {
       axios
         .post("http://localhost:3000/api/user/signup", this.form)
