@@ -16,6 +16,7 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
+// import jwt_decode from "jwt-decode";
 import checkToken from "@/services/checkToken.js";
 
 export default {
@@ -55,12 +56,18 @@ export default {
               console.log(e);
             });
         } else {
-          clearStoreAndStorage();
+          localStorage.clear();
+          this.$store.commit("cleanStore");
+          window.location = "http://localhost:8080/#/";
+          // clearStoreAndStorage();
         }
       } else {
         console.log("You pressed Cancel!");
       }
-      clearStoreAndStorage();
+      localStorage.clear();
+      this.$store.commit("cleanStore");
+      window.location = "http://localhost:8080/#/";
+      // clearStoreAndStorage();
     },
   },
 
@@ -89,17 +96,18 @@ export default {
           this.$store.commit("addWebsite", response.data.website);
         })
         .catch((e) => {
+          // this.error.push(e);
           console.log(e);
         });
     }
   },
-};
 
-  function clearStoreAndStorage(){
-  localStorage.clear();
-  this.$store.commit("cleanStore");
-  window.location = "http://localhost:8080/#/";
-}
+  // clearStoreAndStorage(){
+  //   localStorage.clear();
+  //   this.$store.commit("cleanStore");
+  //   window.location = "http://localhost:8080/#/";
+  // }
+};
 
 </script>
 
@@ -123,6 +131,7 @@ export default {
     .listInfo {
       height: 5%;
       display: flex;
+      // justify-content: space-around;
       flex-direction: column;
       font-size: 20px;
       color: #2c3e50;
@@ -138,8 +147,8 @@ export default {
       text-decoration: none;
       margin-left: 10%;
       &:hover {
-      background-color: #B53737;
-      color: white;
+      background-color: #42b983;
+      color: #2c3e50;
       border: 1px solid #2c3e50;
     }
     &:active {

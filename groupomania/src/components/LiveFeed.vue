@@ -44,6 +44,7 @@ export default {
           .then((response) => {
             console.log(response);
             console.log("Post supprimé !");
+            window.location = "http://localhost:8080/#/feed"
           })
           .catch((e) => {
             console.log(e);

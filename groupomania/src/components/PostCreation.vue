@@ -59,6 +59,7 @@ export default {
           // this.error.push(e);
           console.log(e);
         });
+      window.location = "http://localhost:8080/#/feed";
     },
   },
 };
