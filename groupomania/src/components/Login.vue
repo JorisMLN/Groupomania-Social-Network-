@@ -24,8 +24,7 @@
 
 <script>
 import axios from "axios";
-import checkToken from '@/services/checkToken.js';
-
+import checkToken from "@/services/checkToken.js";
 
 export default {
   name: "Login",
@@ -35,7 +34,7 @@ export default {
 
   created() {
     let token = checkToken.getUserToken(this.$store);
-    if(token){
+    if (token) {
       window.location = "http://localhost:8080/#/profil";
     }
   },
@@ -94,6 +93,15 @@ export default {
         margin-top: 11px;
         height: 25%;
         width: 98%;
+        &:hover {
+          background-color: #42b983;
+          color: #2c3e50;
+          // font-size: 25px;
+          border: 1px solid #2c3e50;
+        }
+        &:active {
+          background-color: lighten(#42b983, $amount: 20);
+        }
       }
     }
     a {
@@ -103,6 +111,14 @@ export default {
       padding: 2px;
       color: #42b983;
       text-decoration: none;
+      &:hover {
+        background-color: #42b983;
+        color: #2c3e50;
+        border: 1px solid #2c3e50;
+      }
+      &:active {
+        background-color: lighten(#42b983, $amount: 20);
+      }
     }
   }
 }
