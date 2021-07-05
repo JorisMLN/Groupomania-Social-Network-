@@ -4,9 +4,10 @@
       <legend>Partagez avec vos super collègues !</legend>
       <textarea type="text" v-model="form.text" />
       <div class="gif-poster">
-        <button class="gif">.GIF</button>
+        <vueditor class="gif">.GIF</vueditor>
         <button class="poster" v-on:click="submit()">Poster</button>
       </div>
+      
     </fieldset>
     <!-- <div class="postCreation__bot">
       <button class="gif">.GIF</button>
@@ -17,9 +18,22 @@
 
 <script>
 // import axios from "axios";
+// import vueditor from 'vueditor';
 
 export default {
   name: "PostCreation",
+  config: {
+        toolbar: [
+          'removeFormat', 'undo', '|', 'elements', 'fontName', 'fontSize', 'foreColor', 'backColor'
+        ],
+        fontName: [
+          {val: 'arial black'}, 
+          {val: 'times new roman'}, 
+          {val: 'Courier New'}
+        ],
+        fontSize: ['12px', '14px', '16px', '18px', '0.8rem', '1.0rem', '1.2rem', '1.5rem', '2.0rem'],
+        uploadUrl: ''
+  },
 
   data() {
     return {
