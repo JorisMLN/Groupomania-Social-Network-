@@ -12,9 +12,9 @@ const multer = require('../middleware/multer-config');
 
 router.get('/', auth, postsCtrl.getAllPosts);
 router.post('/', auth, postsCtrl.createPost);
-// router.post('/', auth, multer, postsCtrl.createPost);
+router.delete('/:id', auth, postsCtrl.deletePost);
 
-// router.delete('/:id', auth, postsCtrl.deletePost);
+// router.post('/', auth, multer, postsCtrl.createPost);
 // router.post('/:id/like', auth, postsCtrl.likeDislikeSauce);    Mise en place du systeme de commentaire.
 
 module.exports = router;

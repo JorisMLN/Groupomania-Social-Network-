@@ -43,7 +43,13 @@ exports.createPost = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
     };
     
-
+exports.deletePost = (req, res, next) => {
+  console.log(req.params.id);
+  let id = req.params.id;
+  Post.destroy({ where: { id: id}})
+    .then(() => {res.status(200).json({ message: 'Post supprimé !'})})
+    .catch(error => res.status(500).json({ error }));
+};
 
 
 

@@ -1,6 +1,6 @@
 <template>
   <div class="LogOut">
-    <button @click="logOut">{{ msgLog }}</button>
+    <button @click="logOut">{{ msgLog }}</button> | 
     <button @click="unSub">{{ msgUnsub }}</button>
   </div>
 </template>

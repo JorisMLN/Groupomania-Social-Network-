@@ -4,8 +4,8 @@
       <h2>{{ item.firstname }} {{ item.lastname }}</h2>
       <h3>Post N°: {{ item.id }}</h3>
       <p>{{ item.text }}</p>
-      <button class="delete" @click="deletePost">Supprimer</button>
-      <button>Like</button> : {{ item.likes }}
+      <button @click="deletePost(item.id)">Supprimer</button> |
+      <button @click="likePost(item.id)">Like</button> : {{ item.likes }}
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@
 import axios from "axios";
 import { mapState } from "vuex";
 // import jwt_decode from "jwt-decode";
-import checkToken from '@/services/checkToken.js';
+import checkToken from "@/services/checkToken.js";
 
 export default {
   name: "LiveFeed",
@@ -29,17 +29,32 @@ export default {
   },
 
   methods: {
-    deletePost(){
-      console.log(event.target.id);
+    deletePost(id) {
+      console.log(id);
+      let token = checkToken.getUserToken(this.$store);
+      // let userId = token.userId;
+      if (token) {
+        // request for delete the acount
+        axios
+          .request({
+            method: "delete",
+            baseURL: "http://localhost:3000/api/posts/" + id,
+            headers: {
+              Authorization: "Bearer: " + this.$store.state.token,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            console.log("Post supprimé !");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       }
-    // deletePost(){
-    // let btnPostRemove = document.getElementsByClassName("delete");
-    // Array.from(btnPostRemove).forEach((btnPost) => {
-    //   btnPost.addEventListener('click', function (event) {
-    //     console.log(event.target.id);
-    //     });
-    //   });
-    // }
+    },
+    // likePost(id) {
+    //   console.log(id);
+    // },
   },
 
   created() {
@@ -89,6 +104,7 @@ export default {
     width: 99%;
     border: 1px solid #2c3e50;
     margin: 4px;
+    padding-bottom: 7px;
     h2 {
       font-size: 20px;
     }

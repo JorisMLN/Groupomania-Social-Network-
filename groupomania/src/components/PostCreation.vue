@@ -4,7 +4,7 @@
       <legend>Partagez avec vos super collègues !</legend>
       <textarea type="text" v-model="form.text" />
       <div class="gif-poster">
-        <vueditor class="gif">.GIF</vueditor>
+        <button class="gif">.GIF</button>
         <button class="poster" v-on:click="submit()">Poster</button>
       </div>
       
