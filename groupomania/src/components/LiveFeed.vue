@@ -32,9 +32,8 @@ export default {
     deletePost(id) {
       console.log(id);
       let token = checkToken.getUserToken(this.$store);
-      // let userId = token.userId;
       if (token) {
-        // request for delete the acount
+        // request for delete a post
         axios
           .request({
             method: "delete",
@@ -52,9 +51,28 @@ export default {
           });
       }
     },
-    // likePost(id) {
-    //   console.log(id);
-    // },
+    likePost(id) {
+      console.log(id);
+      let token = checkToken.getUserToken(this.$store);
+      if (token) {
+        // request for like a post
+        axios
+          .request({
+            method: "put",
+            baseURL: "http://localhost:3000/api/posts/" + id,
+            headers: {
+              Authorization: "Bearer: " + this.$store.state.token,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            console.log("Post liké !");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+    },
   },
 
   created() {
