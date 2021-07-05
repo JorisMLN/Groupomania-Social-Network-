@@ -56,16 +56,12 @@ export default {
               console.log(e);
             });
         } else {
-          localStorage.clear();
-          this.$store.commit("cleanStore");
-          window.location = "http://localhost:8080/#/";
+          clearStoreAndStorage();
         }
       } else {
         console.log("You pressed Cancel!");
       }
-      localStorage.clear();
-      this.$store.commit("cleanStore");
-      window.location = "http://localhost:8080/#/";
+      clearStoreAndStorage();
     },
   },
 
@@ -100,6 +96,13 @@ export default {
     }
   },
 };
+
+  function clearStoreAndStorage(){
+  localStorage.clear();
+  this.$store.commit("cleanStore");
+  window.location = "http://localhost:8080/#/";
+}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

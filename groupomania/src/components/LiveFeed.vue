@@ -49,6 +49,8 @@ export default {
           .catch((e) => {
             console.log(e);
           });
+      } else {
+      clearStoreAndStorage();
       }
     },
     likePost(id) {
@@ -71,6 +73,8 @@ export default {
           .catch((e) => {
             console.log(e);
           });
+      } else {
+      clearStoreAndStorage();
       }
     },
   },
@@ -97,12 +101,17 @@ export default {
           console.log(e);
         });
     } else {
-      localStorage.clear();
-      this.$store.commit("cleanStore");
-      window.location = "http://localhost:8080/#/";
+    clearStoreAndStorage();
     }
   },
 };
+
+function clearStoreAndStorage(){
+  localStorage.clear();
+  this.$store.commit("cleanStore");
+  window.location = "http://localhost:8080/#/";
+}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
