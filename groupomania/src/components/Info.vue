@@ -147,9 +147,9 @@ export default {
       text-decoration: none;
       margin-left: 10%;
       &:hover {
-      background-color: #42b983;
-      color: #2c3e50;
-      border: 1px solid #2c3e50;
+      background-color: #B53737;
+      color: white;
+      border: 1px solid white;
     }
     &:active {
       background-color: lighten(#42b983, $amount: 20);

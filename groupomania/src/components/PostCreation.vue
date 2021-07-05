@@ -4,7 +4,7 @@
       <legend>Partagez avec vos super collègues !</legend>
       <textarea type="text" v-model="form.text" />
       <div class="gif-poster">
-        <button class="gif">.GIF</button>
+        <Vueditor></Vueditor>
         <button class="poster" v-on:click="submit()">Poster</button>
       </div>
     </fieldset>
@@ -12,21 +12,11 @@
 </template>
 
 <script>
+// import Vueditor from 'vueditor';
+// import 'vueditor/dist/style/vueditor.min.css'
 
 export default {
   name: "PostCreation",
-  config: {
-        toolbar: [
-          'removeFormat', 'undo', '|', 'elements', 'fontName', 'fontSize', 'foreColor', 'backColor'
-        ],
-        fontName: [
-          {val: 'arial black'}, 
-          {val: 'times new roman'}, 
-          {val: 'Courier New'}
-        ],
-        fontSize: ['12px', '14px', '16px', '18px', '0.8rem', '1.0rem', '1.2rem', '1.5rem', '2.0rem'],
-        uploadUrl: ''
-  },
 
   data() {
     return {
@@ -63,6 +53,7 @@ export default {
     },
   },
 };
+
 
 // function clearText(text){
 //   text.value = '';

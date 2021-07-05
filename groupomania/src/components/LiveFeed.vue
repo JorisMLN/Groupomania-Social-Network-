@@ -25,6 +25,7 @@ export default {
 
   computed: {
     ...mapState(["token"]),
+    
   },
 
   methods: {
@@ -45,6 +46,7 @@ export default {
             console.log(response);
             console.log("Post supprimé !");
             window.location = "http://localhost:8080/#/feed"
+             this.callAllPosts();
           })
           .catch((e) => {
             console.log(e);
@@ -53,6 +55,7 @@ export default {
       clearStoreAndStorage();
       }
     },
+
     likePost(id) {
       console.log(id);
       let token = checkToken.getUserToken(this.$store);
@@ -77,13 +80,8 @@ export default {
       clearStoreAndStorage();
       }
     },
-  },
 
-  created() {
-    // checkToken
-    let token = checkToken.getUserToken(this.$store);
-    if (token) {
-      // request for all posts
+    callAllPosts(){
       axios
         .request({
           method: "get",
@@ -99,25 +97,51 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    }
+  },
+
+  created() {
+    // checkToken
+    let token = checkToken.getUserToken(this.$store);
+    if (token) {
+      // request for all posts
+      this.callAllPosts();
+      // axios
+      //   .request({
+      //     method: "get",
+      //     baseURL: "http://localhost:3000/api/posts",
+      //     headers: {
+      //       Authorization: "Bearer: " + this.$store.state.token,
+      //     },
+      //   })
+      //   .then((response) => {
+      //     this.list = response.data;
+      //     console.log(response.data);
+      //   })
+      //   .catch((e) => {
+      //     console.log(e);
+      //   });
     } else {
     clearStoreAndStorage();
     }
   },
 };
 
+
+
 function clearStoreAndStorage(){
   localStorage.clear();
   this.$store.commit("cleanStore");
   window.location = "http://localhost:8080/#/";
 }
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .LiveFeed {
   display: flex;
-  flex-direction: column-reverse;
+  // flex-direction: column-reverse;
+  flex-direction: column;
   height: 75%;
   width: 50%;
   border: 3px solid #42b983;
