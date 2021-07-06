@@ -43,17 +43,15 @@ export default {
       fetch("http://localhost:3000/api/posts", requestOptions)
         .then((response) => response.json())
         .then(
-          (data) => (this.postId = data.id) //, clearText(this.form.text)
-          )
+          (data) => (this.postId = data.id),
+          (window.location = "http://localhost:8080/#/feed")
+        )
         .catch((e) => {
-          // this.error.push(e);
           console.log(e);
         });
-      window.location = "http://localhost:8080/#/feed";
     },
   },
 };
-
 
 // function clearText(text){
 //   text.value = '';
