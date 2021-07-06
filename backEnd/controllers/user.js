@@ -28,6 +28,9 @@ User.init({
   modelname: 'user',
 });
 
+
+/* ---------- R O U T E S ---------- */
+
 // Create a new user: SIGNUP
 exports.signup = (req, res, next) => {
     console.log(req.body);

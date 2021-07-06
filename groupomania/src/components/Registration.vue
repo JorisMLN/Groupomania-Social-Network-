@@ -38,11 +38,6 @@
           <input type="text" v-model="form.hobbies" />
           <br />
         </fieldset>
-        <fieldset>
-          <legend>Photo de Profil</legend>
-          <input type="file" @change="onFileSelected"/>
-          <br />
-        </fieldset>
         <button v-on:click="submit()"> Confirm </button>
       </div>
       <p> * Required </p>

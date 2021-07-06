@@ -36,15 +36,28 @@ export default {
   height: 80px;
   margin-bottom: -52px;
   width: 100%;
-.before {
-font-size: 15px;
-color: #42b983;
-}
-h2 {
-font-size: 15px;
-}
-img {
+  .before {
+    font-size: 15px;
+    color: #42b983;
+  }
+  h2 {
+    font-size: 15px;
+  }
+  img {
     height: 20px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .Footer {
+    height: 100px;
+    flex-direction: column;
+    img{
+      display: none;
+    }
+    div{
+      height: 45%;
+    }
   }
 }
 </style>

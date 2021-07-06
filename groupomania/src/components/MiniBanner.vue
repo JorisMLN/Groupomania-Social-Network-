@@ -49,4 +49,14 @@ export default {
     }
   }
 }
+@media screen and (max-width: 430px) {
+  .MiniBanner {
+    height: 80px;
+    width: 97%;
+    .avatar {
+      height: 110%;
+      width: 25%;
+    }
+  }
+}
 </style>

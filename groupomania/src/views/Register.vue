@@ -19,3 +19,13 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+@media screen and (max-width: 430px) {
+  .home {
+    img {
+      width: 100%;
+    }
+  }
+}
+</style>

@@ -48,4 +48,30 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 430px) {
+  .banner {
+    .photoBan {
+      display: flex;
+      align-items: center;
+      border: 1px solid #2c3e50;
+      height: 80%;
+      width: 99%;
+      overflow: hidden;
+    }
+    .avatar {
+      border: 3px solid #2c3e50;
+      height: 150px;
+      width: 150px;
+      border-radius: 130px;
+      overflow: hidden;
+      margin-top: -220px;
+      img {
+        width: 100%;
+        display: flex;
+        overflow: hidden;
+      }
+    }
+  }
+}
 </style>

@@ -1,14 +1,19 @@
 <template>
   <div class="profil">
-    <LogOut msgLog="Log Out"/>
+    <LogOut msgLog="Log Out" />
     <Banner />
     <div class="main">
-      <Info msg="Mes Infos" unsub="Delete Account"/>
+      <Info msg="Mes Infos" unsub="Delete Account" />
       <div class="main__right">
         <PostCreation msg="Partagez avec vos collègues !" />
       </div>
     </div>
-    <Footer beforeMsg="© 2020-2021, " msg="Groupomania.git, Inc." beforeSigned="Created by " signed="'Vingilot Studio ©'"/>
+    <Footer
+      beforeMsg="© 2020-2021, "
+      msg="Groupomania.git, Inc."
+      beforeSigned="Created by "
+      signed="'Vingilot Studio ©'"
+    />
   </div>
 </template>
 
@@ -27,10 +32,9 @@ export default {
     Banner,
     Info,
     PostCreation,
-    Footer
+    Footer,
   },
 };
-
 </script>
 
 <style scoped lang="scss">
@@ -39,7 +43,7 @@ export default {
   flex: wrap;
   justify-content: space-around;
   flex-direction: column;
-  height:92%;
+  height: 92%;
   margin: 0px;
   .main {
     display: flex;
@@ -56,6 +60,31 @@ export default {
       border-radius: 10px;
       width: 60%;
       height: 95%;
+    }
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .profil {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 850px;
+    margin: 0px;
+    .main {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column-reverse;
+      height: 500px;
+      &__right {
+        border: 3px solid #42b983;
+        border-radius: 10px;
+        width: 97%;
+        height: 250px;
+        .PostCreation {
+          height: 50px;
+        }
+      }
     }
   }
 }

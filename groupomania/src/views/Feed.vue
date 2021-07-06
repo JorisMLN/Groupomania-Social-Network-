@@ -3,12 +3,16 @@
     <LogOut msgLog="Log Out" msgUnsub="Unsubscribe" />
     <MiniBanner />
     <LiveFeed />
-    <Footer beforeMsg="© 2020-2021, " msg="Groupomania.git, Inc." beforeSigned="Created by " signed="'Vingilot Studio ©'"/>
+    <Footer
+      beforeMsg="© 2020-2021, "
+      msg="Groupomania.git, Inc."
+      beforeSigned="Created by "
+      signed="'Vingilot Studio ©'"
+    />
   </div>
 </template>
 
 <script>
-
 // @ is an alias to /src
 import MiniBanner from "@/components/MiniBanner.vue";
 import LiveFeed from "@/components/LiveFeed.vue";
@@ -21,10 +25,9 @@ export default {
     LogOut,
     MiniBanner,
     LiveFeed,
-    Footer
+    Footer,
   },
 };
-
 </script>
 
 <style scoped lang="scss">
@@ -35,5 +38,11 @@ export default {
   align-items: center;
   flex-direction: column;
   height: 88vh;
+}
+
+@media screen and (max-width: 430px) {
+  .feed {
+    height: 100vh;
+  }
 }
 </style>

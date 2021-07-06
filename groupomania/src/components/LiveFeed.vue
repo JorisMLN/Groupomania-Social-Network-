@@ -151,4 +151,10 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 430px) {
+  .LiveFeed {
+    width: 90%;
+  }
+}
 </style>

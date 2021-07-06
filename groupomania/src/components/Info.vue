@@ -8,7 +8,7 @@
       <div class="listInfo">Loisirs: {{ $store.state.hobbies }}</div>
       <div class="listInfo">Site web: {{ $store.state.website }}</div>
       <div class="listInfo">E-mail: {{ $store.state.email }}</div>
-      <button @click="unSub"> {{ unsub }} </button>
+      <button @click="unSub">{{ unsub }}</button>
     </article>
   </div>
 </template>
@@ -108,7 +108,6 @@ export default {
   //   window.location = "http://localhost:8080/#/";
   // }
 };
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -147,13 +146,62 @@ export default {
       text-decoration: none;
       margin-left: 10%;
       &:hover {
-      background-color: #B53737;
-      color: white;
-      border: 1px solid white;
+        background-color: #b53737;
+        color: white;
+        border: 1px solid white;
+      }
+      &:active {
+        background-color: lighten(#42b983, $amount: 20);
+      }
     }
-    &:active {
-      background-color: lighten(#42b983, $amount: 20);
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .info {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #2c3e50;
+    width: 98%;
+    height: 45%;
+    h2 {
+      display: none;
     }
+    article {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      height: 99%;
+      flex-wrap: wrap;
+      align-items: center;
+      .listInfo {
+        height: 5%;
+        display: flex;
+        width: 90%;
+        flex-wrap: wrap;
+        flex-direction: column;
+        font-size: 15px;
+        color: #2c3e50;
+        align-items: center;
+        padding-left: 0%;
+      }
+      button {
+        border: 1px solid #2c3e50;
+        color: #42b983;
+        width: 150px;
+        height: 15%;
+        text-decoration: none;
+        align-self: center;
+        margin-left: 0%;
+        &:hover {
+          background-color: #b53737;
+          color: white;
+          border: 1px solid white;
+        }
+        &:active {
+          background-color: lighten(#42b983, $amount: 20);
+        }
+      }
     }
   }
 }
