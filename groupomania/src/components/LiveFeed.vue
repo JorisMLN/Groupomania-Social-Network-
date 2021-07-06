@@ -5,7 +5,8 @@
       <h3>Post N°: {{ item.id }}</h3>
       <p>{{ item.text }}</p>
       <button @click="deletePost(item.id)">Supprimer</button> |
-      <button @click="likePost(item.id)">Like</button> : {{ item.likes }}
+      <button @click="likePost(item.id, $store.state.userId)">Like</button> :
+      {{ item.likes }}
     </div>
   </div>
 </template>
@@ -25,15 +26,14 @@ export default {
 
   computed: {
     ...mapState(["token"]),
-    
   },
 
   methods: {
+    // request for delete a post
     deletePost(id) {
       console.log(id);
       let token = checkToken.getUserToken(this.$store);
       if (token) {
-        // request for delete a post
         axios
           .request({
             method: "delete",
@@ -45,43 +45,47 @@ export default {
           .then((response) => {
             console.log(response);
             console.log("Post supprimé !");
-            window.location = "http://localhost:8080/#/feed"
-             this.callAllPosts();
+            window.location = "http://localhost:8080/#/feed";
+            this.callAllPosts();
           })
           .catch((e) => {
             console.log(e);
           });
       } else {
-      clearStoreAndStorage();
+        this.clearStoreAndStorage();
       }
     },
 
-    likePost(id) {
-      console.log(id);
+    // request for like a post
+    likePost(postId, userId) {
+      let payload = { postId, userId };
+      console.log(payload);
       let token = checkToken.getUserToken(this.$store);
       if (token) {
-        // request for like a post
-        axios
-          .request({
-            method: "put",
-            baseURL: "http://localhost:3000/api/posts/" + id,
-            headers: {
-              Authorization: "Bearer: " + this.$store.state.token,
-            },
-          })
-          .then((response) => {
-            console.log(response);
-            console.log("Post liké !");
-          })
+        const requestOptions = {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer: " + this.token,
+          },
+          body: JSON.stringify({ payload }),
+        };
+        fetch("http://localhost:3000/api/posts/like", requestOptions)
+          .then((response) => response.json())
+          .then((response) => (
+            // this.postId = data.id,
+            console.log(response)
+            ))
           .catch((e) => {
             console.log(e);
           });
       } else {
-      clearStoreAndStorage();
+        this.clearStoreAndStorage();
       }
     },
 
-    callAllPosts(){
+    // request for all posts
+    callAllPosts() {
       axios
         .request({
           method: "get",
@@ -97,7 +101,14 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-    }
+    },
+
+    // function for clear the store and the storage
+    clearStoreAndStorage() {
+      localStorage.clear();
+      this.$store.commit("cleanStore");
+      window.location = "http://localhost:8080/#/";
+    },
   },
 
   created() {
@@ -106,34 +117,11 @@ export default {
     if (token) {
       // request for all posts
       this.callAllPosts();
-      // axios
-      //   .request({
-      //     method: "get",
-      //     baseURL: "http://localhost:3000/api/posts",
-      //     headers: {
-      //       Authorization: "Bearer: " + this.$store.state.token,
-      //     },
-      //   })
-      //   .then((response) => {
-      //     this.list = response.data;
-      //     console.log(response.data);
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
     } else {
-    clearStoreAndStorage();
+      this.clearStoreAndStorage();
     }
   },
 };
-
-
-
-function clearStoreAndStorage(){
-  localStorage.clear();
-  this.$store.commit("cleanStore");
-  window.location = "http://localhost:8080/#/";
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
