@@ -46,7 +46,11 @@ exports.getAllPosts = (req, res, next) => {
       ['id', 'DESC']
     ]
   })
-.then(posts => res.status(200).json(posts))
+.then(posts => {
+  // PostLike.findAll({ where: { postId: }})
+  // return 
+  res.status(200).json(posts);
+})
 .catch(error => res.status(400).json({ error }));
 };
 
@@ -72,12 +76,34 @@ exports.deletePost = (req, res, next) => {
 
 exports.likePost = (req, res, next) => {
   console.log(req.body.payload);
+  let postId = req.body.payload.postId;
+  let userId = req.body.payload.userId;
+  PostLike.findOne({ where: { postId: postId, userId: userId}})
+  .then((postLike) => {
+    if(!postLike){
+      createPostLike(res, postId, userId);
+    } else {
+      updatePostLike(res, postLike);
+    }
+  })
+  .catch(error => res.status(400).json({ error }));
+}
+
+function createPostLike(res, postId, userId){
   PostLike.create({
-    postId: req.body.payload.postId,
-    userId: req.body.payload.userId,
+    postId: postId,
+    userId: userId,
     status: true,
   })
-  .then(() => res.status(201).json({ message: 'Like enregristré!' }))
+  .then(() => res.status(201).json({message: 'Like enregristré!'}))
   .catch(error => res.status(400).json({ error }));
-};
+}
+
+function updatePostLike(res, postLike){
+  postLike.update({
+    status: !postLike.status
+  })
+  .then(() => res.status(201).json({ message: postLike.status ? 'Like ajouté!' : 'like enlevé' }))
+  .catch(error => res.status(400).json({ error }));
+}
 
