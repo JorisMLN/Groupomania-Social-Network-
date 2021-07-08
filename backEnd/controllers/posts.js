@@ -47,9 +47,26 @@ exports.getAllPosts = (req, res, next) => {
     ]
   })
 .then(posts => {
-  // PostLike.findAll({ where: { postId: }})
-  // return 
-  res.status(200).json(posts);
+  posts.forEach(post => {
+    console.log(post.id);
+    PostLike.findAll({ where: { 
+      postId: post.id,
+      status: true
+    }})
+    .then((selectedPost) => {
+      console.log("S-E-L-E-C-T-E-D P-O-S-T");
+      let arrayUserId = []
+      selectedPost.forEach(post => {
+        arrayUserId.push(post.userId);
+      })
+      console.log(arrayUserId);
+    })
+    .catch();
+  })
+  // posts.forEach(post => {
+  //   post.userLiked = [arrayUserId];
+  // })
+  return res.status(200).json(posts);
 })
 .catch(error => res.status(400).json({ error }));
 };
