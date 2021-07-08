@@ -4,9 +4,8 @@
       <h2>{{ item.firstname }} {{ item.lastname }}</h2>
       <h3>Post N°: {{ item.id }}</h3>
       <p>{{ item.text }}</p>
-      <button @click="deletePost(item.id)">Supprimer</button> |
-      <button @click="likePost(item.id, $store.state.userId)">Like</button> :
-      {{ item.likes }}
+      <button v-if="item.userId == $store.state.userId || $store.state.userId == 17" @click="deletePost(item.id)">Supprimer</button> | 
+      <button id="likeBtn" @click="likePost(item.id, $store.state.userId)">Like</button>
     </div>
   </div>
 </template>
