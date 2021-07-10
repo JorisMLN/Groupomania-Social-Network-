@@ -41,32 +41,29 @@ PostLike.init({
 /* ---------- R O U T E S ---------- */
 
 exports.getAllPosts = (req, res, next) => {
-  Post.findAll({
-    order: [
-      ['id', 'DESC']
-    ]
-  })
-.then(posts => {
-  posts.forEach(post => {
-    console.log(post.id);
-    PostLike.findAll({ where: { 
-      postId: post.id,
-      status: true
-    }})
-    .then((selectedPost) => {
-      console.log("S-E-L-E-C-T-E-D P-O-S-T");
-      let arrayUserId = []
-      selectedPost.forEach(post => {
-        arrayUserId.push(post.userId);
-      })
-      console.log(arrayUserId);
-    })
-    .catch();
-  })
-  // posts.forEach(post => {
-  //   post.userLiked = [arrayUserId];
-  // })
-  return res.status(200).json(posts);
+
+let posts = Post.findAll({
+  order: [
+    ['id', 'DESC']
+  ]
+});
+
+let postLikes =   PostLike.findAll({ where: {
+  status: true
+}});
+
+Promise.all([posts, postLikes])
+.then(values => {
+  let postValues = values[0];
+  let postLikeValues = values[1];
+  postValues.forEach(post => {
+    let filteredPostLike = postLikeValues.filter(postLike => postLike.dataValues.postId === post.dataValues.id);
+    post.dataValues.userLiked = filteredPostLike.map(postLike => {
+      return postLike.dataValues.userId;
+    });
+    console.log(post.dataValues.userLiked);
+  });
+  return res.status(200).json(postValues);
 })
 .catch(error => res.status(400).json({ error }));
 };
