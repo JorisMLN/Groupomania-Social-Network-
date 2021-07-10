@@ -48,7 +48,7 @@ let posts = Post.findAll({
   ]
 });
 
-let postLikes =   PostLike.findAll({ where: {
+let postLikes = PostLike.findAll({ where: {
   status: true
 }});
 

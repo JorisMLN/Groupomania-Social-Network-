@@ -2,10 +2,10 @@
   <div class="LiveFeed">
     <div class="LiveFeed__post" v-for="item in list" :key="item">
       <h2>{{ item.firstname }} {{ item.lastname }}</h2>
-      <h3>Post N°: {{ item.id }}</h3>
       <p>{{ item.text }}</p>
       <button v-if="item.userId == $store.state.userId || $store.state.userId == 17" @click="deletePost(item.id)">Supprimer</button> | 
-      <button id="likeBtn" @click="likePost(item.id, $store.state.userId)">Like</button>
+      <button class="likeBtn" v-if="item.userLiked.find(user => user == $store.state.userId)" @click="likePost(item.id, $store.state.userId)">Like</button>
+      <button v-else @click="likePost(item.id, $store.state.userId)">Like</button>
     </div>
   </div>
 </template>
@@ -44,7 +44,7 @@ export default {
           .then((response) => {
             console.log(response);
             console.log("Post supprimé !");
-            window.location = "http://localhost:8080/#/feed";
+            // window.location = "http://localhost:8080/#/feed";
             this.callAllPosts();
           })
           .catch((e) => {
@@ -71,10 +71,10 @@ export default {
         };
         fetch("http://localhost:3000/api/posts/like", requestOptions)
           .then((response) => response.json())
-          .then((response) => (
-            // this.postId = data.id,
+          .then((response) => {
             console.log(response)
-            ))
+            this.callAllPosts();
+          })
           .catch((e) => {
             console.log(e);
           });
@@ -144,9 +144,8 @@ export default {
     h2 {
       font-size: 20px;
     }
-    h3 {
-      font-size: 16px;
-      margin-top: -18px;
+    .likeBtn {
+      background-color: #008000;
     }
   }
 }
