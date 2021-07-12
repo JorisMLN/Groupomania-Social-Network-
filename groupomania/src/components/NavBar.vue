@@ -6,7 +6,8 @@
     </span>
     <span v-else>
       <router-link to="/profil">Profil</router-link> |
-      <router-link to="/feed">Feed</router-link>
+      <router-link to="/feed">Feed</router-link> |
+      <router-link to="/settings">Settings</router-link>
     </span>
   </div>
 </template>

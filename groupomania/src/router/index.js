@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Profil from '../views/Profil.vue'
 import Feed from '../views/Feed.vue'
 import Register from '../views/Register.vue'
+import Settings from '../views/Settings.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     name: 'Registrer',
     component: Register
   },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings
+  }
 ]
 
 const router = new VueRouter({
