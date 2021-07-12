@@ -1,6 +1,6 @@
 <template>
   <div class="feed">
-    <LogOut msgLog="Log Out" msgUnsub="Unsubscribe" />
+    <!-- <LogOut msgLog="Log Out" msgUnsub="Unsubscribe" /> -->
     <MiniBanner />
     <LiveFeed />
     <Footer
@@ -16,13 +16,13 @@
 // @ is an alias to /src
 import MiniBanner from "@/components/MiniBanner.vue";
 import LiveFeed from "@/components/LiveFeed.vue";
-import LogOut from "@/components/LogOut.vue";
+// import LogOut from "@/components/LogOut.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Feed",
   components: {
-    LogOut,
+    // LogOut,
     MiniBanner,
     LiveFeed,
     Footer,
