@@ -126,3 +126,10 @@ exports.unsub = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
+// modify one user
+exports.modify = (req, res, next) => {
+    console.log("req.params.id")
+    console.log(req.params.id);
+    console.log("req.body.post")
+    console.log(req.body.data);
+};

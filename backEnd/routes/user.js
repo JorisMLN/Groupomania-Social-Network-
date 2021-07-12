@@ -10,5 +10,6 @@ router.post('/signup', multer, userCrtl.signup);
 router.post('/login', userCrtl.login);
 router.delete('/unsub/:id', userCrtl.unsub);
 router.get('/info/:id', userCrtl.info);
+router.put('/modify/:id', userCrtl.modify);
 
 module.exports = router;

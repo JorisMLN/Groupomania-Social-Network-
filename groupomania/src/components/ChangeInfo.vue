@@ -1,22 +1,47 @@
 <template>
   <div class="info">
     <h2>{{ msg }}</h2>
-    <article>
-      <div class="listInfo">Prénom: {{ $store.state.firstname }}</div>
-      <div class="listInfo">Nom de Famille: {{ $store.state.lastname }}</div>
-      <div class="listInfo">Poste: {{ $store.state.job }}</div>
-      <div class="listInfo">Loisirs: {{ $store.state.hobbies }}</div>
-      <div class="listInfo">Site web: {{ $store.state.website }}</div>
-      <div class="listInfo">E-mail: {{ $store.state.email }}</div>
+    <article class="formulaire">
+      <fieldset>
+        <legend>Email *</legend>
+        <input type="email" value="test@gmail.com" v-model="form.email" required />
+        <br />
+      </fieldset>
+      <fieldset>
+        <legend>Last Name *</legend>
+        <input type="text" v-model="form.lastname" required />
+        <br />
+      </fieldset>
+      <fieldset>
+        <legend>First Name *</legend>
+        <input type="text" v-model="form.firstname" required />
+        <br />
+      </fieldset>
+      <fieldset>
+        <legend>Job *</legend>
+        <input type="text" v-model="form.job" required />
+        <br />
+      </fieldset>
+      <fieldset>
+        <legend>Web Site</legend>
+        <input type="text" v-model="form.website" />
+        <br />
+      </fieldset>
+      <fieldset>
+        <legend>Hobbies</legend>
+        <input type="text" v-model="form.hobbies" />
+        <br />
+      </fieldset>
     </article>
+    <button v-on:click="submit()">Confirm</button>
   </div>
 </template>
 
 <script>
-// import axios from "axios";
-// import { mapState } from "vuex";
+import axios from "axios";
+import { mapState } from "vuex";
 // import jwt_decode from "jwt-decode";
-// import checkToken from "@/services/checkToken.js";
+import checkToken from "@/services/checkToken.js";
 
 export default {
   name: "ChangeInfo",
@@ -24,87 +49,70 @@ export default {
     msg: String,
   },
 
-//   computed: {
-//     ...mapState({
-//       userId: "userId",
-//       token: "token",
-//     }),
-//   },
-//   methods: {
-//     unSub: function () {
-//       window.confirm("Voulez-vous vraiment supprimer votre compte?");
-//       if (confirm("Press a button!")) {
-//         let token = checkToken.getUserToken(this.$store);
-//         let userId = token.userId;
-//         if (token) {
-//           // request for delete the acount
-//           axios
-//             .request({
-//               method: "delete",
-//               baseURL: "http://localhost:3000/api/user/unsub/" + userId,
-//               headers: {
-//                 Authorization: "Bearer: " + this.$store.state.token,
-//               },
-//             })
-//             .then((response) => {
-//               console.log(response.data);
-//               console.log("Utilisateur supprimé !");
-//             })
-//             .catch((e) => {
-//               console.log(e);
-//             });
-//         } else {
-//           localStorage.clear();
-//           this.$store.commit("cleanStore");
-//           window.location = "http://localhost:8080/#/";
-//           // clearStoreAndStorage();
-//         }
-//       } else {
-//         console.log("You pressed Cancel!");
-//       }
-//       localStorage.clear();
-//       this.$store.commit("cleanStore");
-//       window.location = "http://localhost:8080/#/";
-//       // clearStoreAndStorage();
-//     },
-//   },
+  data() {
+    return {
+      form: {
+        email: "",
+        lastname: "",
+        firstname: "",
+        job: "",
+        website: "",
+        hobbies: "",
+      },
+    };
+  },
 
-//   created() {
-    // let token = checkToken.getUserToken(this.$store);
-    // if (token) {
-    //   // (en cas de réouverture de la page sans logOut) gestion de l'id vers le Vuex.
-    //   let userId = token.userId;
-    //   console.log(userId);
-    //   this.$store.commit("addId", userId);
+  computed: {
+    ...mapState({
+      userId: "userId",
+      token: "token",
+    }),
+  },
 
-    //   // (en cas de réouverture de la page sans logOut) gestion du token vers le Vuex.
-    //   let user = JSON.parse(localStorage.getItem("user"));
-    //   console.log(user.token);
-    //   this.$store.commit("addToken", user.token);
+  methods: {
+    submit: function () {
+      if (window.confirm("Voulez-vous vraiment modifier votre compte?")) {
+        let token = checkToken.getUserToken(this.$store);
+        let userId = token.userId;
+        if (token) {
+          // request for modify a profil
+          console.log(this.form);
+          axios
+            .put("http://localhost:3000/api/user/modify/" + userId, {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer: " + this.$store.state.token,
+              },
+              data: JSON.stringify({ post: this.form }),
+            })
+            .then((response) => {
+              console.log(response.data);
+              console.log("Utilisateur modifier !");
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        } else {
+          this.clearStoreAndStorage();
+        }
+      } else {
+        console.log("You pressed Cancel!");
+      }
+    },
 
-    //   axios
-    //     .get("http://localhost:3000/api/user/info/" + userId)
-    //     .then((response) => {
-    //       console.log(response.data);
-    //       this.$store.commit("addFirstname", response.data.firstname);
-    //       this.$store.commit("addLastname", response.data.lastname);
-    //       this.$store.commit("addEmail", response.data.email);
-    //       this.$store.commit("addHobbies", response.data.hobbies);
-    //       this.$store.commit("addJob", response.data.job);
-    //       this.$store.commit("addWebsite", response.data.website);
-    //     })
-    //     .catch((e) => {
-    //       // this.error.push(e);
-    //       console.log(e);
-    //     });
-    // }
-//   },
+    clearStoreAndStorage() {
+      localStorage.clear();
+      this.$store.commit("cleanStore");
+      window.location = "http://localhost:8080/#/";
+    },
+  },
 
-  // clearStoreAndStorage(){
-  //   localStorage.clear();
-  //   this.$store.commit("cleanStore");
-  //   window.location = "http://localhost:8080/#/";
-  // }
+  created() {
+    let token = checkToken.getUserToken(this.$store);
+    if (!token) {
+      this.clearStoreAndStorage();
+    }
+  },
 };
 </script>
 
@@ -117,23 +125,67 @@ export default {
   height: 35%;
   width: 70%;
   border: 1px solid #2c3e50;
-  h1 {
-    height: 10%;
+  align-items: center;
+  h2 {
+    height: 4%;
+    font-size: 18px;
   }
-  article {
-    height: 80%;
+  .formulaire {
+    // border: 1px solid red;
+    height: 90%;
+    width: 90%;
     display: flex;
+    align-items: center;
     justify-content: space-around;
-    flex-direction: column;
-    .listInfo {
-      height: 5%;
-      display: flex;
-      // justify-content: space-around;
-      flex-direction: column;
-      font-size: 20px;
-      color: #2c3e50;
-      align-items: flex-start;
-      padding-left: 10%;
+    // flex-direction: column;
+    flex-wrap: wrap;
+    fieldset {
+      width: 40%;
+      height: 20%;
+      color: #42b983;
+      input {
+        width: 70%;
+      }
+    }
+    // article {
+    //   height: 70%;
+    //   width: 90%;
+    //   display: flex;
+    // justify-content: space-around;
+    // flex-wrap: wrap;
+    // align-self: center;
+    // border: 1px solid red;
+    // flex-direction: column;
+    // .fieldset{
+    // height: 5%;
+    // width: 40%;
+    // display: flex;
+    // justify-content: space-around;
+    // flex-direction: column;
+    // font-size: 20px;
+    // color: #2c3e50;
+    // align-items: flex-start;
+    // padding-left: 10%;
+    // input{
+    // height: 10%;
+    // }
+    // }
+  }
+  button {
+    border: 1px solid #2c3e50;
+    color: #42b983;
+    width: 30%;
+    height: 10%;
+    text-decoration: none;
+    align-self: center;
+    margin: 10px;
+    &:hover {
+      background-color: #b53737;
+      color: white;
+      border: 1px solid white;
+    }
+    &:active {
+      background-color: lighten(#42b983, $amount: 20);
     }
   }
 }
