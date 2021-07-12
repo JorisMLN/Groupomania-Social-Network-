@@ -83,7 +83,7 @@ export default {
                 "Content-Type": "application/json",
                 Authorization: "Bearer: " + this.$store.state.token,
               },
-              data: JSON.stringify({ post: this.form }),
+              data: this.form 
             })
             .then((response) => {
               console.log(response.data);
@@ -98,6 +98,7 @@ export default {
       } else {
         console.log("You pressed Cancel!");
       }
+      window.location = "http://localhost:8080/#/profil/";
     },
 
     clearStoreAndStorage() {

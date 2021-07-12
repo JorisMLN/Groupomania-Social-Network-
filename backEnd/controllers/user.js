@@ -128,8 +128,16 @@ exports.unsub = (req, res, next) => {
 
 // modify one user
 exports.modify = (req, res, next) => {
-    console.log("req.params.id")
     console.log(req.params.id);
-    console.log("req.body.post")
     console.log(req.body.data);
+    User.update({
+        email: req.body.data.email,
+        lastname: req.body.data.lastname,
+        firstname: req.body.data.firstname,
+        job: req.body.data.job,
+        website: req.body.data.website,
+        hobbies: req.body.data.hobbies,
+    }, {
+        where: {id: req.params.id}
+    });
 };
