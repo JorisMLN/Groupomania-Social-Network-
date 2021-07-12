@@ -13,7 +13,7 @@ let config = {
     {val: 'arial black'}, 
   ],
   fontSize: ['12px'],
-  uploadUrl: ''
+  uploadUrl: 'http://localhost:3000/api/user/gif/'
 };
 
 Vue.use(Vueditor, config);

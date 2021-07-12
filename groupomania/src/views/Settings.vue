@@ -1,7 +1,7 @@
 <template>
   <div class="settings">
-    <Picture msg="Change Picture ?" />
-    <ChangeInfo msg="Change Info? (please fill in all inputs)" />
+    <Picture msg="Do you want to change your profile picture? ?" />
+    <ChangeInfo msg="Do you want to change your profile info? (please fill in all inputs)" />
     <DeleteAccount msg="Do you want to delete your groupomania account?" unsub="delete Account" />
     <Footer
       beforeMsg="© 2020-2021, "

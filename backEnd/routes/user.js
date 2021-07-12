@@ -11,5 +11,6 @@ router.post('/login', userCrtl.login);
 router.delete('/unsub/:id', userCrtl.unsub);
 router.get('/info/:id', userCrtl.info);
 router.put('/modify/:id', userCrtl.modify);
+router.post('/gif/', multer, userCrtl.gif);
 
 module.exports = router;

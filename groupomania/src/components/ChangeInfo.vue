@@ -123,7 +123,7 @@ export default {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  height: 35%;
+  height: 40%;
   width: 70%;
   border: 1px solid #2c3e50;
   align-items: center;
@@ -142,7 +142,7 @@ export default {
     flex-wrap: wrap;
     fieldset {
       width: 40%;
-      height: 20%;
+      height: 17%;
       color: #42b983;
       input {
         width: 70%;

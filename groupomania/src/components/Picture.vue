@@ -1,6 +1,11 @@
 <template>
   <div class="Pic">
-    <h1> {{ msg }} </h1>
+    <h2>{{ msg }}</h2>
+    <fieldset>
+      <legend>Photo de Profil</legend>
+      <input type="file" @change="photoFile($event)" />
+      <br />
+    </fieldset>
   </div>
 </template>
 
@@ -14,38 +19,38 @@ export default {
     msg: String,
   },
 
-//   created() {
-//     let token = checkToken.getUserToken(this.$store);
-//     if (token) {
-//       window.location = "http://localhost:8080/#/profil";
-//     }
-//   },
+  //   created() {
+  //     let token = checkToken.getUserToken(this.$store);
+  //     if (token) {
+  //       window.location = "http://localhost:8080/#/profil";
+  //     }
+  //   },
 
-//   data() {
-//     return {
-//       form: {
-//         email: "",
-//         password: "",
-//       },
-//     };
-//   },
+  //   data() {
+  //     return {
+  //       form: {
+  //         email: "",
+  //         password: "",
+  //       },
+  //     };
+  //   },
 
-//   methods: {
-//     submit() {
-//       axios
-//         .post("http://localhost:3000/api/user/login", this.form)
-//         .then((response) => {
-//           console.log(response.data);
-//           localStorage.setItem("user", JSON.stringify(response.data));
-//           this.$store.commit("addId", response.data.userId);
-//           this.$store.commit("addToken", response.data.token);
-//           window.location = "http://localhost:8080/#/profil";
-//         })
-//         .catch((e) => {
-//           console.log(e);
-//         });
-//     },
-//   },
+  //   methods: {
+  //     submit() {
+  //       axios
+  //         .post("http://localhost:3000/api/user/login", this.form)
+  //         .then((response) => {
+  //           console.log(response.data);
+  //           localStorage.setItem("user", JSON.stringify(response.data));
+  //           this.$store.commit("addId", response.data.userId);
+  //           this.$store.commit("addToken", response.data.token);
+  //           window.location = "http://localhost:8080/#/profil";
+  //         })
+  //         .catch((e) => {
+  //           console.log(e);
+  //         });
+  //     },
+  //   },
 };
 </script>
 
@@ -56,7 +61,14 @@ export default {
   justify-content: space-around;
   align-items: center;
   width: 70%;
-  height: 25%;
+  height: 20%;
   border: 1px solid #2c3e50;
+  h2 {
+    height: 4%;
+    font-size: 18px;
+  }
+  fieldset{
+    color: #42b983;
+  }
 }
 </style>

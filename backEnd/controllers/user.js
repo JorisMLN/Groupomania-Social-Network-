@@ -141,3 +141,7 @@ exports.modify = (req, res, next) => {
         where: {id: req.params.id}
     });
 };
+
+exports.gif = (req, res, next) => {
+    console.log(req.file);
+};
