@@ -8,7 +8,6 @@
       <div class="listInfo">Loisirs: {{ $store.state.hobbies }}</div>
       <div class="listInfo">Site web: {{ $store.state.website }}</div>
       <div class="listInfo">E-mail: {{ $store.state.email }}</div>
-      <button @click="unSub">{{ unsub }}</button>
     </article>
   </div>
 </template>
@@ -33,41 +32,10 @@ export default {
     }),
   },
   methods: {
-    unSub: function () {
-      window.confirm("Voulez-vous vraiment supprimer votre compte?");
-      if (confirm("Press a button!")) {
-        let token = checkToken.getUserToken(this.$store);
-        let userId = token.userId;
-        if (token) {
-          // request for delete the acount
-          axios
-            .request({
-              method: "delete",
-              baseURL: "http://localhost:3000/api/user/unsub/" + userId,
-              headers: {
-                Authorization: "Bearer: " + this.$store.state.token,
-              },
-            })
-            .then((response) => {
-              console.log(response.data);
-              console.log("Utilisateur supprimé !");
-            })
-            .catch((e) => {
-              console.log(e);
-            });
-        } else {
-          localStorage.clear();
-          this.$store.commit("cleanStore");
-          window.location = "http://localhost:8080/#/";
-          // clearStoreAndStorage();
-        }
-      } else {
-        console.log("You pressed Cancel!");
-      }
+    clearStoreAndStorage() {
       localStorage.clear();
       this.$store.commit("cleanStore");
       window.location = "http://localhost:8080/#/";
-      // clearStoreAndStorage();
     },
   },
 
@@ -136,23 +104,6 @@ export default {
       color: #2c3e50;
       align-items: flex-start;
       padding-left: 10%;
-    }
-    button {
-      border: 1px solid #2c3e50;
-      color: #42b983;
-      width: 150px;
-      height: 7%;
-      padding: 2px;
-      text-decoration: none;
-      margin-left: 10%;
-      &:hover {
-        background-color: #b53737;
-        color: white;
-        border: 1px solid white;
-      }
-      &:active {
-        background-color: lighten(#42b983, $amount: 20);
-      }
     }
   }
 }

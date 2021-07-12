@@ -103,9 +103,26 @@ exports.info = (req, res, next) => {
 
 // delete one user
 exports.unsub = (req, res, next) => {
-    console.log(req.params);
-    User.destroy({ where : { id: req.params.id }})
-        .then(() => { console.log("utilisateur supprimé !")})
+    console.log(req.params.id);
+    console.log(req.body.post.password);
+    User.findOne({where : {id: req.params.id}}) 
+    .then(user => {
+        console.log(user);
+        if (!user) {
+            return res.status(401).json({ error: 'Utilisateur non trouvé !' });
+        }
+        bcrypt.compare(req.body.post.password, user.password)
+        .then(valid => {
+            if (!valid) {
+                return res.status(401).json({ error: 'Mot de passe incorrect !' });
+            }
+            console.log("yes");
+            User.destroy({ where : { id: req.params.id }})
+            .then(() => { console.log("utilisateur supprimé !")})
+            .catch(error => res.status(500).json({ error }));
+        })
         .catch(error => res.status(500).json({ error }));
+    })
+    .catch(error => res.status(500).json({ error }));
 };
 

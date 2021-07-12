@@ -115,7 +115,7 @@ export default {
   justify-content: space-around;
   flex-direction: column;
   height: 35%;
-  width: 100%;
+  width: 70%;
   border: 1px solid #2c3e50;
   h1 {
     height: 10%;

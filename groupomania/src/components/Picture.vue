@@ -55,7 +55,7 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: 70%;
   height: 25%;
   border: 1px solid #2c3e50;
 }
