@@ -90,6 +90,10 @@ export default {
       align-items: center;
       height: 10%;
       width: 250px;
+      Vueditor{
+        // height: 100%;
+        // width: 30px;
+      }
       .poster {
         width: 150px;
       }
