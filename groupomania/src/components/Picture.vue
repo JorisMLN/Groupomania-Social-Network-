@@ -71,4 +71,12 @@ export default {
     color: #42b983;
   }
 }
+
+@media screen and (max-width: 430px) {
+  .Pic {
+    flex-direction: column;
+    width: 90%;
+    height: 15%;
+  }
+}
 </style>

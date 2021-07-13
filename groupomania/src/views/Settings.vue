@@ -41,7 +41,12 @@ export default {
 }
 
 @media screen and (max-width: 430px) {
-  .seetings {
-  }
+  .settings {
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
 }
 </style>

@@ -134,4 +134,43 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 430px) {
+  .Delete {
+    width: 90%;
+    height: 20%;
+    flex-direction: column;
+    h2 {
+      width: 90%;
+      height: 20%;
+      font-size: 18px;
+    }
+    &__login {
+      width: 90%;
+      height: 60%;
+      flex-direction: column;
+      fieldset {
+        width: 70%;
+        input {
+          width: 90%;
+        }
+      }
+      button {
+        border: 1px solid #2c3e50;
+        color: #42b983;
+        width: 40%;
+        height: 25%;
+        text-decoration: none;
+        &:hover {
+          background-color: #b53737;
+          color: white;
+          border: 1px solid white;
+        }
+        &:active {
+          background-color: lighten(#42b983, $amount: 20);
+        }
+      }
+    }
+  }
+}
 </style>

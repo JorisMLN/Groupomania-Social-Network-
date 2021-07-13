@@ -132,13 +132,11 @@ export default {
     font-size: 18px;
   }
   .formulaire {
-    // border: 1px solid red;
     height: 90%;
     width: 90%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    // flex-direction: column;
     flex-wrap: wrap;
     fieldset {
       width: 40%;
@@ -148,29 +146,6 @@ export default {
         width: 70%;
       }
     }
-    // article {
-    //   height: 70%;
-    //   width: 90%;
-    //   display: flex;
-    // justify-content: space-around;
-    // flex-wrap: wrap;
-    // align-self: center;
-    // border: 1px solid red;
-    // flex-direction: column;
-    // .fieldset{
-    // height: 5%;
-    // width: 40%;
-    // display: flex;
-    // justify-content: space-around;
-    // flex-direction: column;
-    // font-size: 20px;
-    // color: #2c3e50;
-    // align-items: flex-start;
-    // padding-left: 10%;
-    // input{
-    // height: 10%;
-    // }
-    // }
   }
   button {
     border: 1px solid #2c3e50;
@@ -192,34 +167,38 @@ export default {
 }
 
 @media screen and (max-width: 430px) {
-  .info {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #2c3e50;
-    width: 98%;
-    height: 25%;
-    h2 {
-      display: none;
-    }
-    article {
-      display: flex;
-      justify-content: space-around;
-      flex-direction: column;
-      height: 99%;
-      flex-wrap: wrap;
-      align-items: center;
-      .listInfo {
-        height: 5%;
-        display: flex;
-        width: 90%;
-        flex-wrap: wrap;
-        flex-direction: column;
-        font-size: 15px;
-        color: #2c3e50;
-        align-items: center;
-        padding-left: 0%;
-      }
+.info {
+  height: 55%;
+  width: 90%;
+  h2 {
+    height: 7%;
+    font-size: 17px;
+  }
+  .formulaire {
+    height: 75%;
+    width: 90%;
+    fieldset {
+      width: 90%;
+      height: 8%;
+      color: #42b983;
     }
   }
+  button {
+    border: 1px solid #2c3e50;
+    color: #42b983;
+    width: 30%;
+    height: 5%;
+    text-decoration: none;
+    align-self: center;
+    &:hover {
+      background-color: #b53737;
+      color: white;
+      border: 1px solid white;
+    }
+    &:active {
+      background-color: lighten(#42b983, $amount: 20);
+    }
+  }
+}
 }
 </style>
