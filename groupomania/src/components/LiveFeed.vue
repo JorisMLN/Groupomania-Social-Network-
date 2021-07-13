@@ -3,7 +3,7 @@
     <div class="LiveFeed__post" v-for="item in list" :key="item">
       <h2>{{ item.firstname }} {{ item.lastname }}</h2>
       <p>{{ item.text }}</p>
-      <button v-if="item.userId == $store.state.userId || $store.state.userId == 17" @click="deletePost(item.id)">Supprimer</button> | 
+      <button v-if="item.userId == $store.state.userId || $store.state.userId == 1" @click="deletePost(item.id)">Supprimer</button> | 
       <button class="likeBtn" v-if="item.userLiked.find(user => user == $store.state.userId)" @click="likePost(item.id, $store.state.userId)">Like</button>
       <button v-else @click="likePost(item.id, $store.state.userId)">Like</button>
     </div>

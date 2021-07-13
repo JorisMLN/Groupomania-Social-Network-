@@ -10,8 +10,8 @@
 </template>
 
 <script>
-// import axios from "axios";
-// import checkToken from "@/services/checkToken.js";
+import axios from "axios";
+import checkToken from "@/services/checkToken.js";
 
 export default {
   name: "Picture",
@@ -19,38 +19,39 @@ export default {
     msg: String,
   },
 
-  //   created() {
-  //     let token = checkToken.getUserToken(this.$store);
-  //     if (token) {
-  //       window.location = "http://localhost:8080/#/profil";
-  //     }
-  //   },
+  methods: {
+    photoFile: function () {
+      let token = checkToken.getUserToken(this.$store);
+      let userId = token.userId;
+      if (token) {
+        console.log(this.form);
+        // request for delete the acount
+        axios
+          .put("http://localhost:3000/api/user/photo/" + userId, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer: " + this.$store.state.token,
+            },
+            // data: JSON.stringify({ post: this.form }),
+          })
+          .then((response) => {
+            console.log(response.data);
+            console.log("Photo modifiée !");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else {
+        this.clearStoreAndStorage();
+      }
+    },
 
-  //   data() {
-  //     return {
-  //       form: {
-  //         email: "",
-  //         password: "",
-  //       },
-  //     };
-  //   },
-
-  //   methods: {
-  //     submit() {
-  //       axios
-  //         .post("http://localhost:3000/api/user/login", this.form)
-  //         .then((response) => {
-  //           console.log(response.data);
-  //           localStorage.setItem("user", JSON.stringify(response.data));
-  //           this.$store.commit("addId", response.data.userId);
-  //           this.$store.commit("addToken", response.data.token);
-  //           window.location = "http://localhost:8080/#/profil";
-  //         })
-  //         .catch((e) => {
-  //           console.log(e);
-  //         });
-  //     },
-  //   },
+    clearStoreAndStorage() {
+      localStorage.clear();
+      this.$store.commit("cleanStore");
+      window.location = "http://localhost:8080/#/";
+    },
+  },
 };
 </script>
 
@@ -67,7 +68,7 @@ export default {
     height: 4%;
     font-size: 18px;
   }
-  fieldset{
+  fieldset {
     color: #42b983;
   }
 }

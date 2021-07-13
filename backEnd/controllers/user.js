@@ -143,5 +143,13 @@ exports.modify = (req, res, next) => {
 };
 
 exports.gif = (req, res, next) => {
+    console.log(req.params.id);
+    console.log(req.body.data);
+    console.log(req.file);
+};
+
+exports.modifyPhoto = (req, res, next) => {
+    console.log(req.params.id);
+    console.log(req.body.data);
     console.log(req.file);
 };
