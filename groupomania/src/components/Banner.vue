@@ -1,10 +1,10 @@
 <template>
   <div class="banner">
     <div class="photoBan">
-      <img alt="o" src="../assets/bantest.png" />
+      <img alt="bannière de profil" src="../assets/bantest.png" />
     </div>
     <div class="avatar">
-      <img alt="o" src="../assets/moi.jpg" />
+      <img alt="Photo de profil" :src="$store.state.picture"/>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
   props: {
     // msg: String,
   },
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

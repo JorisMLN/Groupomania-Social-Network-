@@ -20,19 +20,20 @@ export default {
   },
 
   methods: {
-    photoFile: function () {
+    photoFile: function ($event) {
+      console.log($event.target.files);
       let token = checkToken.getUserToken(this.$store);
       let userId = token.userId;
       if (token) {
-        console.log(this.form);
         // request for delete the acount
+        let formData = new FormData();
+        formData.append("image", $event.target.files[0]);
         axios
-          .put("http://localhost:3000/api/user/photo/" + userId, {
+          .put("http://localhost:3000/api/user/photo/" + userId, formData,{
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": 'multipart/form-data',
               Authorization: "Bearer: " + this.$store.state.token,
-            },
-            // data: JSON.stringify({ post: this.form }),
+            }
           })
           .then((response) => {
             console.log(response.data);
@@ -73,7 +74,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 740px) {
   .Pic {
     flex-direction: column;
     width: 90%;

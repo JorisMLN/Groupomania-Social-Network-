@@ -73,10 +73,12 @@ export default {
     submit: function () {
       if (window.confirm("Voulez-vous vraiment modifier votre compte?")) {
         let token = checkToken.getUserToken(this.$store);
+        console.log(token);
         let userId = token.userId;
         if (token) {
           // request for modify a profil
           console.log(this.form);
+          console.log(this.$store.state.token);
           axios
             .put("http://localhost:3000/api/user/modify/" + userId, {
               headers: {
@@ -166,7 +168,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 740px) {
 .info {
   height: 55%;
   width: 90%;

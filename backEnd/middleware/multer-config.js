@@ -12,9 +12,11 @@ const storage = multer.diskStorage({
         callback(null, 'images')
     },
     filename: (req, file, callback) => {
-        const name = file.originalname.split(' ').join('_');
+        console.log('test storage');
+        // const name = file.originalname.split(' ').join('_');
         const extension = MIME_TYPES[file.mimetype];
-        callback(null, name + Date.now() + '.' + extension);
+        // callback(null, name + Date.now() + '.' + extension);
+        callback(null, req.params.id + '.' + extension);
     }
 });
  
@@ -24,6 +26,7 @@ const upload = multer({
         fileSize: 1000000, // 150 KB for a 1080x1080 JPG 90
     },
     fileFilter: (req, file, callback) => {
+        console.log('beforetest filter');
         if(MIME_TYPES.hasOwnProperty(file.mimetype)) { // (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg")
             console.log('test filter');
             callback(null, true);

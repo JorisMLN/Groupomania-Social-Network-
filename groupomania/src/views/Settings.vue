@@ -40,7 +40,7 @@ export default {
     align-items: center;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 740px) {
   .settings {
     height: 120vh;
     display: flex;

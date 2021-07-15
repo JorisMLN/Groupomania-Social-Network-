@@ -13,7 +13,7 @@ export default new Vuex.Store({
     job: "",
     website: "",
     hobbies: "",
-    // urlPhoto: ""
+    picture: ""
   },
   getters: {
   },
@@ -42,9 +42,9 @@ export default new Vuex.Store({
     addWebsite(state, website){
       state.website = website
     },
-    // addUrlPhoto(state, urlPhoto){
-    //   state.urlPhoto = urlPhoto
-    // }
+    addPicture(state, picture){
+      state.picture = picture
+    },
     cleanStore(state){
       Object.keys(state).forEach(keys => {
         state[keys] = "";

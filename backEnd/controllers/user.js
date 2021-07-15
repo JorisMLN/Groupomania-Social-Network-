@@ -22,7 +22,8 @@ User.init({
   password: { type: Sequelize.STRING},
   job: { type: Sequelize.STRING},
   website: { type: Sequelize.STRING},
-  hobbies: { type: Sequelize.STRING}
+  hobbies: { type: Sequelize.STRING},
+  picture: { type: Sequelize.STRING}
 }, {
   sequelize,
   modelname: 'user',
@@ -95,7 +96,8 @@ exports.info = (req, res, next) => {
                 firstname: user.firstname,
                 job: user.job,
                 website: user.website,
-                hobbies: user.hobbies
+                hobbies: user.hobbies,
+                picture: user.picture
             });
         })
         .catch(error => res.status(500).json({ error }));
@@ -128,7 +130,9 @@ exports.unsub = (req, res, next) => {
 
 // modify one user
 exports.modify = (req, res, next) => {
+    console.log("req.params.id");
     console.log(req.params.id);
+    console.log("req.body.data");
     console.log(req.body.data);
     User.update({
         email: req.body.data.email,
@@ -139,17 +143,19 @@ exports.modify = (req, res, next) => {
         hobbies: req.body.data.hobbies,
     }, {
         where: {id: req.params.id}
-    });
-};
-
-exports.gif = (req, res, next) => {
-    console.log(req.params.id);
-    console.log(req.body.data);
-    console.log(req.file);
+    })
+    .then(() => { console.log("utilisateur modifié !")})
+    .catch(error => res.status(500).json({ error }));
 };
 
 exports.modifyPhoto = (req, res, next) => {
-    console.log(req.params.id);
-    console.log(req.body.data);
+    console.log("UserId:" + req.params.id);
     console.log(req.file);
+    User.update({
+        picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    }, {
+        where: {id: req.params.id}
+    })
+    .then(() => { console.log("Photo de profil modifiée !")})
+    .catch(error => res.status(500).json({ error }));
 };

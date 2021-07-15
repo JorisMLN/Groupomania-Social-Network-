@@ -53,7 +53,12 @@ export default {
       this.$store.commit("addToken", user.token);
 
       axios
-        .get("http://localhost:3000/api/user/info/" + userId)
+        .get("http://localhost:3000/api/user/info/" + userId, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer: " + this.$store.state.token,
+          }
+        })
         .then((response) => {
           console.log(response.data);
           this.$store.commit("addFirstname", response.data.firstname);
@@ -62,6 +67,7 @@ export default {
           this.$store.commit("addHobbies", response.data.hobbies);
           this.$store.commit("addJob", response.data.job);
           this.$store.commit("addWebsite", response.data.website);
+          this.$store.commit("addPicture", response.data.picture);
         })
         .catch((e) => {
           // this.error.push(e);
