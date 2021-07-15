@@ -64,17 +64,14 @@ export default {
         job: "",
         website: "",
         hobbies: "",
-        image: null
+        picture: "http://localhost:3000/images/PhotoProfil.jpg" 
       },
     };
   },
 
   methods: {
-    onFileSelected(event){
-      console.log(event)
-      this.photo = event.target.files[0]
-    },
     submit() {
+      console.log(this.form);
       axios
         .post("http://localhost:3000/api/user/signup", this.form)
         .then((response) => {

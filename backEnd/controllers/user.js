@@ -44,7 +44,8 @@ exports.signup = (req, res, next) => {
             firstname: req.body.firstname,
             job: req.body.job,
             website: req.body.website,
-            hobbies: req.body.hobbies
+            hobbies: req.body.hobbies,
+            picture: req.body.picture
         })
         .then(() => {res.status(200).json('Utilisateur créé !')})
         .catch(error => res.status(400).json({ error }));
