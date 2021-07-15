@@ -1,10 +1,10 @@
 <template>
   <div class="MiniBanner">
     <div class="avatar">
-      <img alt="o" src="../assets/moi.jpg" />
+      <img alt="Photo de profil" :src="$store.state.picture"/>
     </div>
     <div class="photoBan">
-      <img alt="o" src="../assets/bantest.png" />
+      <img alt="Banniere de profil" src="../assets/bantest.png" />
     </div>
   </div>
 </template>
