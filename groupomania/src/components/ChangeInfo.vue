@@ -90,23 +90,15 @@ export default {
             .then((response) => {
               console.log(response.data);
               console.log("Utilisateur modifier !");
+              window.location = "http://localhost:8080/#/profil/";
             })
             .catch((e) => {
               console.log(e);
             });
-        } else {
-          this.clearStoreAndStorage();
         }
       } else {
         console.log("You pressed Cancel!");
       }
-      window.location = "http://localhost:8080/#/profil/";
-    },
-
-    clearStoreAndStorage() {
-      localStorage.clear();
-      this.$store.commit("cleanStore");
-      window.location = "http://localhost:8080/#/";
     },
   },
 
