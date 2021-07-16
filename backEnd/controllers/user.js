@@ -2,6 +2,7 @@
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
 
 /* ---------- S E Q U E L I Z E - & - M Y S Q L ---------- */
@@ -150,14 +151,30 @@ exports.modify = (req, res, next) => {
 };
 
 exports.modifyPhoto = (req, res, next) => {
-    console.log("UserId:" + req.params.id);
-    console.log(req.file);
+    User.findOne({where : {id: req.params.id}})
+    .then(user => {
+        checkPictureName(user, req, res);
+    })
+    .catch(error => res.status(500).json({ error }));
+};
+
+function checkPictureName(user, req, res){
+    let oldPicture = user.picture.split('/images/')[1];
+        if(oldPicture !== "PhotoProfil.jpg"){
+            fs.unlink(`images/${oldPicture}`, () =>{
+                updatePicture(req, res);
+            })
+        } else {
+            updatePicture(req, res);
+        }
+}
+
+function updatePicture(req, res){
     User.update({
         picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     }, {
         where: {id: req.params.id}
     })
-    // .then(() => { console.log("Photo de profil modifiée !")})
     .then(() => res.status(200).json({ message: "Photo modifiée" }))
     .catch(error => res.status(500).json({ error }));
-};
+}
