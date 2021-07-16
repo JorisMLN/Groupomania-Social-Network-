@@ -36,8 +36,9 @@ export default {
             }
           })
           .then((response) => {
-            console.log(response.data);
+            console.log(response);
             console.log("Photo modifiée !");
+            // window.location = "http://localhost:8080/#/profil";
           })
           .catch((e) => {
             console.log(e);

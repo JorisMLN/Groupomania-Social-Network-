@@ -13,75 +13,13 @@
 </template>
 
 <script>
-import axios from "axios";
-import { mapState } from "vuex";
-// import jwt_decode from "jwt-decode";
-import checkToken from "@/services/checkToken.js";
-
 export default {
   name: "Info",
   props: {
     msg: String,
     unsub: String,
   },
-
-  computed: {
-    ...mapState({
-      userId: "userId",
-      token: "token",
-    }),
-  },
-  methods: {
-    clearStoreAndStorage() {
-      localStorage.clear();
-      this.$store.commit("cleanStore");
-      window.location = "http://localhost:8080/#/";
-    },
-  },
-
-  created() {
-    let token = checkToken.getUserToken(this.$store);
-    if (token) {
-      // (en cas de réouverture de la page sans logOut) gestion de l'id vers le Vuex.
-      let userId = token.userId;
-      console.log(userId);
-      this.$store.commit("addId", userId);
-
-      // (en cas de réouverture de la page sans logOut) gestion du token vers le Vuex.
-      let user = JSON.parse(localStorage.getItem("user"));
-      console.log(user.token);
-      this.$store.commit("addToken", user.token);
-
-      axios
-        .get("http://localhost:3000/api/user/info/" + userId, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer: " + this.$store.state.token,
-          }
-        })
-        .then((response) => {
-          console.log(response.data);
-          this.$store.commit("addFirstname", response.data.firstname);
-          this.$store.commit("addLastname", response.data.lastname);
-          this.$store.commit("addEmail", response.data.email);
-          this.$store.commit("addHobbies", response.data.hobbies);
-          this.$store.commit("addJob", response.data.job);
-          this.$store.commit("addWebsite", response.data.website);
-          this.$store.commit("addPicture", response.data.picture);
-        })
-        .catch((e) => {
-          // this.error.push(e);
-          console.log(e);
-        });
-    }
-  },
-
-  // clearStoreAndStorage(){
-  //   localStorage.clear();
-  //   this.$store.commit("cleanStore");
-  //   window.location = "http://localhost:8080/#/";
-  // }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
