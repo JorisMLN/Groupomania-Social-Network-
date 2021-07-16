@@ -145,7 +145,7 @@ exports.modify = (req, res, next) => {
     }, {
         where: {id: req.params.id}
     })
-    .then(() => { console.log("utilisateur modifié !")})
+    .then(() => res.status(200).json({ message: "User modifiée" }))
     .catch(error => res.status(500).json({ error }));
 };
 
@@ -157,6 +157,7 @@ exports.modifyPhoto = (req, res, next) => {
     }, {
         where: {id: req.params.id}
     })
-    .then(() => { console.log("Photo de profil modifiée !")})
+    // .then(() => { console.log("Photo de profil modifiée !")})
+    .then(() => res.status(200).json({ message: "Photo modifiée" }))
     .catch(error => res.status(500).json({ error }));
 };
