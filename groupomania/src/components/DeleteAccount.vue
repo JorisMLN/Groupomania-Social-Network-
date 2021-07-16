@@ -4,7 +4,7 @@
     <div class="Delete__login">
       <fieldset>
         <legend>Your Password</legend>
-        <input type="text" v-model="form.password" required />
+        <input type="password" v-model="form.password" required />
         <br />
       </fieldset>
       <button @click="unSub">{{ unsub }}</button>

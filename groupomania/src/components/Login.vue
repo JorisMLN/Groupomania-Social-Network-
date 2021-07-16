@@ -10,7 +10,7 @@
         </fieldset>
         <fieldset>
           <legend>Password</legend>
-          <input type="text" v-model="form.password" required />
+          <input type="password" v-model="form.password" required />
           <br />
         </fieldset>
         <button v-on:click="submit()">Valider</button>

@@ -71,6 +71,7 @@ export default {
   }
   fieldset {
     color: #42b983;
+    width: 40%;
   }
 }
 
@@ -79,6 +80,10 @@ export default {
     flex-direction: column;
     width: 90%;
     height: 15%;
+    fieldset {
+    color: #42b983;
+    width: 30%;
+  }
   }
 }
 </style>
