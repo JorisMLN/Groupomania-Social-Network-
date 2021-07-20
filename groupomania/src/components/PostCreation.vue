@@ -23,8 +23,8 @@ export default {
       form: {
         text: "",
         userId: this.$store.state.userId,
-        firstname: this.$store.state.firstname,
-        lastname: this.$store.state.lastname,
+        // firstname: this.$store.state.firstname,
+        // lastname: this.$store.state.lastname,
       },
       token: this.$store.state.token,
     };
