@@ -52,10 +52,6 @@ export default {
     },
   },
 };
-
-// function clearText(text){
-//   text.value = '';
-// }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

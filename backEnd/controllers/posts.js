@@ -101,8 +101,7 @@ exports.likePost = (req, res, next) => {
     }
   })
   .catch(error => res.status(400).json({ error }));
-}
-
+};
 function createPostLike(res, postId, userId){
   PostLike.create({
     postId: postId,
@@ -112,7 +111,6 @@ function createPostLike(res, postId, userId){
   .then(() => res.status(201).json({message: 'Like enregristré!'}))
   .catch(error => res.status(400).json({ error }));
 }
-
 function updatePostLike(res, postLike){
   postLike.update({
     status: !postLike.status
@@ -121,3 +119,21 @@ function updatePostLike(res, postLike){
   .catch(error => res.status(400).json({ error }));
 }
 
+exports.commentPost = (req, res, next) => {
+  console.log(req.body.payload.postId);
+  console.log(req.body.payload.userId);
+  console.log(req.body.payload.post);
+  // console.log(req.body.payload);
+  // let postId = req.body.payload.postId;
+  // let userId = req.body.payload.userId;
+  // let comment = req.body.payload.form.text;
+  // PostLike.findOne({ where: { postId: postId, userId: userId}})
+  // .then((postLike) => {
+  //   if(!postLike){
+  //     createPostLike(res, postId, userId);
+  //   } else {
+  //     updatePostLike(res, postLike);
+  //   }
+  // })
+  // .catch(error => res.status(400).json({ error }));
+};

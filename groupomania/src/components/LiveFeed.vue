@@ -1,11 +1,19 @@
 <template>
   <div class="LiveFeed">
-    <div class="LiveFeed__post" v-for="item in list" :key="item">
+    <div class="LiveFeed__post" v-for="item in list" :key="item.id">
       <h2>{{ item.firstname }} {{ item.lastname }}</h2>
       <p>{{ item.text }}</p>
-      <button v-if="item.userId == $store.state.userId || $store.state.userId == 1" @click="deletePost(item.id)">Supprimer</button> | 
-      <button class="likeBtn" v-if="item.userLiked.find(user => user == $store.state.userId)" @click="likePost(item.id, $store.state.userId)">Like</button>
-      <button v-else @click="likePost(item.id, $store.state.userId)">Like</button>
+      <div>
+        <button v-if="item.userId == $store.state.userId || $store.state.userId == 1" @click="deletePost(item.id)">Supprimer</button> |
+        <button class="likeBtn" v-if="item.userLiked.find((user) => user == $store.state.userId)" @click="likePost(item.id, $store.state.userId)">Like</button>
+        <button v-else @click="likePost(item.id, $store.state.userId)">Like</button> |
+        <button @click="item.isHidden = !item.isHidden">Commenter ?</button>
+      </div>
+      <fieldset v-if="!item.isHidden">
+        <legend>Com</legend>
+        <textarea type="text" v-model="form.text"/>
+        <button v-on:click="submit(item.id, $store.state.userId)">Envoyer</button>
+      </fieldset>
     </div>
   </div>
 </template>
@@ -23,11 +31,55 @@ export default {
     },
   },
 
+  data() {
+    return {
+      // isHidden: true,
+      form: {
+        text: "",
+        firstname: this.$store.state.firstname,
+        lastname: this.$store.state.lastname,
+      },
+    };
+  },
+
   computed: {
     ...mapState(["token"]),
   },
 
   methods: {
+    checkComId(item){
+      let itemId = item;
+      return itemId;
+    },
+
+    // request for post a comment
+    submit(postId, userId) {
+      let payload = { postId, userId, post: this.form};
+      console.log(payload);
+      let token = checkToken.getUserToken(this.$store);
+      if (token) {
+        const requestOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer: " + this.token,
+          },
+          body: JSON.stringify({ payload }),
+        };
+        fetch("http://localhost:3000/api/posts/comment", requestOptions)
+          .then((response) => response.json())
+          .then((response) => {
+            console.log(response);
+            // this.callAllPosts()
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else {
+        this.clearStoreAndStorage();
+      }
+    },
+
     // request for delete a post
     deletePost(id) {
       console.log(id);
@@ -72,8 +124,8 @@ export default {
         fetch("http://localhost:3000/api/posts/like", requestOptions)
           .then((response) => response.json())
           .then((response) => {
-            console.log(response)
-            this.callAllPosts();
+            console.log(response);
+            this.callAllPosts()
           })
           .catch((e) => {
             console.log(e);
@@ -94,7 +146,7 @@ export default {
           },
         })
         .then((response) => {
-          this.list = response.data;
+          this.list = this.initAction(response.data);
           console.log(response.data);
         })
         .catch((e) => {
@@ -108,6 +160,13 @@ export default {
       this.$store.commit("cleanStore");
       window.location = "http://localhost:8080/#/";
     },
+
+    initAction(data){
+      data.forEach(element => {
+        element.isHidden = true;
+      });
+      return data;
+    }
   },
 
   created() {
@@ -131,6 +190,7 @@ export default {
   flex-direction: column;
   height: 75%;
   width: 50%;
+  // align-items: center;
   border: 3px solid #42b983;
   border-radius: 5px;
   overflow-y: scroll;
@@ -147,10 +207,28 @@ export default {
     .likeBtn {
       background-color: #008000;
     }
+    fieldset {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      width: 94%;
+      height: 60px;
+      color: #42b983;
+      textarea {
+        display: flex;
+        max-width: 99%;
+        width: 85%;
+        height: 70%;
+        overflow-y: scroll;
+        scrollbar-color: #2c3e50 #42b983;
+        scrollbar-width: thin;
+      }
+    }
   }
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 940px) {
   .LiveFeed {
     width: 90%;
   }
