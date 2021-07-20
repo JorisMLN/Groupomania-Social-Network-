@@ -36,36 +36,28 @@ PostLike.init({
   modelname: 'postlike'
   // options
 });
+PostLike.Post = PostLike.belongsTo(Post);
+Post.PostLike = Post.hasMany(PostLike);
 
 
 /* ---------- R O U T E S ---------- */
 
 exports.getAllPosts = (req, res, next) => {
 
-let posts = Post.findAll({
-  order: [
-    ['id', 'DESC']
-  ]
-});
-
-let postLikes = PostLike.findAll({ where: {
-  status: true
-}});
-
-Promise.all([posts, postLikes])
-.then(values => {
-  let postValues = values[0];
-  let postLikeValues = values[1];
-  postValues.forEach(post => {
-    let filteredPostLike = postLikeValues.filter(postLike => postLike.dataValues.postId === post.dataValues.id);
-    post.dataValues.userLiked = filteredPostLike.map(postLike => {
-      return postLike.dataValues.userId;
-    });
-    console.log(post.dataValues.userLiked);
-  });
-  return res.status(200).json(postValues);
-})
-.catch(error => res.status(400).json({ error }));
+  Post.findAll({
+    attributes: ["id", "text", "userId", [sequelize.fn("GROUP_CONCAT", sequelize.col('PostLikes.userId')), "userLiked"]],
+    include:[{ 
+      model: PostLike,
+      where: {
+        status: 1
+        },
+      attributes: [],
+      required: false
+      }
+    ]
+  })
+  .then((response) => res.status(200).json(response))
+  .catch(error => console.log(error));
 };
 
 exports.createPost = (req, res, next) => {

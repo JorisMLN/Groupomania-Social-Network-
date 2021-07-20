@@ -47,10 +47,10 @@ export default {
   },
 
   methods: {
-    checkComId(item){
-      let itemId = item;
-      return itemId;
-    },
+    // checkComId(item){
+    //   let itemId = item;
+    //   return itemId;
+    // },
 
     // request for post a comment
     submit(postId, userId) {
@@ -146,8 +146,8 @@ export default {
           },
         })
         .then((response) => {
-          this.list = this.initAction(response.data);
           console.log(response.data);
+          this.list = this.initAction(response.data);
         })
         .catch((e) => {
           console.log(e);
