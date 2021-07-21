@@ -36,19 +36,51 @@ PostLike.init({
   modelname: 'postlike'
   // options
 });
+
+class Comment extends Model {}
+Comment.init({
+  // attributes
+  postId: { type: Sequelize.NUMBER},
+  userId: { type: Sequelize.NUMBER},
+  text: { type: Sequelize.TEXT},
+  firstname: { type: Sequelize.STRING},
+  lastname: { type: Sequelize.STRING},
+}, {
+  sequelize,
+  modelname: 'postlike'
+  // options
+});
 PostLike.Post = PostLike.belongsTo(Post);
 Post.PostLike = Post.hasMany(PostLike);
+Post.Comment = Post.hasMany(Comment);
 
 
 /* ---------- R O U T E S ---------- */
 
 exports.getAllPosts = (req, res, next) => {
   Post.findAll({
+    // attributes: ["id", "text", "userId", [sequelize.fn("GROUP_CONCAT", sequelize.col('PostLikes.userId')), "userLiked"]],
+    // order: [
+    //   ['id', 'DESC']
+    // ],
+    // include:[
+    //   { 
+    //   model: PostLike,
+    //   where: {
+    //     status: 1
+    //   },
+    //   attributes: [],
+    //   required: false
+    //   },
+    // ],
+    // group: "Post.id"
+
     attributes: ["id", "text", "userId", [sequelize.fn("GROUP_CONCAT", sequelize.col('PostLikes.userId')), "userLiked"]],
     order: [
       ['id', 'DESC']
     ],
-    include:[{ 
+    include:[
+      { 
       model: PostLike,
       where: {
         status: 1
@@ -56,40 +88,21 @@ exports.getAllPosts = (req, res, next) => {
       attributes: [],
       required: false
       },
+      { 
+        model: Comment,
+        attributes: ["postId", "userId", "text", "firstname", "lastname"],
+        required: false
+      },
     ],
     group: "Post.id"
+
+
   })
   .then((response) => {
     res.status(200).json(response),
-    console.log(response)
+    console.log(response[0].dataValues);
   })
   .catch(error => console.log(error));
-
-
-  // let posts = Post.findAll({
-  //   order: [
-  //     ['id', 'DESC']
-  //   ]
-  // });
-  
-  // let postLikes = PostLike.findAll({ where: {
-  //   status: true
-  // }});
-  
-  // Promise.all([posts, postLikes])
-  // .then(values => {
-  //   let postValues = values[0];
-  //   let postLikeValues = values[1];
-  //   postValues.forEach(post => {
-  //     let filteredPostLike = postLikeValues.filter(postLike => postLike.dataValues.postId === post.dataValues.id);
-  //     post.dataValues.userLiked = filteredPostLike.map(postLike => {
-  //       return postLike.dataValues.userId;
-  //     });
-  //     console.log(post.dataValues.userLiked);
-  //   });
-  //   return res.status(200).json(postValues);
-  // })
-  // .catch(error => res.status(400).json({ error }));
 };
 
 exports.createPost = (req, res, next) => {
@@ -144,20 +157,14 @@ function updatePostLike(res, postLike){
 }
 
 exports.commentPost = (req, res, next) => {
-  console.log(req.body.payload.postId);
-  console.log(req.body.payload.userId);
-  console.log(req.body.payload.post);
-  // console.log(req.body.payload);
-  // let postId = req.body.payload.postId;
-  // let userId = req.body.payload.userId;
-  // let comment = req.body.payload.form.text;
-  // PostLike.findOne({ where: { postId: postId, userId: userId}})
-  // .then((postLike) => {
-  //   if(!postLike){
-  //     createPostLike(res, postId, userId);
-  //   } else {
-  //     updatePostLike(res, postLike);
-  //   }
-  // })
-  // .catch(error => res.status(400).json({ error }));
+  console.log(req.body.payload);
+  Comment.create({
+    postId: req.body.payload.postId,
+    userId: req.body.payload.userId,
+    text: req.body.payload.post.text,
+    firstname: req.body.payload.post.firstname,
+    lastname: req.body.payload.post.lastname,
+    })
+  .then(() => res.status(201).json({ message: 'Commentaire enregistré !' }))
+  .catch(error => res.status(400).json({ error }));
 };

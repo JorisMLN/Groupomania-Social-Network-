@@ -73,7 +73,7 @@ export default {
           .then((response) => response.json())
           .then((response) => {
             console.log(response);
-            // this.callAllPosts()
+            this.callAllPosts()
           })
           .catch((e) => {
             console.log(e);
