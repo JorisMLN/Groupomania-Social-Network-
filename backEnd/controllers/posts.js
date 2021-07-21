@@ -81,16 +81,16 @@ exports.getAllPosts = (req, res, next) => {
     ],
     include:[
       { 
-      model: PostLike,
-      where: {
-        status: 1
-      },
-      attributes: [],
-      required: false
+        model: PostLike,
+        where: {
+          status: 1
+        },
+        attributes: [],
+        required: false
       },
       { 
         model: Comment,
-        attributes: ["postId", "userId", "text", "firstname", "lastname"],
+        attributes: ["id", "postId", "userId", "text", "firstname", "lastname"],
         required: false
       },
     ],
