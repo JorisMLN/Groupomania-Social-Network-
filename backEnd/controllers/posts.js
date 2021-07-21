@@ -59,7 +59,10 @@ exports.getAllPosts = (req, res, next) => {
     ],
     group: "Post.id"
   })
-  .then((response) => res.status(200).json(response))
+  .then((response) => {
+    res.status(200).json(response),
+    console.log(response)
+  })
   .catch(error => console.log(error));
 
 

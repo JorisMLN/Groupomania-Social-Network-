@@ -5,8 +5,11 @@
       <p>{{ item.text }}</p>
       <div>
         <button v-if="item.userId == $store.state.userId || $store.state.userId == 1" @click="deletePost(item.id)">Supprimer</button> |
-        <button class="likeBtn" v-if="item.userLiked.find((user) => user == $store.state.userId)" @click="likePost(item.id, $store.state.userId)">Like</button>
-        <button v-else @click="likePost(item.id, $store.state.userId)">Like</button> |
+        <!-- <button class="likeBtn" v-if="item.userLiked.find((user) => user === $store.state.userId)" @click="likePost(item.id, $store.state.userId)">Like</button> -->
+
+        <button class="likeBtn" v-if="item.userLiked && item.userLiked.indexOf($store.state.userId) > -1" @click="likePost(item.id, $store.state.userId)">Like</button>
+
+        <button v-else @click="likePost(item.id, $store.state.userId)">Like</button> | 
         <button @click="item.isHidden = !item.isHidden">Commenter ?</button>
       </div>
       <fieldset v-if="!item.isHidden">
@@ -146,8 +149,8 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data);
           this.list = this.initAction(response.data);
+          console.log(this.list);
         })
         .catch((e) => {
           console.log(e);
@@ -164,6 +167,9 @@ export default {
     initAction(data){
       data.forEach(element => {
         element.isHidden = true;
+        // if(element.userLiked == null){
+        //   element.userLiked = "0";
+        // }
       });
       return data;
     }
