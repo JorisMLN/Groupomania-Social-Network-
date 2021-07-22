@@ -82,13 +82,15 @@ exports.getAllPosts = (req, res, next) => {
         model: Comment,
         as: "comments",
         attributes: ["id", "userId", "text", "firstname", "lastname"],
-        limit: 100,
-        subQuery: false,
+        // distinct: 'id',
+        // limit: 100,
+        // subQuery: false,
         required: false,
       },
     ],
     // raw: true,
-    group: "Post.id"
+    // group: "Post.id"
+    group: ["Post.id", "comments.id"]
 
 
   })
