@@ -16,7 +16,6 @@ const sequelize = new Sequelize('groupomania', 'student', 'Jolisaris789', {
 const Model = Sequelize.Model;
 class User extends Model {}
 User.init({
-  // attributes
   firstname: { type: Sequelize.STRING, allowNull: false },
   lastname: { type: Sequelize.STRING},
   email: { type: Sequelize.STRING},

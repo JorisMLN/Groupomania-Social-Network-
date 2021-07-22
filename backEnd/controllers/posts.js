@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 
-
 /* ---------- S E Q U E L I Z E - & - M Y S Q L ---------- */
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('groupomania', 'student', 'Jolisaris789', {
@@ -14,8 +13,6 @@ const sequelize = new Sequelize('groupomania', 'student', 'Jolisaris789', {
 const Model = Sequelize.Model;
 class Post extends Model {}
 Post.init({
-  // attributes
-  // id: { type: Sequelize.SMALLINT, primaryKey: true },
   text: { type: Sequelize.TEXT},
   userId: { type: Sequelize.NUMBER},
   firstname: { type: Sequelize.STRING},
@@ -23,26 +20,20 @@ Post.init({
 }, {
   sequelize,
   modelname: 'post'
-  // options
 });
 
 class PostLike extends Model {}
 PostLike.init({
-  // attributes
-  // id: { type: Sequelize.SMALLINT, primaryKey: true },
   postId: { type: Sequelize.NUMBER},
   userId: { type: Sequelize.NUMBER},
   status: { type: Sequelize.BOOLEAN},
 }, {
   sequelize,
   modelname: 'postlike'
-  // options
 });
 
 class Comment extends Model {}
 Comment.init({
-  // attributes
-  // id: { type: Sequelize.SMALLINT, primaryKey: true },
   postId: { type: Sequelize.NUMBER},
   userId: { type: Sequelize.NUMBER},
   text: { type: Sequelize.TEXT},
@@ -51,9 +42,9 @@ Comment.init({
 }, {
   sequelize,
   modelname: 'comment'
-  // options
 });
 
+// Association
 PostLike.Post = PostLike.belongsTo(Post);
 Post.PostLike = Post.hasMany(PostLike);
 Post.Comment = Post.hasMany(Comment, {as: "comments"});
@@ -64,7 +55,6 @@ Comment.Post = Comment.belongsTo(Post);
 
 exports.getAllPosts = (req, res, next) => {
   Post.findAll({
-   
     attributes: ["id", "text", "userId", [sequelize.fn("GROUP_CONCAT", sequelize.col('PostLikes.userId')), "userLiked"]],
     order: [
       ['id', 'DESC']
@@ -82,17 +72,10 @@ exports.getAllPosts = (req, res, next) => {
         model: Comment,
         as: "comments",
         attributes: ["id", "userId", "text", "firstname", "lastname"],
-        // distinct: 'id',
-        // limit: 100,
-        // subQuery: false,
         required: false,
       },
     ],
-    // raw: true,
-    // group: "Post.id"
     group: ["Post.id", "comments.id"]
-
-
   })
   .then((response) => res.status(200).json(response))
   .catch(error => console.log(error));
