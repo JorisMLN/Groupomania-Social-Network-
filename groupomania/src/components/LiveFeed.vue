@@ -5,10 +5,7 @@
       <p>{{ item.text }}</p>
       <div>
         <button v-if="item.userId == $store.state.userId || $store.state.userId == 1" @click="deletePost(item.id)">Supprimer</button> |
-        <!-- <button class="likeBtn" v-if="item.userLiked.find((user) => user === $store.state.userId)" @click="likePost(item.id, $store.state.userId)">Like</button> -->
-
         <button class="likeBtn" v-if="item.userLiked && item.userLiked.indexOf($store.state.userId) > -1" @click="likePost(item.id, $store.state.userId)">Like</button>
-
         <button v-else @click="likePost(item.id, $store.state.userId)">Like</button> | 
         <button @click="item.isHidden = !item.isHidden">Commenter ?</button>
       </div>
@@ -17,6 +14,15 @@
         <textarea type="text" v-model="form.text"/>
         <button v-on:click="submit(item.id, $store.state.userId)">Envoyer</button>
       </fieldset>
+      <div class="comments">
+        <div class="comments__list" v-for="comItem in item.comments" :key="comItem.id">
+          <h2>{{ comItem.firstname }} {{ comItem.lastname }}</h2>
+          <p>{{ comItem.text }} </p>
+        </div>
+        <!-- <div class="comments__list" >
+          <p>toto </p>
+        </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -36,7 +42,6 @@ export default {
 
   data() {
     return {
-      // isHidden: true,
       form: {
         text: "",
         firstname: this.$store.state.firstname,
@@ -50,11 +55,6 @@ export default {
   },
 
   methods: {
-    // checkComId(item){
-    //   let itemId = item;
-    //   return itemId;
-    // },
-
     // request for post a comment
     submit(postId, userId) {
       let payload = { postId, userId, post: this.form};
@@ -167,9 +167,6 @@ export default {
     initAction(data){
       data.forEach(element => {
         element.isHidden = true;
-        // if(element.userLiked == null){
-        //   element.userLiked = "0";
-        // }
       });
       return data;
     }
@@ -203,10 +200,13 @@ export default {
   scrollbar-color: #2c3e50 #42b983;
   scrollbar-width: thin;
   &__post {
+    display: flex;
+    flex-direction: column;
     width: 99%;
     border: 1px solid #2c3e50;
     margin: 4px;
     padding-bottom: 7px;
+    align-items: center;
     h2 {
       font-size: 20px;
     }
@@ -229,6 +229,14 @@ export default {
         overflow-y: scroll;
         scrollbar-color: #2c3e50 #42b983;
         scrollbar-width: thin;
+      }
+    }
+    .comments{
+      margin-top: 5px;
+      border: 1px solid #2c3e50;
+      width: 90%;
+      &__list{
+        border: 1px solid #42b983;
       }
     }
   }

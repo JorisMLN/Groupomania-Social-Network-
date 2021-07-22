@@ -15,6 +15,7 @@ const Model = Sequelize.Model;
 class Post extends Model {}
 Post.init({
   // attributes
+  // id: { type: Sequelize.SMALLINT, primaryKey: true },
   text: { type: Sequelize.TEXT},
   userId: { type: Sequelize.NUMBER},
   firstname: { type: Sequelize.STRING},
@@ -28,6 +29,7 @@ Post.init({
 class PostLike extends Model {}
 PostLike.init({
   // attributes
+  // id: { type: Sequelize.SMALLINT, primaryKey: true },
   postId: { type: Sequelize.NUMBER},
   userId: { type: Sequelize.NUMBER},
   status: { type: Sequelize.BOOLEAN},
@@ -40,6 +42,7 @@ PostLike.init({
 class Comment extends Model {}
 Comment.init({
   // attributes
+  // id: { type: Sequelize.SMALLINT, primaryKey: true },
   postId: { type: Sequelize.NUMBER},
   userId: { type: Sequelize.NUMBER},
   text: { type: Sequelize.TEXT},
@@ -47,34 +50,21 @@ Comment.init({
   lastname: { type: Sequelize.STRING},
 }, {
   sequelize,
-  modelname: 'postlike'
+  modelname: 'comment'
   // options
 });
+
 PostLike.Post = PostLike.belongsTo(Post);
 Post.PostLike = Post.hasMany(PostLike);
-Post.Comment = Post.hasMany(Comment);
+Post.Comment = Post.hasMany(Comment, {as: "comments"});
+Comment.Post = Comment.belongsTo(Post);
 
 
 /* ---------- R O U T E S ---------- */
 
 exports.getAllPosts = (req, res, next) => {
   Post.findAll({
-    // attributes: ["id", "text", "userId", [sequelize.fn("GROUP_CONCAT", sequelize.col('PostLikes.userId')), "userLiked"]],
-    // order: [
-    //   ['id', 'DESC']
-    // ],
-    // include:[
-    //   { 
-    //   model: PostLike,
-    //   where: {
-    //     status: 1
-    //   },
-    //   attributes: [],
-    //   required: false
-    //   },
-    // ],
-    // group: "Post.id"
-
+   
     attributes: ["id", "text", "userId", [sequelize.fn("GROUP_CONCAT", sequelize.col('PostLikes.userId')), "userLiked"]],
     order: [
       ['id', 'DESC']
@@ -90,18 +80,19 @@ exports.getAllPosts = (req, res, next) => {
       },
       { 
         model: Comment,
-        attributes: ["id", "postId", "userId", "text", "firstname", "lastname"],
-        required: false
+        as: "comments",
+        attributes: ["id", "userId", "text", "firstname", "lastname"],
+        limit: 100,
+        subQuery: false,
+        required: false,
       },
     ],
+    // raw: true,
     group: "Post.id"
 
 
   })
-  .then((response) => {
-    res.status(200).json(response),
-    console.log(response[0].dataValues);
-  })
+  .then((response) => res.status(200).json(response))
   .catch(error => console.log(error));
 };
 
