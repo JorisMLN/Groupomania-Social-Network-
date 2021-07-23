@@ -39,16 +39,10 @@ export default {
     };
   },
 
-  // created() {
-  //   let token = checkToken.getUserToken(this.$store);
-  //   if (token) {
-  //       window.location = "http://localhost:8080/#/profil";
-  //   }
-  // },
-
   methods: {
     unSub: function () {
       if (window.confirm("Voulez-vous vraiment supprimer votre compte?")) {
+        // import service checkToken
         let token = checkToken.getUserToken(this.$store);
         let userId = token.userId;
         if (token) {
@@ -78,6 +72,7 @@ export default {
       this.clearStoreAndStorage();
     },
 
+    // clear data
     clearStoreAndStorage() {
       localStorage.clear();
       this.$store.commit("cleanStore");
@@ -106,7 +101,7 @@ export default {
     justify-content: space-around;
     flex-direction: row;
     align-items: center;
-    border: 1px solid green;
+    border: 1px solid #42b983;
     border-radius: 5px;
     width: 55%;
     height: 40%;
@@ -140,17 +135,21 @@ export default {
     width: 90%;
     height: 20%;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     h2 {
       width: 90%;
-      height: 20%;
+      height: 10%;
       font-size: 18px;
     }
     &__login {
       width: 90%;
-      height: 60%;
+      height: 70%;
       flex-direction: column;
+      border: none;
       fieldset {
         width: 70%;
+        margin-top: 0px;
         input {
           width: 90%;
         }

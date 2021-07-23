@@ -49,7 +49,7 @@ export default {
     }
   }
 }
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 500px) {
   .MiniBanner {
     height: 80px;
     width: 97%;

@@ -19,9 +19,6 @@
           <h2>{{ comItem.firstname }} {{ comItem.lastname }}</h2>
           <p>{{ comItem.text }} </p>
         </div>
-        <!-- <div class="comments__list" >
-          <p>toto </p>
-        </div> -->
       </div>
     </div>
   </div>
@@ -59,6 +56,7 @@ export default {
     submit(postId, userId) {
       let payload = { postId, userId, post: this.form};
       console.log(payload);
+      // import service checkToken
       let token = checkToken.getUserToken(this.$store);
       if (token) {
         const requestOptions = {
@@ -86,6 +84,7 @@ export default {
     // request for delete a post
     deletePost(id) {
       console.log(id);
+      // import service checkToken
       let token = checkToken.getUserToken(this.$store);
       if (token) {
         axios
@@ -99,7 +98,6 @@ export default {
           .then((response) => {
             console.log(response);
             console.log("Post supprimé !");
-            // window.location = "http://localhost:8080/#/feed";
             this.callAllPosts();
           })
           .catch((e) => {
@@ -114,6 +112,7 @@ export default {
     likePost(postId, userId) {
       let payload = { postId, userId };
       console.log(payload);
+      // import service checkToken
       let token = checkToken.getUserToken(this.$store);
       if (token) {
         const requestOptions = {
@@ -164,6 +163,7 @@ export default {
       window.location = "http://localhost:8080/#/";
     },
 
+    // Unicity of each comment module
     initAction(data){
       data.forEach(element => {
         element.isHidden = true;
@@ -173,10 +173,9 @@ export default {
   },
 
   created() {
-    // checkToken
+    // import service checkToken
     let token = checkToken.getUserToken(this.$store);
     if (token) {
-      // request for all posts
       this.callAllPosts();
     } else {
       this.clearStoreAndStorage();
@@ -189,11 +188,9 @@ export default {
 <style scoped lang="scss">
 .LiveFeed {
   display: flex;
-  // flex-direction: column-reverse;
   flex-direction: column;
   height: 75%;
-  width: 50%;
-  // align-items: center;
+  width: 60%;
   border: 3px solid #42b983;
   border-radius: 5px;
   overflow-y: scroll;
@@ -234,9 +231,11 @@ export default {
     .comments{
       margin-top: 5px;
       border: 1px solid #2c3e50;
-      width: 90%;
+      width: 95%;
       &__list{
+        margin:4px;
         border: 1px solid #42b983;
+        border-radius: 10px;
       }
     }
   }

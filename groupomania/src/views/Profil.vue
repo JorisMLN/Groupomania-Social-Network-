@@ -39,7 +39,6 @@ export default {
 
   created() {
     let token = checkToken.getUserToken(this.$store);
-    console.log("testcreated");
     if (token) {
       // (en cas de réouverture de la page sans logOut) gestion de l'id vers le Vuex.
       let userId = token.userId;
@@ -60,6 +59,7 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
+          // date to the Vuex store
           this.$store.commit("addFirstname", response.data.firstname);
           this.$store.commit("addLastname", response.data.lastname);
           this.$store.commit("addEmail", response.data.email);
@@ -104,7 +104,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 600px) {
   .profil {
     display: flex;
     justify-content: space-between;

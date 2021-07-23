@@ -33,6 +33,7 @@ export default {
   },
 
   created() {
+    // import service checkToken
     let token = checkToken.getUserToken(this.$store);
     if (token) {
       window.location = "http://localhost:8080/#/profil";
@@ -55,6 +56,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           localStorage.setItem("user", JSON.stringify(response.data));
+          // data to the Vuex store
           this.$store.commit("addId", response.data.userId);
           this.$store.commit("addToken", response.data.token);
           window.location = "http://localhost:8080/#/profil";

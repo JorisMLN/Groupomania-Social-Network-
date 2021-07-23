@@ -15,16 +15,7 @@
 //
 <script>
 export default {
-  name: "NavBar",
-  // data(){
-  //   return{
-  //     userId: "",
-  //   }
-  // },
-  // created(){
-  //   let user = JSON.parse(localStorage.getItem("user"));
-  //   let userId = user.userId;
-  // }
+  name: "NavBar"
 };
 
 </script>

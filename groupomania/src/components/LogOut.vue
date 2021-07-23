@@ -13,6 +13,7 @@ export default {
   },
   methods: {
     logOut: function () {
+      // clear data
       localStorage.clear();
       this.$store.commit("cleanStore");
       window.location = "http://localhost:8080/#/";

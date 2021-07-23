@@ -52,7 +52,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 600px) {
   .info {
     display: flex;
     justify-content: space-between;

@@ -22,6 +22,7 @@ export default {
   methods: {
     photoFile: function ($event) {
       console.log($event.target.files);
+      // import service checkToken
       let token = checkToken.getUserToken(this.$store);
       let userId = token.userId;
       if (token) {
@@ -38,7 +39,7 @@ export default {
           .then((response) => {
             console.log(response);
             console.log("Photo modifiée !");
-            // window.location = "http://localhost:8080/#/profil";
+            window.location = "http://localhost:8080/#/profil";
           })
           .catch((e) => {
             console.log(e);
@@ -48,6 +49,7 @@ export default {
       }
     },
 
+    // clear data
     clearStoreAndStorage() {
       localStorage.clear();
       this.$store.commit("cleanStore");

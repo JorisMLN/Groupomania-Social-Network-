@@ -40,7 +40,6 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
-// import jwt_decode from "jwt-decode";
 import checkToken from "@/services/checkToken.js";
 
 export default {
@@ -72,6 +71,7 @@ export default {
   methods: {
     submit: function () {
       if (window.confirm("Voulez-vous vraiment modifier votre compte?")) {
+        // import service checkToken
         let token = checkToken.getUserToken(this.$store);
         console.log(token);
         let userId = token.userId;

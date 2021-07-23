@@ -11,8 +11,6 @@
 </template>
 
 <script>
-// import Vueditor from 'vueditor';
-// import 'vueditor/dist/style/vueditor.min.css'
 
 export default {
   name: "PostCreation",
@@ -22,8 +20,8 @@ export default {
       form: {
         text: "",
         userId: this.$store.state.userId,
-        // firstname: this.$store.state.firstname,
-        // lastname: this.$store.state.lastname,
+        firstname: this.$store.state.firstname,
+        lastname: this.$store.state.lastname,
       },
       token: this.$store.state.token,
     };
@@ -85,10 +83,6 @@ export default {
       align-items: center;
       height: 10%;
       width: 250px;
-      Vueditor{
-        // height: 100%;
-        // width: 30px;
-      }
       .poster {
         width: 150px;
       }

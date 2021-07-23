@@ -46,7 +46,8 @@ export default {
   }
 }
 
-@media screen and (max-width: 430px) {
+// responsiv mobile
+@media screen and (max-width: 600px) {
   .banner {
     .photoBan {
       display: flex;

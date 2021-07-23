@@ -1,11 +1,10 @@
 <template>
   <div class="Footer">
-    <div>
+    <div class="Footer__module">
       <h2 class="before">{{ beforeMsg }}</h2>
       <h2>{{ msg }}</h2>
     </div>
-    <img alt="Vue logo" src="../assets/icon-left-font-monochrome-black.svg" />
-    <div>
+    <div class="Footer__module">
       <h2 class="before">{{ beforeSigned }}</h2>
       <h2>{{ signed }}</h2>
     </div>
@@ -36,27 +35,30 @@ export default {
   height: 80px;
   margin-bottom: -52px;
   width: 100%;
-  .before {
+  &__module {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    height: 80px;
+    width: 23%;
+    .before {
+      font-size: 15px;
+      color: #42b983;
+    }
+    h2 {
     font-size: 15px;
-    color: #42b983;
-  }
-  h2 {
-    font-size: 15px;
-  }
-  img {
-    height: 20px;
+    }
   }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 600px) {
   .Footer {
     height: 100px;
     flex-direction: column;
-    img{
-      display: none;
-    }
-    div{
+    &__module {
       height: 45%;
+      width: 80%;
     }
   }
 }
