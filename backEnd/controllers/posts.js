@@ -55,7 +55,7 @@ Comment.Post = Comment.belongsTo(Post);
 
 exports.getAllPosts = (req, res, next) => {
   Post.findAll({
-    attributes: ["id", "text", "userId", [sequelize.fn("GROUP_CONCAT", sequelize.col('PostLikes.userId')), "userLiked"]],
+    attributes: ["id", "text", "userId", "firstname", "lastname", [sequelize.fn("GROUP_CONCAT", sequelize.col('PostLikes.userId')), "userLiked"]],
     order: [
       ['id', 'DESC']
     ],

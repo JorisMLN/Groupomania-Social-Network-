@@ -230,7 +230,7 @@ export default {
     }
     .comments{
       margin-top: 5px;
-      border: 1px solid #2c3e50;
+      // border: 1px solid #2c3e50;
       width: 95%;
       &__list{
         margin:4px;
