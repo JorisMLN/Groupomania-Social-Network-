@@ -4,7 +4,7 @@
       <h2>{{ item.firstname }} {{ item.lastname }}</h2>
       <p>{{ item.text }}</p>
       <div>
-        <button v-if="item.userId == $store.state.userId || $store.state.userId == 1" @click="deletePost(item.id)">Supprimer</button> |
+        <button v-if="item.userId == $store.state.userId || $store.state.userId == admin" @click="deletePost(item.id)">Supprimer</button> |
         <button class="likeBtn" v-if="item.userLiked && item.userLiked.indexOf($store.state.userId) > -1" @click="likePost(item.id, $store.state.userId)">Like</button>
         <button v-else @click="likePost(item.id, $store.state.userId)">Like</button> | 
         <button @click="item.isHidden = !item.isHidden">Commenter ?</button>
@@ -28,6 +28,7 @@
 import axios from "axios";
 import { mapState } from "vuex";
 import checkToken from "@/services/checkToken.js";
+import admin from "@/services/admin.js";
 
 export default {
   name: "LiveFeed",
@@ -39,6 +40,7 @@ export default {
 
   data() {
     return {
+      admin: admin.getAdminId(),
       form: {
         text: "",
         firstname: this.$store.state.firstname,
