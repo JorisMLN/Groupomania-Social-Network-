@@ -11,7 +11,7 @@ https://git-scm.com/downloads
 ```
 git clone https://github.com/JorisMLN/JorisMonleon_7_08062021.git
 ```
-.
+
 
 # For the DataBase
 #### Install MySQL
@@ -80,7 +80,7 @@ CREATE TABLE Comments (
 )
 ENGINE=INNODB;
 ```
-.
+
 
 # For the Back-End "BackEnd"
 #### Open git bash in cloned repository
@@ -100,10 +100,9 @@ SQL_PASSWORD=password
 ```
 nodemon server
 ```
-.
 
 # For the Front-End "groupomania"
-#### open git bash in cloned repository
+#### Open git bash in cloned repository
 ```
 cd groupomania
 ```
@@ -111,23 +110,25 @@ cd groupomania
 ```
 npm install
 ```
-#### FOR Dev 
-```
-npm run serve
-```
-#### FOR PROD Compiles and minifies
-```
-npm run build
-```
-#### Launch the build
-```
-cd dist
-node app.js
-```
+
+* #### FOR DEV
+     #### Launch the server
+    ```
+    npm run serve
+    ```
+
+* #### FOR PROD
+     #### Compiles and minifies
+    ```
+    npm run build
+    ```
+     #### Launch the build
+    ```
+    cd dist
+    node app.js
+    ```
+    
 #### Open in your browser with the url:
 ```
 http://localhost:8080/
 ```
--
-
-### Customize configuration
