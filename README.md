@@ -1,11 +1,15 @@
 # JorisMonleon_7_08062021
-#### install node
+#### Install node
 ```
 https://nodejs.org/en/download/
 ```
-#### install Git
+#### Install Git
 ```
-run git clone https://github.com/JorisMLN/JorisMonleon_7_08062021.git
+https://git-scm.com/downloads
+```
+#### Open git bash were you want to clone the repo
+```
+git clone https://github.com/JorisMLN/JorisMonleon_7_08062021.git
 ```
 .
 
@@ -14,7 +18,7 @@ run git clone https://github.com/JorisMLN/JorisMonleon_7_08062021.git
 ```
 http://dev.mysql.com/downloads/mysql/#downloads
 ```
-#### log in with your account
+#### Log in with your account
 ```
 mysql -u user -p
 ```
@@ -22,7 +26,7 @@ mysql -u user -p
 ```
 CREATE DATABASE groupomania CHARACTER SET 'utf8';
 ```
-#### add these 4 tables to the database
+#### Add these 4 tables to the database
 ```
 CREATE TABLE Users (
     id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -79,9 +83,10 @@ ENGINE=INNODB;
 .
 
 # For the Back-End "BackEnd"
-#### open git bash in cloned repository
-#### cd backEnd
-
+#### Open git bash in cloned repository
+```
+cd backEnd
+```
 #### Project setup
 ```
 npm install
@@ -99,7 +104,9 @@ nodemon server
 
 # For the Front-End "groupomania"
 #### open git bash in cloned repository
-#### cd groupomania
+```
+cd groupomania
+```
 #### Project setup
 ```
 npm install
