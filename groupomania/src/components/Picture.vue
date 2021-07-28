@@ -73,7 +73,7 @@ export default {
     font-size: 18px;
   }
   fieldset {
-    color: #42b983;
+    color: #398466;
     width: 40%;
   }
 }

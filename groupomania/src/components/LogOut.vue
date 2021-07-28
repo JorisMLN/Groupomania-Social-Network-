@@ -27,7 +27,7 @@ export default {
 .LogOut {
   button {
     border: 1px solid #2c3e50;
-    color: #42b983;
+    color: #398466;
     width: 100px;
     padding: 2px;
     text-decoration: none;

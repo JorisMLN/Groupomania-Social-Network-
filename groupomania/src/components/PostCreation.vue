@@ -67,7 +67,7 @@ export default {
     align-items: center;
     width: 95%;
     height: 85%;
-    color: #42b983;
+    color: #398466;
     textarea {
       max-width: 99%;
       width: 99%;
@@ -76,21 +76,8 @@ export default {
       scrollbar-color: #2c3e50 #42b983;
       scrollbar-width: thin;
     }
-    .gif-poster {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      height: 10%;
-      width: 250px;
-      .poster {
-        width: 150px;
-      }
-      .gif {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 50px;
-      }
+    .poster {
+      width: 150px;
     }
   }
 }

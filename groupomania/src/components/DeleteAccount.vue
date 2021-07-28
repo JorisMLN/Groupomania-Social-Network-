@@ -114,7 +114,7 @@ export default {
     }
     button {
       border: 1px solid #2c3e50;
-      color: #42b983;
+      color: #398466;
       width: 40%;
       height: 55%;
       text-decoration: none;

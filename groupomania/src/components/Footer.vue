@@ -44,7 +44,7 @@ export default {
     width: 23%;
     .before {
       font-size: 15px;
-      color: #42b983;
+      color: #398466;
     }
     h2 {
     font-size: 15px;

@@ -135,7 +135,7 @@ export default {
     fieldset {
       width: 40%;
       height: 17%;
-      color: #42b983;
+      color: #398466;
       input {
         width: 70%;
       }
@@ -143,7 +143,7 @@ export default {
   }
   button {
     border: 1px solid #2c3e50;
-    color: #42b983;
+    color: #398466;
     width: 30%;
     height: 10%;
     text-decoration: none;
@@ -174,12 +174,10 @@ export default {
     fieldset {
       width: 90%;
       height: 8%;
-      color: #42b983;
     }
   }
   button {
     border: 1px solid #2c3e50;
-    color: #42b983;
     width: 30%;
     height: 5%;
     text-decoration: none;
