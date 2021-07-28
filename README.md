@@ -17,7 +17,7 @@ npm run build
 ```
 #### Launch the build ( cd groupomania/dist/)
 ```
-npm run build
+node app.js
 ```
 -
 
