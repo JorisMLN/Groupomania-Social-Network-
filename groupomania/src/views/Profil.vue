@@ -104,7 +104,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .profil {
     display: flex;
     justify-content: space-between;

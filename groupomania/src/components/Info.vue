@@ -29,7 +29,7 @@ export default {
   justify-content: space-around;
   flex-direction: column;
   height: 95%;
-  width: 300px;
+  width: 350px;
   border: 1px solid #2c3e50;
   h1 {
     height: 10%;
@@ -52,7 +52,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .info {
     display: flex;
     justify-content: space-between;
