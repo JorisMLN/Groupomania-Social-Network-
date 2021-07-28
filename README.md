@@ -1,43 +1,22 @@
 # JorisMonleon_7_08062021
-#### install node for download the package
+#### install node
 ```
 https://nodejs.org/en/download/
 ```
--
-
-
-# For the Front-End "groupomania"
-#### Project setup
+#### install Git
 ```
-npm install
+run git clone https://github.com/JorisMLN/JorisMonleon_7_08062021.git
 ```
-#### Compiles and minifies for production
-```
-npm run build
-```
-#### Launch the build ( cd groupomania/dist/)
-```
-node app.js
-```
--
-
-
-# For the Back-End "BackEnd"
-#### Project setup
-```
-npm install
-```
-#### Launch the server
-```
-nodemon server
-```
--
-
+.
 
 # For the DataBase
 #### Install MySQL
 ```
 http://dev.mysql.com/downloads/mysql/#downloads
+```
+#### log in with your account
+```
+mysql -u user -p
 ```
 #### Create the database
 ```
@@ -97,15 +76,51 @@ CREATE TABLE Comments (
 )
 ENGINE=INNODB;
 ```
+.
 
-#### Finally, at the root of the backend, create a '.env' file and add your MySQL profile IDs according to the following example.
+# For the Back-End "BackEnd"
+#### open git bash in cloned repository
+#### cd backEnd
+
+#### Project setup
+```
+npm install
+```
+#### At the root of the backend, create a '.env' file and add your MySQL profile IDs according to the following example.
 ```
 SQL_USER=user
 SQL_PASSWORD=password
+```
+#### Launch the server
+```
+nodemon server
+```
+.
 
+# For the Front-End "groupomania"
+#### open git bash in cloned repository
+#### cd groupomania
+#### Project setup
+```
+npm install
+```
+#### FOR Dev 
+```
+npm run serve
+```
+#### FOR PROD Compiles and minifies
+```
+npm run build
+```
+#### Launch the build
+```
+cd dist
+node app.js
+```
 #### Open in your browser with the url:
 ```
-http://localhost:8080/#/
+http://localhost:8080/
+```
 -
 
 ### Customize configuration
