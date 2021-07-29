@@ -12,11 +12,18 @@
 <script>
 import axios from "axios";
 import checkToken from "@/services/checkToken.js";
+import urlVariable from "@/services/urlVariable.js";
 
 export default {
   name: "Picture",
   props: {
     msg: String,
+  },
+
+  data(){
+    return{
+      urlAPI: urlVariable.getUrl(),
+    }
   },
 
   methods: {
@@ -30,7 +37,7 @@ export default {
         let formData = new FormData();
         formData.append("image", $event.target.files[0]);
         axios
-          .put("http://localhost:3000/api/user/photo/" + userId, formData,{
+          .put(this.urlAPI + "api/user/photo/" + userId, formData,{
             headers: {
               "Content-Type": 'multipart/form-data',
               Authorization: "Bearer: " + this.$store.state.token,

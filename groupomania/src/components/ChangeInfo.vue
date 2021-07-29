@@ -41,6 +41,7 @@
 import axios from "axios";
 import { mapState } from "vuex";
 import checkToken from "@/services/checkToken.js";
+import urlVariable from "@/services/urlVariable.js";
 
 export default {
   name: "ChangeInfo",
@@ -50,6 +51,7 @@ export default {
 
   data() {
     return {
+      urlAPI: urlVariable.getUrl(),
       form: {
         email: "",
         lastname: "",
@@ -80,7 +82,7 @@ export default {
           console.log(this.form);
           console.log(this.$store.state.token);
           axios
-            .put("http://localhost:3000/api/user/modify/" + userId, {
+            .put(this.urlAPI + "api/user/modify/" + userId, {
               headers: {
                 "Content-Type": "application/json",
                 Authorization: "Bearer: " + this.$store.state.token,

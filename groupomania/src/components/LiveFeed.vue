@@ -29,6 +29,7 @@ import axios from "axios";
 import { mapState } from "vuex";
 import checkToken from "@/services/checkToken.js";
 import admin from "@/services/admin.js";
+import urlVariable from "@/services/urlVariable.js";
 
 export default {
   name: "LiveFeed",
@@ -40,6 +41,7 @@ export default {
 
   data() {
     return {
+      urlAPI: urlVariable.getUrl(),
       admin: admin.getAdminId(),
       form: {
         text: "",
@@ -69,7 +71,7 @@ export default {
           },
           body: JSON.stringify({ payload }),
         };
-        fetch("http://localhost:3000/api/posts/comment", requestOptions)
+        fetch(this.urlAPI + "api/posts/comment", requestOptions)
           .then((response) => response.json())
           .then((response) => {
             console.log(response);

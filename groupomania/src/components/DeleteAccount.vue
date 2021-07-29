@@ -16,6 +16,7 @@
 import axios from "axios";
 import { mapState } from "vuex";
 import checkToken from "@/services/checkToken.js";
+import urlVariable from "@/services/urlVariable.js";
 
 export default {
   name: "DeleteAccount",
@@ -33,6 +34,7 @@ export default {
 
   data() {
     return {
+      urlAPI: urlVariable.getUrl(),
       form: {
         password: "",
       },
@@ -49,7 +51,7 @@ export default {
           console.log(this.form);
           // request for delete the acount
           axios
-            .delete("http://localhost:3000/api/user/unsub/" + userId, {
+            .delete(this.urlAPI + "api/user/unsub/" + userId, {
               headers: {
                 "Content-Type": "application/json",
                 Authorization: "Bearer: " + this.$store.state.token,

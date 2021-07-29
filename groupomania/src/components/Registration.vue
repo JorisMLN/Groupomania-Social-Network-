@@ -47,6 +47,7 @@
 
 <script>
 import axios from "axios";
+import urlVariable from "@/services/urlVariable.js";
 
 export default {
   name: "Registration",
@@ -56,6 +57,7 @@ export default {
 
   data() {
     return {
+      urlAPI: urlVariable.getUrl(),
       form: {
         email: "",
         password: "",
@@ -78,7 +80,7 @@ export default {
       this.form.firstname &&
       this.form.job){
         axios
-        .post("http://localhost:3000/api/user/signup", this.form)
+        .post(this.urlAPI + "api/user/signup", this.form)
         .then((response) => {
           console.log(response.data);
           window.location = "http://localhost:8080/#/";

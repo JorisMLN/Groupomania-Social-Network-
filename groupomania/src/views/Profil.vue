@@ -26,6 +26,7 @@ import LogOut from "@/components/LogOut.vue";
 import Footer from "@/components/Footer.vue";
 import checkToken from "@/services/checkToken.js";
 import axios from "axios";
+import urlVariable from "@/services/urlVariable.js";
 
 export default {
   name: "Profil",
@@ -35,6 +36,12 @@ export default {
     Info,
     PostCreation,
     Footer,
+  },
+
+  data(){
+    return{
+      urlAPI: urlVariable.getUrl()
+    }
   },
 
   created() {
@@ -51,7 +58,7 @@ export default {
       this.$store.commit("addToken", user.token);
 
       axios
-        .get("http://localhost:3000/api/user/info/" + userId, {
+        .get(this.urlAPI + "api/user/info/" + userId, {
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer: " + this.$store.state.token,

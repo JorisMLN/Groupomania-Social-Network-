@@ -25,6 +25,7 @@
 <script>
 import axios from "axios";
 import checkToken from "@/services/checkToken.js";
+import urlVariable from "@/services/urlVariable.js";
 
 export default {
   name: "Login",
@@ -42,6 +43,7 @@ export default {
 
   data() {
     return {
+      urlAPI: urlVariable.getUrl(),
       form: {
         email: "",
         password: "",
@@ -52,7 +54,7 @@ export default {
   methods: {
     submit() {
       axios
-        .post("http://localhost:3000/api/user/login", this.form)
+        .post(this.urlAPI + "api/user/login", this.form)
         .then((response) => {
           console.log(response.data);
           localStorage.setItem("user", JSON.stringify(response.data));

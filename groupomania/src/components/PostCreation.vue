@@ -11,11 +11,14 @@
 </template>
 
 <script>
+import urlVariable from "@/services/urlVariable.js";
+
 export default {
   name: "PostCreation",
 
   data() {
     return {
+      urlAPI: urlVariable.getUrl(),
       form: {
         text: "",
         userId: this.$store.state.userId,
@@ -38,7 +41,7 @@ export default {
           },
           body: JSON.stringify({ post: this.form }),
         };
-        fetch("http://localhost:3000/api/posts", requestOptions)
+        fetch(this.urlAPI + "api/posts", requestOptions)
           .then((response) => response.json())
           .then(
             (data) => (this.postId = data.id),
