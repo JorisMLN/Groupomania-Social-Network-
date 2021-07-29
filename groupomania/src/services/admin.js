@@ -1,6 +1,6 @@
 export default {
     getAdminId(){
-        let adminId = 12;
+        let adminId = 1;
         return adminId
     }
   }
