@@ -2,9 +2,13 @@
 
 const fs = require('fs');
 
+require('dotenv').config();
+const sqlUser = process.env.SQL_USER;
+const sqlPassword = process.env.SQL_PASSWORD;
+
 /* ---------- S E Q U E L I Z E - & - M Y S Q L ---------- */
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('groupomania', 'student', 'Jolisaris789', {
+const sequelize = new Sequelize('groupomania', sqlUser, sqlPassword, {
     host: 'localhost',
     dialect: 'mysql'
   });

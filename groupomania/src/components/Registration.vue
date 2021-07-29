@@ -72,7 +72,12 @@ export default {
   methods: {
     submit() {
       console.log(this.form);
-      axios
+      if (this.form.email &&
+      this.form.password &&
+      this.form.lastname &&
+      this.form.firstname &&
+      this.form.job){
+        axios
         .post("http://localhost:3000/api/user/signup", this.form)
         .then((response) => {
           console.log(response.data);
@@ -81,6 +86,7 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+      }
     },
   },
 };

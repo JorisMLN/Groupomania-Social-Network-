@@ -28,23 +28,26 @@ export default {
 
   methods: {
     submit() {
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer: " + this.token,
-        },
-        body: JSON.stringify({ post: this.form }),
-      };
-      fetch("http://localhost:3000/api/posts", requestOptions)
-        .then((response) => response.json())
-        .then(
-          (data) => (this.postId = data.id),
-          (window.location = "http://localhost:8080/#/feed")
-        )
-        .catch((e) => {
-          console.log(e);
-        });
+      console.log(this.form);
+      if (this.form.text){
+        const requestOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer: " + this.token,
+          },
+          body: JSON.stringify({ post: this.form }),
+        };
+        fetch("http://localhost:3000/api/posts", requestOptions)
+          .then((response) => response.json())
+          .then(
+            (data) => (this.postId = data.id),
+            (window.location = "http://localhost:8080/#/feed")
+          )
+          .catch((e) => {
+            console.log(e);
+          });
+      }
     },
   },
 };
