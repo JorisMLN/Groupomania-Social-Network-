@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+
   state: {
     userId: "",
     token: "",
@@ -15,8 +16,10 @@ export default new Vuex.Store({
     hobbies: "",
     picture: ""
   },
+
   getters: {
   },
+
   mutations: {
     addId(state, userId){
       state.userId = userId
@@ -51,9 +54,10 @@ export default new Vuex.Store({
       });
     }
   },
-  actions: {
 
+  actions: {
   },
+
   modules: {
   }
 })

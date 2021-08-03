@@ -94,7 +94,7 @@ export default {
         axios
           .request({
             method: "delete",
-            baseURL: "http://localhost:3000/api/posts/" + id,
+            baseURL: this.urlAPI + "api/posts/" + id,
             headers: {
               Authorization: "Bearer: " + this.$store.state.token,
             },
@@ -127,7 +127,7 @@ export default {
           },
           body: JSON.stringify({ payload }),
         };
-        fetch("http://localhost:3000/api/posts/like", requestOptions)
+        fetch(this.urlAPI + "api/posts/like", requestOptions)
           .then((response) => response.json())
           .then((response) => {
             console.log(response);
@@ -146,7 +146,7 @@ export default {
       axios
         .request({
           method: "get",
-          baseURL: "http://localhost:3000/api/posts",
+          baseURL: this.urlAPI + "api/posts",
           headers: {
             Authorization: "Bearer: " + this.$store.state.token,
           },
