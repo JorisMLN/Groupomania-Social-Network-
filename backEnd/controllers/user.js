@@ -7,6 +7,7 @@ const fs = require('fs');
 require('dotenv').config();
 const sqlUser = process.env.SQL_USER;
 const sqlPassword = process.env.SQL_PASSWORD;
+const bcryptKey = process.env.BCRYPT_KEY;
 
 
 /* ---------- S E Q U E L I Z E - & - M Y S Q L ---------- */
@@ -75,7 +76,7 @@ exports.login = (req, res, next) => {
                 userId: user.id,
                 token: jwt.sign(
                     { userId: user.id },
-                    'RANDOM_TOKEN_SECRET',
+                    bcryptKey,
                     { expiresIn: '24h' }
                 )
             });
