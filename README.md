@@ -1,4 +1,4 @@
-# JorisMonleon_7_08062021
+# Groupomania Social Network
 #### Install node
 ```
 https://nodejs.org/en/download/
@@ -46,37 +46,46 @@ ENGINE=INNODB;
 
 CREATE TABLE Posts (
     id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    userId CHAR(30),
+    userId SMALLINT UNSIGNED,
     text TEXT,
     firstname VARCHAR(30),
     lastname VARCHAR(30),
     createdAt DATETIME,
     updatedAt DATETIME,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    CONSTRAINT fk_user_id
+        FOREIGN KEY (userId)
+        REFERENCES Users (id) ON DELETE SET NULL
 )
 ENGINE=INNODB;
 
 CREATE TABLE PostLikes (
     id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    postId SMALLINT,
+    postId SMALLINT UNSIGNED,
     userId SMALLINT,
     status BOOLEAN,
     createdAt DATETIME,
     updatedAt DATETIME,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    CONSTRAINT fk_post_id
+        FOREIGN KEY (postId)
+        REFERENCES Posts (id) ON DELETE SET NULL
 )
 ENGINE=INNODB;
 
 CREATE TABLE Comments (
     id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    postId SMALLINT,
+    postId SMALLINT UNSIGNED,
     userId CHAR(30),
     text TEXT,
     firstname VARCHAR(30),
     lastname VARCHAR(30),
     createdAt DATETIME,
     updatedAt DATETIME,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    CONSTRAINT fk_comPost_id
+        FOREIGN KEY (postId)
+        REFERENCES Posts (id) ON DELETE SET NULL
 )
 ENGINE=INNODB;
 ```
@@ -95,6 +104,7 @@ npm install
 ```
 SQL_USER=user
 SQL_PASSWORD=password
+BCRYPT_KEY=RANDOM_TOKEN_SECRET
 ```
 #### Launch the server
 ```
